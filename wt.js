@@ -43,143 +43,169 @@ var QRVersions = new Array(
 );
 
 var QRCode = function() {
-	this.coordOK = function(x) {
-		return (x >= 0 && x < this.dim);
-	}
+	this.coordOK = QR__coordOK;
+	this.c2i = QR__c2i;
+	this.setReserveBit = QR__setReserveBit;
+	this.getReserveBit = QR__getReserveBit;
+	this.getBit = QR__getBit;
+	this.setBit = QR__setBit;
+	this.checkRect = QR__checkRect;
+	this.drawRect = QR__drawRect;
+	this.drawPDP = QR__drawPDP
+	this.drawAlign = QR__drawAlign;
+	this.drawTiming = QR__drawTiming;
+	this.drawPatterns = QR__drawPatterns;
+	this.setVersion = QR__setVersion;
+	this.setText = QR__setText;
 	
-	/* converts coords to a data index */
-	this.c2i = function(x, y) {
-		return (y * this.dim + x);
-	}
-	
-	/* reserves bits, so they won't be masked */
-	this.setReserveBit = function(x, y) {
-		if (this.reserved.indexOf(this.c2i(x,y)) == -1) {
-			this.reserved.push(this.c2i(x,y));
-		}
-	}
-	
-	/* returns true if a bit is reserved */
-	this.getReserveBit = function(x, y) {
-		return (this.reserved.indexOf(this.c2i(x,y)) == -1) ? false : true;
-	}
-	
-	this.getBit = function(x, y, val) {
-		/* ignore out-of-bounds coords */
-		if (this.coordOK(x) && this.coordOK(y)) {
-			return this.data[this.c2i(x,y)];
-		} else {
-			return null;
-		}
-	}
-	
-	this.setBit = function(x, y, val, reserve) {
-		if (typeof reserve === 'undefined') {
-			reserve = false;
-		}
-		
-		/* ignore out-of-bounds coords */
-		if (this.coordOK(x) && this.coordOK(y)) {
-			this.data[this.c2i(x,y)] = val;
-			this.setReserveBit(x,y);
-		}
-	}
-
-	this.checkRect = function(x, y, w, h) {
-		for (var i = 0; i < w; i++) {
-			for (var j = 0; j < h; j++) {
-				if (this.getBit(x+i, y+j) != null) {
-					return false;
-				}
-			}
-		}
-		
-		return true;
-	}
-	
-	/* draws a filled rectangle in a given region. */
-	this.drawRect = function(x, y, w, h, val, reserve) {
-		if (typeof reserve === 'undefined') {
-			reserve = false;
-		}
-		
-		for (var i = 0; i < w; i++) {
-			for (var j = 0; j < h; j++) {
-				this.setBit(i+x, j+y, val, reserve);
-			}
-		}
-	}
-	
-	/* draws a position detection pattern. will overwrite occupied regions */
-	this.drawPDP = function(x, y) {
-		 this.drawRect(x-4, y-4, 9, 9, false);
-		 this.drawRect(x-3, y-3, 7, 7, true);
-		 this.drawRect(x-2, y-2, 5, 5, false);
-		 this.drawRect(x-1, y-1, 3, 3, true);
-	}
-	
-	/* draws alignment patterns if the given region is empty */
-	this.drawAlign = function(x, y) {
-		if (!this.checkRect(x-2, y-2, 5, 5)) {
-			return;	
-		}
-		
-		this.drawRect(x-2, y-2, 5, 5, true);
-		this.drawRect(x-1, y-1, 3, 3, false);
-		this.drawRect(x  , y  , 1, 1, true);
-	}
-	
-	/* draws the static timing patterns */
-	this.drawTiming = function() {
-		for (var i = 0; i < this.dim - 16; i++) {
-			if (this.getBit(6, i+8) == null) {
-				this.setBit(6, i+8, (i % 2 == 0) ? true : false);
-			}
-			
-			if (this.getBit(i+8, 6) == null) {
-				this.setBit(i+8, 6, (i % 2 == 0) ? true : false);
-			}
-		}
-	}
-	
-	/* draws all static patterns. */
-	this.drawPatterns = function() {
-		this.drawPDP(3,3);
-		this.drawPDP(3, this.dim - 4);
-		this.drawPDP(this.dim - 4, 3);
-		
-		console.log(QRVersions[this.ver].align.length);
-		for (var i = 0; i < QRVersions[this.ver].align.length; i++) {
-			for (var j = 0; j < QRVersions[this.ver].align.length; j++) {
-				this.drawAlign(QRVersions[this.ver].align[i],
-					QRVersions[this.ver].align[j]);
-				console.log(i,j);
-			}
-		}
-		
-		this.drawTiming();
-	}
-	
-	this.setVersion = function(ver) {
-		if (typeof ver !== 'number' || ver == 0 || ver > QRVersions.length) {
-			throw "Invalid QR Version";
-		}
-		this.ver = ver;
-		this.dim = QRVersions[ver].dim;
-		this.data = new Array();
-		this.reserved = new Array();
-		
-		for (var i = 0; i < this.dim * this.dim; i++) {
-			this.data[i] = null;
-		}
-		
-		this.drawPatterns();
-	}
-	
-	this.ver = 1;
-	this.dim = 21;
+	this.ver = null;
+	this.dim = null;
 	this.data = null;
 	this.reserved = null;
 	
 	/* initializing data array */
 };
+
+function QR__coordOK(x) {
+	return (x >= 0 && x < this.dim);
+}
+
+function QR__c2i(x, y) {
+	return (y * this.dim + x);
+}
+
+function QR__setReserveBit(x, y) {
+	if (!this.coordOK(x) || !this.coordOK(y)
+		|| this.reserved.indexOf(this.c2i(x,y)) != -1) {
+		return false;	
+	}
+	
+	this.reserved.push(this.c2i(x,y));
+	return true;
+}
+
+function QR__getReserveBit(x, y) {
+	if (!this.coordOK(x) || !this.coordOK(y)
+		|| this.reserved.indexOf(this.c2i(x,y)) == -1) {
+		return false;	
+	}
+	
+	return true;
+}
+
+function QR__getBit(x, y, val) {
+	/* ignore out-of-bounds coords */
+	if (this.coordOK(x) && this.coordOK(y)) {
+		return this.data[this.c2i(x,y)];
+	} else {
+		return null;
+	}
+}
+
+function QR__setBit(x, y, val, reserve) {
+	if (typeof reserve === 'undefined') {
+		reserve = false;
+	}
+	
+	/* ignore out-of-bounds coords */
+	if (this.coordOK(x) && this.coordOK(y)) {
+		this.data[this.c2i(x,y)] = val;
+	}
+	
+	/* reserve the bit if requested */
+	if (reserve) {
+		this.setReserveBit(x,y);	
+	}
+}
+
+function QR__checkRect(x, y, w, h) {
+	for (var i = 0; i < w; i++) {
+		for (var j = 0; j < h; j++) {
+			if (this.getBit(x+i, y+j) != null
+				|| this.getReserveBit(x+i, y+j)) {
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
+function QR__drawRect(x, y, w, h, val, reserve) {
+	for (var i = 0; i < w; i++) {
+		for (var j = 0; j < h; j++) {
+			this.setBit(i+x, j+y, val, reserve);
+		}
+	}
+}
+
+function QR__drawPDP(x, y) {
+	if (!this.checkRect(x-4, y-4, 9, 9)) {
+		return false;
+	}
+	
+	 this.drawRect(x-4, y-4, 9, 9, false, true);
+	 this.drawRect(x-3, y-3, 7, 7, true, true);
+	 this.drawRect(x-2, y-2, 5, 5, false, true);
+	 this.drawRect(x-1, y-1, 3, 3, true, true);
+	 return true;
+}
+
+function QR__drawAlign(x, y) {
+	if (!this.checkRect(x-2, y-2, 5, 5)) {
+		return false;	
+	}
+	
+	this.drawRect(x-2, y-2, 5, 5, true, true);
+	this.drawRect(x-1, y-1, 3, 3, false, true);
+	this.drawRect(x  , y  , 1, 1, true, true);
+	
+	return true;
+}
+
+function QR__drawTiming() {
+	for (var i = 0; i < this.dim - 16; i++) {
+		if (this.getBit(6, i+8) == null) {
+			this.setBit(6, i+8, (i % 2 == 0) ? true : false, true);
+		}
+		
+		if (this.getBit(i+8, 6) == null) {
+			this.setBit(i+8, 6, (i % 2 == 0) ? true : false, true);
+		}
+	}
+}
+
+function QR__drawPatterns() {
+	this.drawPDP(3,3);
+	this.drawPDP(3, this.dim - 4);
+	this.drawPDP(this.dim - 4, 3);
+	
+	for (var i = 0; i < QRVersions[this.ver].align.length; i++) {
+		for (var j = 0; j < QRVersions[this.ver].align.length; j++) {
+			this.drawAlign(QRVersions[this.ver].align[i],
+				QRVersions[this.ver].align[j]);
+		}
+	}
+	
+	this.drawTiming();
+}
+
+function QR__setText(text) {
+	
+}
+
+function QR__setVersion(ver) {
+	if (typeof ver !== 'number' || ver == 0 || ver > QRVersions.length) {
+		throw "Invalid QR Version";
+	}
+	this.ver = ver;
+	this.dim = QRVersions[ver].dim;
+	this.data = new Array();
+	this.reserved = new Array();
+	
+	for (var i = 0; i < this.dim * this.dim; i++) {
+		this.data[i] = null;
+	}
+	
+	this.drawPatterns();
+}

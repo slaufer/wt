@@ -1,6 +1,12 @@
 #!/usr/bin/perl -w
 use strict;
 
+# this script uses cap.txt (from IOS/IEC 18004:2000(E) Section 8.1 Table 1) and
+# align.txt (from ISO/IEC 18004:2000(E) Annex E table E.1) to generate a
+# JavaScript table of version objects.
+#
+# Written in perl for the sake of haste.
+
 open(ALIGN, 'align.txt');
 open(CAP, 'cap.txt');
 
