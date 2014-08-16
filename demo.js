@@ -1,25 +1,30 @@
-function drawQR(qr, c) {
-	var x = 0;
-	var y = 0;
-	var ctx = c.getContext("2d");
-	ctx.fillstyle = "#000000";
+function drawQR(qr, c, scale) {
+	/* set canvas size, border */
+	var cSize = qr.dim * scale + 8 * scale 
+	c.style.width = c.style.height = cSize.toString() + 'px';
+	c.setAttribute('width', cSize.toString() + 'px');
+	c.setAttribute('height', cSize.toString() + 'px');
+	c.style.border = 'solid black 1px';
 	
-	while (y < qr.dim) {
-		console.log(qr.data[y * qr.dim + x]);
-		
-		if (qr.data[y * qr.dim + x]) {
-			ctx.fillRect(x * 8, y * 8, 8, 8);
-		}
-		
-		x++;
-		if (x == qr.dim) {
-			x = 0;
-			y++;
+	/* create canvas context, clear canvas */
+	var ctx = c.getContext("2d");
+	ctx.fillStyle = 'rgb(255, 255, 255);';
+	ctx.fillRect(0, 0, cSize, cSize);
+	ctx.fillStyle = 'rgb(0, 0, 0);';
+	
+	/* iterate over data and fill into canvas */
+	for (var y = 0; y < qr.dim; y++) {
+		for (var x = 0; x < qr.dim; x++) {
+			if (qr.getBit(x,y)) {
+				ctx.fillRect((x + 4) * scale, (y + 4) * scale, 
+					scale, scale);
+			}
 		}
 	}
 }
 
 window.onload = function() {
 	var qr = new QRCode();
-	drawQR(qr, document.getElementById('spew'));
+	qr.setVersion(14);
+	drawQR(qr, document.getElementById('spew'), 8);
 }
