@@ -48,8 +48,10 @@ function drawReserve(qr, c, scale) {
 
 window.onload = function() {
 	var qr = new QRCode();
-	qr.setVersion(4);
-	qr.setText("HOMPH COCKS");
+	qr.setVersion(6);
+	qr.setEC(QR__EC.L);
+	qr.encode("AC-42", QR__Mode.alNum);
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	drawReserve(qr, document.getElementById('rescanvas'), 8);
 }
+
