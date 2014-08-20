@@ -12,23 +12,24 @@ function QR__ba2b(arr) {
 }
 
 /* converts a binary string to an array */
+/* mostly exists to make certain constant definitions more legible */
 function QR__b2ba(str) {
-	var arr = new Array();
+	var output = [];
 	for (var i = 0; i < str.length; i++) {
 		if (str.charAt(i) == '1') {
-			arr.push(true);
+			output.push(true);
 		} else if (str.charAt(i) == '0') {
-			arr.push(false);
+			output.push(false);
 		} else {
 			return null 
 		}
 	}
-	return arr;
+	return output;
 }
 
 /* converts an integer to a binary array of a given size */
 function QR__i2ba(val, size) {
-	var output = new Array();
+	var output = [];
 	
 	var mask = 1;
 	for (var i = size-1; i >= 0; i--) {
@@ -53,4 +54,26 @@ function QR__ba2i(arr) {
 	}
 	
 	return output;
+}
+
+/* this will run forever-ish on interpreters with arbitrary-size integers */
+function QR__getIntBits() {
+	var i = 1;
+	var j = 0;
+	
+	if (1 >> 1 == 0) {
+		/* little endian */
+		while (i != 0) {
+			i <<= 1;
+			j++;
+		}
+	} else {
+		/* big endian */
+		while (i != 0) {
+			i >>= 1;
+			j++;
+		}
+	}
+	
+	return j;
 }

@@ -140,8 +140,8 @@ function QR__setVersion(ver) {
 	}
 	this.ver = ver;
 	this.dim = QR__Ver[ver].dim;
-	this.data = new Array();
-	this.reserved = new Array();
+	this.data = [];
+	this.reserved = [];
 	
 	for (var i = 0; i < this.dim * this.dim; i++) {
 		this.data[i] = null;

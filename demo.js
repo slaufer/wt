@@ -50,8 +50,7 @@ window.onload = function() {
 	var qr = new QRCode();
 	qr.setVersion(2);
 	qr.setEC(QR__EC.L);
-	console.log(QR__ba2b(qr.encode("AC-42", QR__Mode.alNum)));
-	console.log(QR__ba2b(QR__i2ba(-32768,64)));
+	console.log(QR__ba2b(qr.encode("HELLO WORLD", QR__Mode.alNum)));
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	drawReserve(qr, document.getElementById('rescanvas'), 8);
 }

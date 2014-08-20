@@ -19,7 +19,7 @@ function QR__encAlNum(data) {
 	
 	/* append character count indicator */
 	output = output.concat(
-		QR__i2ba(data.length, QR__Ver[this.ver].cciAlNum));
+		QR__i2ba(data.length, QR__Ver[this.ver].cci.alNum));
 	
 	/* encode and append data stream */
 	for (var i = 0; i < data.length;) {

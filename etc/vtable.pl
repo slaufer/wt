@@ -2,9 +2,9 @@
 use strict;
 
 # this script uses the folloing files:
-# - cap.txt (from IOS/IEC 18004:2000(E) Section 8.1 Table 1)
+# - cap.txt (from ISO/IEC 18004:2000(E) Section 8.1 Table 1)
 # - cci.txt (from ISO/IEC 18004:2000(E) Section 8.4 Table 3)
-# - align.txt (from ISO/IEC 18004:2000(E) Annex E table E.1)
+# - align.txt (from ISO/IEC 18004:2000(E) Annex E Table E.1)
 # to generate a JavaScript table of version objects.
 #
 # Written in perl for the sake of haste.
@@ -13,14 +13,15 @@ open(CAP, 'cap.txt');
 open(CCI, 'cci.txt');
 open(ALIGN, 'align.txt');
 
-print "var QR__Versions = new Array(\n".
-	"\t{ ver: null, dim: null, align: null },\n";
+print "var QR__Versions = [\n".
+	"\tfalse,\n";
 
+# while-break loops make it easier to eliminate trailing separators.
 while (1) {
 	my $line = <ALIGN>;
+	chomp $line;
 	my @align = split / /, $line;
 	my $aligns = join ',', @align[2..@align-1];
-	chomp $aligns;
 	
 	$line = <CAP>;
 	chomp $line;
@@ -35,10 +36,10 @@ while (1) {
 		exit;
 	}
 	
-	print "\t{ ".
-		"ver: $align[0], dim: $cap[1], align: new Array($aligns), ".
-		"cciNum: $cci[1], cciAlNum: $cci[2], cci8Bit: $cci[3], cciKanji: $cci[4] ".
-		"}";
+	print "\t{\n".
+		"\t\tver: $align[0], dim: $cap[1], align: [ $aligns ],\n".
+		"\t\tcci: { num: $cci[1], alNum: $cci[2], eightBit: $cci[3], kanji: $cci[4] }\n".
+		"\t}";
 	
 	if (eof(ALIGN)) {
 		last;
@@ -47,7 +48,7 @@ while (1) {
 	print ",\n";	
 }
 
-print "\n);\n";
+print "\n];\n";
 
 close(CAP);
 close(CCI);
