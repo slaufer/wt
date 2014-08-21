@@ -49,7 +49,9 @@ function drawReserve(qr, c, scale) {
 window.onload = function() {
 	var qr = new QRCode();
 	qr.setVersion(1, QR__EC.M);
-	console.log(QR__ba2b_s(qr.encode("HELLO WORLD", QR__Mode.alNum)));
+	var data = qr.generateBitstream([{data: "HELLO WORLD", mode: QR__Mode.alNum}]);
+	console.log(QR__ba2b(data));
+	
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	drawReserve(qr, document.getElementById('rescanvas'), 8);
 }

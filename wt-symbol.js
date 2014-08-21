@@ -32,7 +32,7 @@ function QR__getReserveBit(x, y) {
 function QR__getBit(x, y, val) {
 	/* ignore out-of-bounds coords */
 	if (this.coordOK(x) && this.coordOK(y)) {
-		return this.data[this.c2i(x,y)];
+		return this.symbol[this.c2i(x,y)];
 	} else {
 		return null;
 	}
@@ -45,7 +45,7 @@ function QR__setBit(x, y, val, reserve) {
 	
 	/* ignore out-of-bounds coords */
 	if (this.coordOK(x) && this.coordOK(y)) {
-		this.data[this.c2i(x,y)] = val;
+		this.symbol[this.c2i(x,y)] = val;
 	}
 	
 	/* reserve the bit if requested */
@@ -137,11 +137,11 @@ function QR__setVersion(ver, ec) {
 	
 	this.ver = ver;
 	this.dim = QR__Ver[ver].dim;
-	this.data = [];
+	this.symbol = [];
 	this.reserved = [];
 	
 	for (var i = 0; i < this.dim * this.dim; i++) {
-		this.data[i] = null;
+		this.symbol[i] = null;
 	}
 	
 	switch (ec) {

@@ -19,14 +19,20 @@ var QRCode = function() {
 	this.setVersion = QR__setVersion;
 	
 	/* encoding functions */
-	this.encode = QR__encode;
 	this.encAlNum = QR__encAlNum;
+	this.generateBitstream = QR__generateBitstream;
+	this.generateMessage = QR__generateMessage;
+	this.generateECC = QR__generateECC;
+	
 	
 	this.ver = null;
 	this.dim = null;
-	this.data = null;
-	this.reserved = null;
 	this.mode = null;
 	this.ec = null;
+	
+	this.message = null;
+	this.bitstream = null;
+	this.reserved = null;
+	this.symbol = null;
 };
 
