@@ -22,10 +22,6 @@ sub ifind {
 		}
 	}
 	
-	#if ($i == @{$arr}) {
-	#	return false;
-	#}
-	
 	return $i;
 }
 
