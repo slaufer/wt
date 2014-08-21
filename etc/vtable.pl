@@ -62,7 +62,6 @@ while ($file =~ /(?<ver>\d+)\s+(?<wcount>(\d )?\d+)(?<eclevels>(\s+[LMQH]\s+(\d 
 	my $eclevels = $+{eclevels};
 	$wcount =~ s/ //g;
 	$eclevels =~ s/\n/ /g;
-	#print "Version $ver: $wcount total codewords\n";
 	
 	$vers[$ver]{codewords} = $wcount;
 	$vers[$ver]{ec} = {};
@@ -79,8 +78,6 @@ while ($file =~ /(?<ver>\d+)\s+(?<wcount>(\d )?\d+)(?<eclevels>(\s+[LMQH]\s+(\d 
 		my @blockcounts = split /\s/, $bc;
 		my @blockdata = split /\s/, $bd;
 		$eccount =~ s/ //g;
-		#print "- $eclevel: $eccount EC codewords, "
-		#	. @blockcounts . " group(s)\n";
 		
 		$eclevel = quotemeta $eclevel;
 		$vers[$ver]{ec}{$eclevel} = { ecwords => $eccount, groups => [] };
@@ -107,13 +104,14 @@ for (my $i = 1; $i < @vers; $i++) {
 	print "\t{\n"
 		. "\t\tver: $vers[$i]{ver},\n"
 		. "\t\tdim: $vers[$i]{dim},\n"
-		. "\t\tcwcount: $vers[$i]{codewords},\n"
+		. "\t\tcodewords: $vers[$i]{codewords},\n"
 		. "\t\talign: [".(join ',', @{$vers[$i]{align}})."],\n"
 		. "\t\tec: {\n";
 	
 	my @strings2;
 	foreach my $eclevel (keys %{$vers[$i]{ec}}) {
 		my $string = "\t\t\t$eclevel: {\n"
+		           . "\t\t\t\tdatawords: " . ($vers[$i]{codewords} - $vers[$i]{ec}{$eclevel}{ecwords}) . ",\n"
 			       . "\t\t\t\tecwords: $vers[$i]{ec}{$eclevel}{ecwords},\n"
 			       . "\t\t\t\tgroups: [\n";
 			       

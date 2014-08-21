@@ -11,6 +11,18 @@ function QR__ba2b(arr) {
 	return str;
 }
 
+/* converts a binary array into a binary string, with a space every 8 bits */
+function QR__ba2b_s(arr) {
+	var str = "";
+	for (var i = 0; i < arr.length; i++) {
+		str = str + (arr[i] ? '1' : '0');
+		if (i % 8 == 7) {
+			str = str + ' ';
+		}
+	}	
+	return str;
+}
+
 /* converts a binary string to an array */
 /* mostly exists to make certain constant definitions more legible */
 function QR__b2ba(str) {
@@ -67,12 +79,14 @@ function QR__getIntBits() {
 			i <<= 1;
 			j++;
 		}
-	} else {
+	} else if (1 << 1 == 0) {
 		/* big endian */
 		while (i != 0) {
 			i >>= 1;
 			j++;
 		}
+	} else {
+		throw new Error("Cannot determine endianness. Are you running this on a PDP?");
 	}
 	
 	return j;

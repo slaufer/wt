@@ -17,7 +17,6 @@ var QRCode = function() {
 	this.drawTiming = QR__drawTiming;
 	this.drawPatterns = QR__drawPatterns;
 	this.setVersion = QR__setVersion;
-	this.setEC = QR__setEC;
 	
 	/* encoding functions */
 	this.encode = QR__encode;

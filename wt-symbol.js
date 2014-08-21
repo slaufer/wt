@@ -126,18 +126,15 @@ function QR__drawPatterns() {
 	this.drawTiming();
 }
 
-function QR__setEC(ec) {
+function QR__setVersion(ver, ec) {
+	if (typeof ver !== 'number' || ver < 1 || ver > 40) {
+		throw new Error("Invalid QR Version");
+	}
+	
 	if (ec != QR__EC.L && ec != QR__EC.M && ec != QR__EC.Q && ec != QR__EC.H) {
-		throw "Bad error correction level";
+		throw new Error("Bad error correction level");
 	}
-
-	this.ec = ec;
-}
-
-function QR__setVersion(ver) {
-	if (typeof ver !== 'number' || ver == 0 || ver > QR__Ver.length) {
-		throw "Invalid QR Version";
-	}
+	
 	this.ver = ver;
 	this.dim = QR__Ver[ver].dim;
 	this.data = [];
@@ -147,5 +144,26 @@ function QR__setVersion(ver) {
 		this.data[i] = null;
 	}
 	
+	switch (ec) {
+	case QR__EC.L:
+		this.ec = QR__Ver[this.ver].ec.L;
+		break;
+	case QR__EC.M:
+		this.ec = QR__Ver[this.ver].ec.M;
+		break;
+	case QR__EC.Q:
+		this.ec = QR__Ver[this.ver].ec.Q;
+		break;
+	case QR__EC.H:
+		this.ec = QR__Ver[this.ver].ec.H;
+		break;
+	}
+	
 	this.drawPatterns();
+}
+
+function QR__setMessageLen() {
+	if (this.ver != null && this.ec != null) {
+		
+	}
 }

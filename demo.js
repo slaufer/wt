@@ -48,9 +48,8 @@ function drawReserve(qr, c, scale) {
 
 window.onload = function() {
 	var qr = new QRCode();
-	qr.setVersion(2);
-	qr.setEC(QR__EC.L);
-	console.log(QR__ba2b(qr.encode("HELLO WORLD", QR__Mode.alNum)));
+	qr.setVersion(1, QR__EC.M);
+	console.log(QR__ba2b_s(qr.encode("HELLO WORLD", QR__Mode.alNum)));
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	drawReserve(qr, document.getElementById('rescanvas'), 8);
 }

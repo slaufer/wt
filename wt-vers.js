@@ -7,10 +7,11 @@ var QR__Ver = [
 	{
 		ver: 1,
 		dim: 21,
-		cwcount: 26,
+		codewords: 26,
 		align: [],
 		ec: {
 			H: {
+				datawords: 9,
 				ecwords: 17,
 				groups: [
 					{
@@ -23,6 +24,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 13,
 				ecwords: 13,
 				groups: [
 					{
@@ -35,6 +37,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 16,
 				ecwords: 10,
 				groups: [
 					{
@@ -47,6 +50,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 19,
 				ecwords: 7,
 				groups: [
 					{
@@ -69,10 +73,11 @@ var QR__Ver = [
 	{
 		ver: 2,
 		dim: 25,
-		cwcount: 44,
+		codewords: 44,
 		align: [6,18],
 		ec: {
 			H: {
+				datawords: 16,
 				ecwords: 28,
 				groups: [
 					{
@@ -85,6 +90,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 22,
 				ecwords: 22,
 				groups: [
 					{
@@ -97,6 +103,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 28,
 				ecwords: 16,
 				groups: [
 					{
@@ -109,6 +116,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 34,
 				ecwords: 10,
 				groups: [
 					{
@@ -131,10 +139,11 @@ var QR__Ver = [
 	{
 		ver: 3,
 		dim: 29,
-		cwcount: 70,
+		codewords: 70,
 		align: [6,22],
 		ec: {
 			H: {
+				datawords: 26,
 				ecwords: 44,
 				groups: [
 					{
@@ -147,6 +156,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 34,
 				ecwords: 36,
 				groups: [
 					{
@@ -159,6 +169,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 44,
 				ecwords: 26,
 				groups: [
 					{
@@ -171,6 +182,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 55,
 				ecwords: 15,
 				groups: [
 					{
@@ -193,10 +205,11 @@ var QR__Ver = [
 	{
 		ver: 4,
 		dim: 33,
-		cwcount: 100,
+		codewords: 100,
 		align: [6,26],
 		ec: {
 			H: {
+				datawords: 36,
 				ecwords: 64,
 				groups: [
 					{
@@ -209,6 +222,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 48,
 				ecwords: 52,
 				groups: [
 					{
@@ -221,6 +235,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 64,
 				ecwords: 36,
 				groups: [
 					{
@@ -233,6 +248,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 80,
 				ecwords: 20,
 				groups: [
 					{
@@ -255,10 +271,11 @@ var QR__Ver = [
 	{
 		ver: 5,
 		dim: 37,
-		cwcount: 134,
+		codewords: 134,
 		align: [6,30],
 		ec: {
 			H: {
+				datawords: 46,
 				ecwords: 88,
 				groups: [
 					{
@@ -278,6 +295,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 62,
 				ecwords: 72,
 				groups: [
 					{
@@ -297,6 +315,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 86,
 				ecwords: 48,
 				groups: [
 					{
@@ -309,6 +328,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 108,
 				ecwords: 26,
 				groups: [
 					{
@@ -331,10 +351,11 @@ var QR__Ver = [
 	{
 		ver: 6,
 		dim: 41,
-		cwcount: 172,
+		codewords: 172,
 		align: [6,34],
 		ec: {
 			H: {
+				datawords: 60,
 				ecwords: 112,
 				groups: [
 					{
@@ -347,6 +368,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 76,
 				ecwords: 96,
 				groups: [
 					{
@@ -359,6 +381,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 108,
 				ecwords: 64,
 				groups: [
 					{
@@ -371,6 +394,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 136,
 				ecwords: 36,
 				groups: [
 					{
@@ -393,10 +417,11 @@ var QR__Ver = [
 	{
 		ver: 7,
 		dim: 45,
-		cwcount: 196,
+		codewords: 196,
 		align: [6,22,38],
 		ec: {
 			H: {
+				datawords: 66,
 				ecwords: 130,
 				groups: [
 					{
@@ -416,6 +441,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 88,
 				ecwords: 108,
 				groups: [
 					{
@@ -435,6 +461,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 124,
 				ecwords: 72,
 				groups: [
 					{
@@ -447,6 +474,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 156,
 				ecwords: 40,
 				groups: [
 					{
@@ -469,10 +497,11 @@ var QR__Ver = [
 	{
 		ver: 8,
 		dim: 49,
-		cwcount: 242,
+		codewords: 242,
 		align: [6,24,42],
 		ec: {
 			H: {
+				datawords: 86,
 				ecwords: 156,
 				groups: [
 					{
@@ -492,6 +521,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 110,
 				ecwords: 132,
 				groups: [
 					{
@@ -511,6 +541,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 154,
 				ecwords: 88,
 				groups: [
 					{
@@ -530,6 +561,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 194,
 				ecwords: 48,
 				groups: [
 					{
@@ -552,10 +584,11 @@ var QR__Ver = [
 	{
 		ver: 9,
 		dim: 53,
-		cwcount: 292,
+		codewords: 292,
 		align: [6,26,46],
 		ec: {
 			H: {
+				datawords: 100,
 				ecwords: 192,
 				groups: [
 					{
@@ -575,6 +608,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 132,
 				ecwords: 160,
 				groups: [
 					{
@@ -594,6 +628,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 182,
 				ecwords: 110,
 				groups: [
 					{
@@ -613,6 +648,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 232,
 				ecwords: 60,
 				groups: [
 					{
@@ -635,10 +671,11 @@ var QR__Ver = [
 	{
 		ver: 10,
 		dim: 57,
-		cwcount: 346,
+		codewords: 346,
 		align: [6,28,50],
 		ec: {
 			H: {
+				datawords: 122,
 				ecwords: 224,
 				groups: [
 					{
@@ -658,6 +695,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 154,
 				ecwords: 192,
 				groups: [
 					{
@@ -677,6 +715,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 216,
 				ecwords: 130,
 				groups: [
 					{
@@ -696,6 +735,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 274,
 				ecwords: 72,
 				groups: [
 					{
@@ -725,10 +765,11 @@ var QR__Ver = [
 	{
 		ver: 11,
 		dim: 61,
-		cwcount: 404,
+		codewords: 404,
 		align: [6,30,54],
 		ec: {
 			H: {
+				datawords: 140,
 				ecwords: 264,
 				groups: [
 					{
@@ -748,6 +789,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 180,
 				ecwords: 224,
 				groups: [
 					{
@@ -767,6 +809,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 254,
 				ecwords: 150,
 				groups: [
 					{
@@ -786,6 +829,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 324,
 				ecwords: 80,
 				groups: [
 					{
@@ -808,10 +852,11 @@ var QR__Ver = [
 	{
 		ver: 12,
 		dim: 65,
-		cwcount: 466,
+		codewords: 466,
 		align: [6,32,58],
 		ec: {
 			H: {
+				datawords: 158,
 				ecwords: 308,
 				groups: [
 					{
@@ -831,6 +876,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 206,
 				ecwords: 260,
 				groups: [
 					{
@@ -850,6 +896,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 290,
 				ecwords: 176,
 				groups: [
 					{
@@ -869,6 +916,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 370,
 				ecwords: 96,
 				groups: [
 					{
@@ -898,10 +946,11 @@ var QR__Ver = [
 	{
 		ver: 13,
 		dim: 69,
-		cwcount: 532,
+		codewords: 532,
 		align: [6,34,62],
 		ec: {
 			H: {
+				datawords: 180,
 				ecwords: 352,
 				groups: [
 					{
@@ -921,6 +970,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 244,
 				ecwords: 288,
 				groups: [
 					{
@@ -940,6 +990,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 334,
 				ecwords: 198,
 				groups: [
 					{
@@ -959,6 +1010,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 428,
 				ecwords: 104,
 				groups: [
 					{
@@ -981,10 +1033,11 @@ var QR__Ver = [
 	{
 		ver: 14,
 		dim: 73,
-		cwcount: 581,
+		codewords: 581,
 		align: [6,26,46,66],
 		ec: {
 			H: {
+				datawords: 197,
 				ecwords: 384,
 				groups: [
 					{
@@ -1004,6 +1057,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 261,
 				ecwords: 320,
 				groups: [
 					{
@@ -1023,6 +1077,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 365,
 				ecwords: 216,
 				groups: [
 					{
@@ -1042,6 +1097,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 461,
 				ecwords: 120,
 				groups: [
 					{
@@ -1071,10 +1127,11 @@ var QR__Ver = [
 	{
 		ver: 15,
 		dim: 77,
-		cwcount: 655,
+		codewords: 655,
 		align: [6,26,48,70],
 		ec: {
 			H: {
+				datawords: 223,
 				ecwords: 432,
 				groups: [
 					{
@@ -1094,6 +1151,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 295,
 				ecwords: 360,
 				groups: [
 					{
@@ -1113,6 +1171,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 415,
 				ecwords: 240,
 				groups: [
 					{
@@ -1132,6 +1191,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 523,
 				ecwords: 132,
 				groups: [
 					{
@@ -1161,10 +1221,11 @@ var QR__Ver = [
 	{
 		ver: 16,
 		dim: 81,
-		cwcount: 733,
+		codewords: 733,
 		align: [6,26,50,74],
 		ec: {
 			H: {
+				datawords: 253,
 				ecwords: 480,
 				groups: [
 					{
@@ -1184,6 +1245,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 325,
 				ecwords: 408,
 				groups: [
 					{
@@ -1203,6 +1265,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 453,
 				ecwords: 280,
 				groups: [
 					{
@@ -1222,6 +1285,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 589,
 				ecwords: 144,
 				groups: [
 					{
@@ -1251,10 +1315,11 @@ var QR__Ver = [
 	{
 		ver: 17,
 		dim: 85,
-		cwcount: 815,
+		codewords: 815,
 		align: [6,30,54,78],
 		ec: {
 			H: {
+				datawords: 283,
 				ecwords: 532,
 				groups: [
 					{
@@ -1274,6 +1339,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 367,
 				ecwords: 448,
 				groups: [
 					{
@@ -1293,6 +1359,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 507,
 				ecwords: 308,
 				groups: [
 					{
@@ -1312,6 +1379,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 647,
 				ecwords: 168,
 				groups: [
 					{
@@ -1341,10 +1409,11 @@ var QR__Ver = [
 	{
 		ver: 18,
 		dim: 89,
-		cwcount: 901,
+		codewords: 901,
 		align: [6,30,56,82],
 		ec: {
 			H: {
+				datawords: 313,
 				ecwords: 588,
 				groups: [
 					{
@@ -1364,6 +1433,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 397,
 				ecwords: 504,
 				groups: [
 					{
@@ -1383,6 +1453,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 563,
 				ecwords: 338,
 				groups: [
 					{
@@ -1402,6 +1473,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 721,
 				ecwords: 180,
 				groups: [
 					{
@@ -1431,10 +1503,11 @@ var QR__Ver = [
 	{
 		ver: 19,
 		dim: 93,
-		cwcount: 991,
+		codewords: 991,
 		align: [6,30,58,86],
 		ec: {
 			H: {
+				datawords: 341,
 				ecwords: 650,
 				groups: [
 					{
@@ -1454,6 +1527,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 445,
 				ecwords: 546,
 				groups: [
 					{
@@ -1473,6 +1547,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 627,
 				ecwords: 364,
 				groups: [
 					{
@@ -1492,6 +1567,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 795,
 				ecwords: 196,
 				groups: [
 					{
@@ -1521,10 +1597,11 @@ var QR__Ver = [
 	{
 		ver: 20,
 		dim: 97,
-		cwcount: 1085,
+		codewords: 1085,
 		align: [6,34,62,90],
 		ec: {
 			H: {
+				datawords: 385,
 				ecwords: 700,
 				groups: [
 					{
@@ -1544,6 +1621,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 485,
 				ecwords: 600,
 				groups: [
 					{
@@ -1563,6 +1641,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 669,
 				ecwords: 416,
 				groups: [
 					{
@@ -1582,6 +1661,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 861,
 				ecwords: 224,
 				groups: [
 					{
@@ -1611,10 +1691,11 @@ var QR__Ver = [
 	{
 		ver: 21,
 		dim: 101,
-		cwcount: 1156,
+		codewords: 1156,
 		align: [6,28,50,72,94],
 		ec: {
 			H: {
+				datawords: 406,
 				ecwords: 750,
 				groups: [
 					{
@@ -1634,6 +1715,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 512,
 				ecwords: 644,
 				groups: [
 					{
@@ -1653,6 +1735,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 714,
 				ecwords: 442,
 				groups: [
 					{
@@ -1665,6 +1748,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 932,
 				ecwords: 224,
 				groups: [
 					{
@@ -1694,10 +1778,11 @@ var QR__Ver = [
 	{
 		ver: 22,
 		dim: 105,
-		cwcount: 1258,
+		codewords: 1258,
 		align: [6,26,50,74,98],
 		ec: {
 			H: {
+				datawords: 442,
 				ecwords: 816,
 				groups: [
 					{
@@ -1710,6 +1795,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 568,
 				ecwords: 690,
 				groups: [
 					{
@@ -1729,6 +1815,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 782,
 				ecwords: 476,
 				groups: [
 					{
@@ -1741,6 +1828,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1006,
 				ecwords: 252,
 				groups: [
 					{
@@ -1770,10 +1858,11 @@ var QR__Ver = [
 	{
 		ver: 23,
 		dim: 109,
-		cwcount: 1364,
+		codewords: 1364,
 		align: [6,30,54,78,102],
 		ec: {
 			H: {
+				datawords: 464,
 				ecwords: 900,
 				groups: [
 					{
@@ -1793,6 +1882,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 614,
 				ecwords: 750,
 				groups: [
 					{
@@ -1812,6 +1902,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 860,
 				ecwords: 504,
 				groups: [
 					{
@@ -1831,6 +1922,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1094,
 				ecwords: 270,
 				groups: [
 					{
@@ -1860,10 +1952,11 @@ var QR__Ver = [
 	{
 		ver: 24,
 		dim: 113,
-		cwcount: 1474,
+		codewords: 1474,
 		align: [6,28,54,80,106],
 		ec: {
 			H: {
+				datawords: 514,
 				ecwords: 960,
 				groups: [
 					{
@@ -1883,6 +1976,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 664,
 				ecwords: 810,
 				groups: [
 					{
@@ -1902,6 +1996,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 914,
 				ecwords: 560,
 				groups: [
 					{
@@ -1921,6 +2016,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1174,
 				ecwords: 300,
 				groups: [
 					{
@@ -1950,10 +2046,11 @@ var QR__Ver = [
 	{
 		ver: 25,
 		dim: 117,
-		cwcount: 1588,
+		codewords: 1588,
 		align: [6,32,58,84,110],
 		ec: {
 			H: {
+				datawords: 538,
 				ecwords: 1050,
 				groups: [
 					{
@@ -1973,6 +2070,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 718,
 				ecwords: 870,
 				groups: [
 					{
@@ -1992,6 +2090,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1000,
 				ecwords: 588,
 				groups: [
 					{
@@ -2011,6 +2110,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1276,
 				ecwords: 312,
 				groups: [
 					{
@@ -2040,10 +2140,11 @@ var QR__Ver = [
 	{
 		ver: 26,
 		dim: 121,
-		cwcount: 1706,
+		codewords: 1706,
 		align: [6,30,58,86,114],
 		ec: {
 			H: {
+				datawords: 596,
 				ecwords: 1110,
 				groups: [
 					{
@@ -2063,6 +2164,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 754,
 				ecwords: 952,
 				groups: [
 					{
@@ -2082,6 +2184,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1062,
 				ecwords: 644,
 				groups: [
 					{
@@ -2101,6 +2204,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1370,
 				ecwords: 336,
 				groups: [
 					{
@@ -2130,10 +2234,11 @@ var QR__Ver = [
 	{
 		ver: 27,
 		dim: 125,
-		cwcount: 1828,
+		codewords: 1828,
 		align: [6,34,62,90,118],
 		ec: {
 			H: {
+				datawords: 628,
 				ecwords: 1200,
 				groups: [
 					{
@@ -2153,6 +2258,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 808,
 				ecwords: 1020,
 				groups: [
 					{
@@ -2172,6 +2278,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1128,
 				ecwords: 700,
 				groups: [
 					{
@@ -2191,6 +2298,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1468,
 				ecwords: 360,
 				groups: [
 					{
@@ -2220,10 +2328,11 @@ var QR__Ver = [
 	{
 		ver: 28,
 		dim: 129,
-		cwcount: 1921,
+		codewords: 1921,
 		align: [6,26,50,74,98,122],
 		ec: {
 			H: {
+				datawords: 661,
 				ecwords: 1260,
 				groups: [
 					{
@@ -2243,6 +2352,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 871,
 				ecwords: 1050,
 				groups: [
 					{
@@ -2262,6 +2372,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1193,
 				ecwords: 728,
 				groups: [
 					{
@@ -2281,6 +2392,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1531,
 				ecwords: 390,
 				groups: [
 					{
@@ -2310,10 +2422,11 @@ var QR__Ver = [
 	{
 		ver: 29,
 		dim: 133,
-		cwcount: 2051,
+		codewords: 2051,
 		align: [6,30,54,78,102,126],
 		ec: {
 			H: {
+				datawords: 701,
 				ecwords: 1350,
 				groups: [
 					{
@@ -2333,6 +2446,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 911,
 				ecwords: 1140,
 				groups: [
 					{
@@ -2352,6 +2466,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1267,
 				ecwords: 784,
 				groups: [
 					{
@@ -2371,6 +2486,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1631,
 				ecwords: 420,
 				groups: [
 					{
@@ -2400,10 +2516,11 @@ var QR__Ver = [
 	{
 		ver: 30,
 		dim: 137,
-		cwcount: 2185,
+		codewords: 2185,
 		align: [6,26,52,78,104,130],
 		ec: {
 			H: {
+				datawords: 745,
 				ecwords: 1440,
 				groups: [
 					{
@@ -2423,6 +2540,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 985,
 				ecwords: 1200,
 				groups: [
 					{
@@ -2442,6 +2560,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1373,
 				ecwords: 812,
 				groups: [
 					{
@@ -2461,6 +2580,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1735,
 				ecwords: 450,
 				groups: [
 					{
@@ -2490,10 +2610,11 @@ var QR__Ver = [
 	{
 		ver: 31,
 		dim: 141,
-		cwcount: 2323,
+		codewords: 2323,
 		align: [6,30,56,82,108,134],
 		ec: {
 			H: {
+				datawords: 793,
 				ecwords: 1530,
 				groups: [
 					{
@@ -2513,6 +2634,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1033,
 				ecwords: 1290,
 				groups: [
 					{
@@ -2532,6 +2654,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1455,
 				ecwords: 868,
 				groups: [
 					{
@@ -2551,6 +2674,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1843,
 				ecwords: 480,
 				groups: [
 					{
@@ -2580,10 +2704,11 @@ var QR__Ver = [
 	{
 		ver: 32,
 		dim: 145,
-		cwcount: 2465,
+		codewords: 2465,
 		align: [6,34,60,86,112,138],
 		ec: {
 			H: {
+				datawords: 845,
 				ecwords: 1620,
 				groups: [
 					{
@@ -2603,6 +2728,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1115,
 				ecwords: 1350,
 				groups: [
 					{
@@ -2622,6 +2748,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1541,
 				ecwords: 924,
 				groups: [
 					{
@@ -2641,6 +2768,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 1955,
 				ecwords: 510,
 				groups: [
 					{
@@ -2663,10 +2791,11 @@ var QR__Ver = [
 	{
 		ver: 33,
 		dim: 149,
-		cwcount: 2611,
+		codewords: 2611,
 		align: [6,30,58,86,114,142],
 		ec: {
 			H: {
+				datawords: 901,
 				ecwords: 1710,
 				groups: [
 					{
@@ -2686,6 +2815,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1171,
 				ecwords: 1440,
 				groups: [
 					{
@@ -2705,6 +2835,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1631,
 				ecwords: 980,
 				groups: [
 					{
@@ -2724,6 +2855,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2071,
 				ecwords: 540,
 				groups: [
 					{
@@ -2753,10 +2885,11 @@ var QR__Ver = [
 	{
 		ver: 34,
 		dim: 153,
-		cwcount: 2761,
+		codewords: 2761,
 		align: [6,34,62,90,118,146],
 		ec: {
 			H: {
+				datawords: 961,
 				ecwords: 1800,
 				groups: [
 					{
@@ -2776,6 +2909,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1231,
 				ecwords: 1530,
 				groups: [
 					{
@@ -2795,6 +2929,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1725,
 				ecwords: 1036,
 				groups: [
 					{
@@ -2814,6 +2949,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2191,
 				ecwords: 570,
 				groups: [
 					{
@@ -2843,10 +2979,11 @@ var QR__Ver = [
 	{
 		ver: 35,
 		dim: 157,
-		cwcount: 2876,
+		codewords: 2876,
 		align: [6,30,54,78,102,126,150],
 		ec: {
 			H: {
+				datawords: 986,
 				ecwords: 1890,
 				groups: [
 					{
@@ -2866,6 +3003,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1286,
 				ecwords: 1590,
 				groups: [
 					{
@@ -2885,6 +3023,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1812,
 				ecwords: 1064,
 				groups: [
 					{
@@ -2904,6 +3043,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2306,
 				ecwords: 570,
 				groups: [
 					{
@@ -2933,10 +3073,11 @@ var QR__Ver = [
 	{
 		ver: 36,
 		dim: 161,
-		cwcount: 3034,
+		codewords: 3034,
 		align: [6,24,50,76,102,128,154],
 		ec: {
 			H: {
+				datawords: 1054,
 				ecwords: 1980,
 				groups: [
 					{
@@ -2956,6 +3097,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1354,
 				ecwords: 1680,
 				groups: [
 					{
@@ -2975,6 +3117,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1914,
 				ecwords: 1120,
 				groups: [
 					{
@@ -2994,6 +3137,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2434,
 				ecwords: 600,
 				groups: [
 					{
@@ -3023,10 +3167,11 @@ var QR__Ver = [
 	{
 		ver: 37,
 		dim: 165,
-		cwcount: 3196,
+		codewords: 3196,
 		align: [6,28,54,80,106,132,158],
 		ec: {
 			H: {
+				datawords: 1096,
 				ecwords: 2100,
 				groups: [
 					{
@@ -3046,6 +3191,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1426,
 				ecwords: 1770,
 				groups: [
 					{
@@ -3065,6 +3211,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 1992,
 				ecwords: 1204,
 				groups: [
 					{
@@ -3084,6 +3231,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2566,
 				ecwords: 630,
 				groups: [
 					{
@@ -3113,10 +3261,11 @@ var QR__Ver = [
 	{
 		ver: 38,
 		dim: 169,
-		cwcount: 3362,
+		codewords: 3362,
 		align: [6,32,58,84,110,136,162],
 		ec: {
 			H: {
+				datawords: 1142,
 				ecwords: 2220,
 				groups: [
 					{
@@ -3136,6 +3285,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1502,
 				ecwords: 1860,
 				groups: [
 					{
@@ -3155,6 +3305,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 2102,
 				ecwords: 1260,
 				groups: [
 					{
@@ -3174,6 +3325,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2702,
 				ecwords: 660,
 				groups: [
 					{
@@ -3203,10 +3355,11 @@ var QR__Ver = [
 	{
 		ver: 39,
 		dim: 173,
-		cwcount: 3532,
+		codewords: 3532,
 		align: [6,26,54,82,110,138,166],
 		ec: {
 			H: {
+				datawords: 1222,
 				ecwords: 2310,
 				groups: [
 					{
@@ -3226,6 +3379,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1582,
 				ecwords: 1950,
 				groups: [
 					{
@@ -3245,6 +3399,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 2216,
 				ecwords: 1316,
 				groups: [
 					{
@@ -3264,6 +3419,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2812,
 				ecwords: 720,
 				groups: [
 					{
@@ -3293,10 +3449,11 @@ var QR__Ver = [
 	{
 		ver: 40,
 		dim: 177,
-		cwcount: 3706,
+		codewords: 3706,
 		align: [6,30,58,86,114,142,170],
 		ec: {
 			H: {
+				datawords: 1276,
 				ecwords: 2430,
 				groups: [
 					{
@@ -3316,6 +3473,7 @@ var QR__Ver = [
 				]
 			},
 			Q: {
+				datawords: 1666,
 				ecwords: 2040,
 				groups: [
 					{
@@ -3335,6 +3493,7 @@ var QR__Ver = [
 				]
 			},
 			M: {
+				datawords: 2334,
 				ecwords: 1372,
 				groups: [
 					{
@@ -3354,6 +3513,7 @@ var QR__Ver = [
 				]
 			},
 			L: {
+				datawords: 2956,
 				ecwords: 750,
 				groups: [
 					{
