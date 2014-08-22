@@ -29,11 +29,6 @@ while (1) {
 	chomp $line;
 	my @cci = split / /, $line;
 	
-	if ($cap[0] != $cci[0] || $cap[0] != $align[0]) {
-		print "Table files are corrupted!\n";
-		exit;
-	}
-	
 	$vers[$align[0]] = {};
 	$vers[$align[0]]{ver} = $align[0];
 	$vers[$align[0]]{dim} = $cap[1];
@@ -94,6 +89,8 @@ while ($file =~ /(?<ver>\d+)\s+(?<wcount>(\d )?\d+)(?<eclevels>(\s+[LMQH]\s+(\d 
 	}
 }
 
+# write the table
+
 print "/*\n"
 	. " * QR Version Constant Table\n"
 	. " */\n"
@@ -102,7 +99,7 @@ print "/*\n"
 
 for (my $i = 1; $i < @vers; $i++) {
 	print "\t{\n"
-		. "\t\tver: $vers[$i]{ver},\n"
+		#. "\t\tver: $vers[$i]{ver},\n"
 		. "\t\tdim: $vers[$i]{dim},\n"
 		. "\t\tcodewords: $vers[$i]{codewords},\n"
 		. "\t\talign: [".(join ',', @{$vers[$i]{align}})."],\n"
@@ -111,7 +108,7 @@ for (my $i = 1; $i < @vers; $i++) {
 	my @strings2;
 	foreach my $eclevel (keys %{$vers[$i]{ec}}) {
 		my $string = "\t\t\t$eclevel: {\n"
-		           . "\t\t\t\tdatawords: " . ($vers[$i]{codewords} - $vers[$i]{ec}{$eclevel}{ecwords}) . ",\n"
+		           #. "\t\t\t\tdatawords: " . ($vers[$i]{codewords} - $vers[$i]{ec}{$eclevel}{ecwords}) . ",\n"
 			       . "\t\t\t\tecwords: $vers[$i]{ec}{$eclevel}{ecwords},\n"
 			       . "\t\t\t\tgroups: [\n";
 			       
@@ -119,7 +116,7 @@ for (my $i = 1; $i < @vers; $i++) {
 			 $string .= "\t\t\t\t\t{\n"
 			          . "\t\t\t\t\t\tblocks: $vers[$i]{ec}{$eclevel}{groups}[$j]{blocks},\n"
 			          . "\t\t\t\t\t\tcodewords: $vers[$i]{ec}{$eclevel}{groups}[$j]{codewords},\n"
-			          . "\t\t\t\t\t\tdatawords: $vers[$i]{ec}{$eclevel}{groups}[$j]{datawords},\n"
+			          #. "\t\t\t\t\t\tdatawords: $vers[$i]{ec}{$eclevel}{groups}[$j]{datawords},\n"
 			          . "\t\t\t\t\t\tecwords: $vers[$i]{ec}{$eclevel}{groups}[$j]{ecwords},\n"
 			          . "\t\t\t\t\t\teccap: $vers[$i]{ec}{$eclevel}{groups}[$j]{eccap}\n"
 			          . "\t\t\t\t\t}";

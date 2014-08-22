@@ -48,7 +48,7 @@ function drawReserve(qr, c, scale) {
 
 window.onload = function() {
 	var qr = new QRCode();
-	qr.setVersion(1, QR__EC.M);
+	qr.setVersion(5, QR__EC.Q);
 	var data = qr.generateBitstream([{data: "HELLO WORLD", mode: QR__Mode.alNum}]);
 	console.log(QR__ba2b(data));
 	

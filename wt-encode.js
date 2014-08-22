@@ -61,7 +61,8 @@ function QR__generateMessage(data) {
 	}
 	
 	/* make sure we didn't end up with a message that's too long */
-	var databits = QR__Ver[this.ver].ec[this.ec].datawords * 8;
+	var databits = (QR__Ver[this.ver].codewords
+		- QR__Ver[this.ver].ec[this.ec].ecwords) * 8;
 	if (encoded.length > databits) {
 		throw new Error("Message too long");
 	}
@@ -85,75 +86,54 @@ function QR__generateMessage(data) {
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg data - data to be encoded
- * @arg count - number of codewords to generate
+ * @arg count - number of EC codewords to generate
  * @return - binary array containing error correction segment for given data
  *
- * TODO: optimize this function by using offset math instead of padding out the
- *       arrays
+ * TODO: optimize this function so it doesn't create and discard a million new
+ * arrays
  */ 
 function QR__generateECC(data, count) {
 	if (data.length % 8 != 0) {
 		throw new Error("Bad message length");
 	}
 	
-	/* copy over the generator polynomial just to keep things brief */
+	/* create the message polynomial in integer notation */
 	var msgPoly = [];
-	
-	/* create the message polynomial in alpha notation */
 	for (var i = 0; i < data.length; i += 8) {
 		msgPoly.unshift(QR__ba2i(data.slice(i, i+8)));
 	}
 	
-	var count = msgPoly.length - 1;
-	
-	/* multiply message polynomial by x^n, where n is the number of
-	   ec codewords. keep in mind that this only works because msgPoly is NOT
-	   in alpha notation -- there's no "zero" in alpha notation */
+	/* multiply message polynomial by x^n; n is the number of ec codewords. */
 	for (var i = 0; i < count; i++) {
 		msgPoly.unshift(0);
 	}
 	
-	for (var i = count; i > -1; i--) {
-		/* get a new generator polynomial, since we ruined the old one */
-		/* FUN FACT: arrays in javascript are copied by reference */
-		var genPoly = QR__GenPoly[count].slice(0);
-		
-		/* multiply the gen poly by the lead coefficient of the msg poly */
+	/* if you alter this, beware: it is deceptively easy to introduce off-by-one
+	   errors in this loop. */
+	for (var i = msgPoly.length-1; i >= count; i--) {
+		/* now perform the XOR multiplication -- the offset makes this behave
+		   as though genPoly and msgPoly have the same degree. */
 		var leadCoeffAlpha = QR__GF256.indexOf(msgPoly[msgPoly.length-1]);
-		for (var j = 0; j < genPoly.length; j++) {
-			/* first perform alpha-notation multiplication */
-			genPoly[j] += leadCoeffAlpha;
-			if (genPoly[j] > 255) {
-				genPoly[j] %= 255;
+		var offset = msgPoly.length - QR__GenPoly[count].length;
+		for (var j = QR__GenPoly[count].length-1; j > -1; j--) {
+			var genPolyCoeff = QR__GenPoly[count][j] + leadCoeffAlpha;
+			if (genPolyCoeff > 255) {
+				genPolyCoeff %= 255;
 			}
+			genPolyCoeff = QR__GF256[genPolyCoeff];
 			
-			/* now convert to integer notation */
-			genPoly[j] = QR__GF256[genPoly[j]];
-		}
-		
-		/* bring the gen poly up to the same degree as the msg poly. false means
-		   a term doesn't exist -- there's no "zero" in alpha notation */
-		while (genPoly.length < msgPoly.length) {
-			genPoly.unshift(false);
-		}
-		
-		/* now perform the XOR multiplication */
-		for (var j = genPoly.length-1; genPoly[j] !== false && j > -1; j--) {
-			msgPoly[j] ^= genPoly[j];
+			msgPoly[j+offset] ^= genPolyCoeff;
 		}
 		
 		/* the lead term of the msg poly should be zero now, discard it */
 		msgPoly.pop();
 	}
 	
-	/* now, turn the remainder into a binary array */
-	
+	/* now, return the remainder as a binary array */
 	var output = [];
-	
 	for (var i = msgPoly.length-1; i > -1; i--) {
 		output = output.concat(QR__i2ba(msgPoly[i], 8));
 	}
-	
 	return output;
 }
 
@@ -169,9 +149,11 @@ function QR__generateBitstream(data) {
 	
 	console.log("message: ",  QR__ba2b_s(message));
 	
-	var ecc = this.generateECC(message, 10);
-	
-	console.log("ecc: ", QR__ba2b_s(ecc));
+	for (var i = 0; i < QR__Ver[this.ver].ec[this.ec].groups.length; i++) {
+		for (var j = 0; j < QR__Ver[this.ver].ec[this.ec].groups[i].blocks; j++) {
+			console.log("x");
+		}
+	}
 	
 	return [];
 }

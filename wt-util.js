@@ -25,6 +25,7 @@ function QR__ba2b_s(arr) {
 
 /* converts a binary string to an array */
 /* mostly exists to make certain constant definitions more legible */
+/* ignores any character that isn't 1 or 0 */
 function QR__b2ba(str) {
 	var output = [];
 	for (var i = 0; i < str.length; i++) {
@@ -32,8 +33,6 @@ function QR__b2ba(str) {
 			output.push(true);
 		} else if (str.charAt(i) == '0') {
 			output.push(false);
-		} else {
-			return null 
 		}
 	}
 	return output;
