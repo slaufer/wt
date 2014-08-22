@@ -17,14 +17,15 @@ var QR__Mode = {
 	fnc12: 9
 }
 
+/* EC Mode constants. */
 var QR__EC = {
-	L: 1,
-	M: 2,
-	Q: 3,
-	H: 4
+	L: 'L',
+	M: 'M',
+	Q: 'Q',
+	H: 'H'
 };
 
-/* table for alphanumeric encoding */
+/* Table of alphanumeric encoding values. */
 var QR__EncAlNumVals = [
 	/* Chars 0-9, Vals 0-9 */
 	'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
@@ -35,10 +36,7 @@ var QR__EncAlNumVals = [
 	' ', '$', '%', '*', '+', '-', '.', '/', ':' 	
 ];
 
-/* table of GF(256) (Galois Field 2^8) */
-/* I'm not going to lie to you and tell you that I completely understand Galois
-   Fields. I absolutely do not. If there's a better or more orthogonal way to
-   generate EC codewords, please let me know (or better yet, submit a patch) */
+/* Table of Galois Field 256. */
 var QR__GF256 = [
 	  1,   2,   4,   8,  16,  32,  64, 128,  29,  58, 116, 232, 205, 135,  19,
 	 38,  76, 152,  45,  90, 180, 117, 234, 201, 143,   3,   6,  12,  24,  48,
@@ -60,6 +58,8 @@ var QR__GF256 = [
 	  1
 ];
 
+/* Table of generator polynomials in alpha notation. See etc/gpoly.pl for more
+   information on how these are generated. */
 var QR__GenPoly = [
 	false,
 	false,
@@ -132,6 +132,7 @@ var QR__GenPoly = [
 	[238,163,8,5,3,127,184,101,27,235,238,43,198,175,215,82,32,54,2,118,225,166,241,137,125,41,177,52,231,95,97,199,52,227,89,160,173,253,84,15,84,93,151,203,220,165,202,60,52,133,205,190,101,84,150,43,254,32,160,90,70,77,93,224,33,223,159,247,0]
 ];
 
+/* Pad codewords for message stream underrun. */
 var QR__PadCodewords = [
 	QR__b2ba("11101100"),
 	QR__b2ba("00010001")

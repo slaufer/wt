@@ -53,7 +53,10 @@ for (my $i = 2; $i <= 68; $i++) {
 		for (my $k = 0; $k < @{$GPOLY[$i-1]}; $k++) {
 			# if the alpha goes out-of-field, it rolls over
 			# i do not understand why this is mod 255 instead of mod 256
-			my $alpha = ($mul[$j] + $GPOLY[$i - 1][$k]) % 255;
+			my $alpha = $mul[$j] + $GPOLY[$i - 1][$k];
+			if ($alpha > 255) {
+				$alpha %= 255;
+			}
 			
 			# if this is the first like-term for this degree, put (temporarily)
 			# into the output so it with the other term for this degree later

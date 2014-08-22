@@ -139,24 +139,10 @@ function QR__setVersion(ver, ec) {
 	this.dim = QR__Ver[ver].dim;
 	this.symbol = [];
 	this.reserved = [];
+	this.ec = ec;
 	
 	for (var i = 0; i < this.dim * this.dim; i++) {
 		this.symbol[i] = null;
-	}
-	
-	switch (ec) {
-	case QR__EC.L:
-		this.ec = QR__Ver[this.ver].ec.L;
-		break;
-	case QR__EC.M:
-		this.ec = QR__Ver[this.ver].ec.M;
-		break;
-	case QR__EC.Q:
-		this.ec = QR__Ver[this.ver].ec.Q;
-		break;
-	case QR__EC.H:
-		this.ec = QR__Ver[this.ver].ec.H;
-		break;
 	}
 	
 	this.drawPatterns();
