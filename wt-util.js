@@ -1,6 +1,8 @@
 /*
  *  UTILITY FUNCTIONS
  */
+ 
+
 
 /* converts a binary array into a binary string */
 function QR__ba2b(arr) {
@@ -38,7 +40,7 @@ function QR__b2ba(str) {
 	return output;
 }
 
-/* converts an integer to a binary array of a given size */
+/*converts an integer to a binary array of a given size */
 function QR__i2ba(val, size) {
 	var output = [];
 	
@@ -51,9 +53,13 @@ function QR__i2ba(val, size) {
 	return output;
 }
 
-/* converts a binary array to an integer. be aware that integer sizes are not
-   consistent across all javascript implementations -- do not expect this to
-   function consistently with large (> 32 bit) or negative numbers. */
+/* QR_ba2i
+ * converts a binary array to an integer. may or may not work on negative
+ * numbers. bear in mind that most javascript implementations limit integer
+ * size.
+ * @arg arr - array to convert
+ * @return - integer value of array 
+ */
 function QR__ba2i(arr) {
 	var output = 0;
 	
@@ -65,28 +71,4 @@ function QR__ba2i(arr) {
 	}
 	
 	return output;
-}
-
-/* this will run forever-ish on interpreters with arbitrary-size integers */
-function QR__getIntBits() {
-	var i = 1;
-	var j = 0;
-	
-	if (1 >> 1 == 0) {
-		/* little endian */
-		while (i != 0) {
-			i <<= 1;
-			j++;
-		}
-	} else if (1 << 1 == 0) {
-		/* big endian */
-		while (i != 0) {
-			i >>= 1;
-			j++;
-		}
-	} else {
-		throw new Error("Cannot determine endianness. Are you running this on a PDP?");
-	}
-	
-	return j;
 }

@@ -15,7 +15,15 @@ function drawQR(qr, c, scale) {
 	/* iterate over data and fill into canvas */
 	for (var y = 0; y < qr.dim; y++) {
 		for (var x = 0; x < qr.dim; x++) {
-			if (qr.getBit(x,y)) {
+			var k = qr.getBit(x,y);
+			if (k === true) {
+				ctx.fillStyle = 'rgb(0, 0, 0);';
+				ctx.fillRect((x + 4) * scale, (y + 4) * scale, scale, scale);
+			} else if (k === false) {
+				ctx.fillStyle = 'rgb(255, 255, 255);';
+				ctx.fillRect((x + 4) * scale, (y + 4) * scale, scale, scale);
+			} else if (typeof k == 'number') {
+				ctx.fillStyle = 'rgb('+k+', '+k+', '+k+');';
 				ctx.fillRect((x + 4) * scale, (y + 4) * scale, scale, scale);
 			}
 		}
@@ -46,13 +54,15 @@ function drawReserve(qr, c, scale) {
 	}
 }
 
-window.onload = function() {
+function startDemo() {
 	var qr = new QRCode();
-	qr.setVersion(5, QR__EC.Q);
-	var data = qr.generateBitstream([{data: "HELLO WORLD", mode: QR__Mode.alNum}]);
-	console.log(QR__ba2b_s(data));
+	qr.setVersion(1, QR__EC.M);
+	qr.setData([{data: document.getElementById("qrdata").value, mode: QR__Mode.alNum}]);
 	
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	drawReserve(qr, document.getElementById('rescanvas'), 8);
 }
 
+window.onload = function() {
+	startDemo();
+}

@@ -2,7 +2,7 @@
  *  ENCODING FUNCTIONS
  */
 
-/* Encodes a string in alphanumeric mode.
+/* QR__encAlNum - Encodes a string in alphanumeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg data - string to encode
