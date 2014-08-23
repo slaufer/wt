@@ -32,6 +32,7 @@ while (1) {
 	$vers[$align[0]] = {};
 	$vers[$align[0]]{ver} = $align[0];
 	$vers[$align[0]]{dim} = $cap[1];
+	$vers[$align[0]]{rem} = $cap[6];
 	my @align2 = @align[2..@align-1]; # this is ugly
 	$vers[$align[0]]{align} = \@align2;
 	$vers[$align[0]]{cci} = { num => $cci[1], alNum => $cci[2], eightBit => $cci[3], kanji => $cci[4] };
@@ -102,6 +103,7 @@ for (my $i = 1; $i < @vers; $i++) {
 		#. "\t\tver: $vers[$i]{ver},\n"
 		. "\t\tdim: $vers[$i]{dim},\n"
 		. "\t\tcodewords: $vers[$i]{codewords},\n"
+		. "\t\trem: $vers[$i]{rem},\n"
 		. "\t\talign: [".(join ',', @{$vers[$i]{align}})."],\n"
 		. "\t\tec: {\n";
 	
@@ -118,7 +120,7 @@ for (my $i = 1; $i < @vers; $i++) {
 			          . "\t\t\t\t\t\tcodewords: $vers[$i]{ec}{$eclevel}{groups}[$j]{codewords},\n"
 			          #. "\t\t\t\t\t\tdatawords: $vers[$i]{ec}{$eclevel}{groups}[$j]{datawords},\n"
 			          . "\t\t\t\t\t\tecwords: $vers[$i]{ec}{$eclevel}{groups}[$j]{ecwords},\n"
-			          . "\t\t\t\t\t\teccap: $vers[$i]{ec}{$eclevel}{groups}[$j]{eccap}\n"
+			          #. "\t\t\t\t\t\teccap: $vers[$i]{ec}{$eclevel}{groups}[$j]{eccap}\n"
 			          . "\t\t\t\t\t}";
 			if ($j + 1 < @{$vers[$i]{ec}{$eclevel}{groups}}) {
 				$string .= ",";

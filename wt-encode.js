@@ -7,6 +7,7 @@
  *
  * @arg data - string to encode
  * @return - binary array containing encoded alphanumeric segment with headers
+ * TODO: optimize this function
  */
  
 function QR__encAlNum(data) {
@@ -90,7 +91,7 @@ function QR__generateMessage(data) {
  * @return - binary array containing error correction segment for given data
  *
  * TODO: optimize this function so it doesn't create and discard a million new
- * arrays
+ * arrays.
  */ 
 function QR__generateECC(data, count) {
 	if (data.length % 8 != 0) {
@@ -145,15 +146,68 @@ function QR__generateECC(data, count) {
  * @return - binary array containing bitstream data
  */
 function QR__generateBitstream(data) {
+	/* generate the message */
 	var message = this.generateMessage(data);
+
+	var datablocks = [];
+	var ecblocks = [];
 	
-	console.log("message: ",  QR__ba2b_s(message));
-	
+	/* iterate over the groups */
+	var msgPos = 0;
+	var maxDataBlock = 0;
+	var maxECBlock = 0;
 	for (var i = 0; i < QR__Ver[this.ver].ec[this.ec].groups.length; i++) {
+		/* figure out how many bits of data and EC codewords in this block  */
+		var ecwords = QR__Ver[this.ver].ec[this.ec].groups[i].ecwords;
+		var databits = (QR__Ver[this.ver].ec[this.ec].groups[i].codewords - ecwords) * 8;
+		
+		/* remember the longest data and EC blocks */
+		if (databits / 8 > maxDataBlock) {
+			maxDataBlock = databits / 8;
+		}
+		
+		if (ecwords > maxECBlock) {
+			maxECBlock = ecwords; 
+		}
+		
+		/* iterate over blocks */
 		for (var j = 0; j < QR__Ver[this.ver].ec[this.ec].groups[i].blocks; j++) {
-			console.log("x");
+			/* copy the blocks into separate arrays, and generate EC blocks */
+			datablocks.push(message.slice(msgPos, msgPos + databits));
+			msgPos += databits;
+			ecblocks.push(this.generateECC(datablocks[datablocks.length-1], ecwords));
 		}
 	}
 	
-	return [];
+	/* interleave the data codewords */
+	var bitstream = [];
+	var blockPos = 0;
+	for (var i = 0; i < maxDataBlock; i++) {	
+		for (var j = 0; j < datablocks.length; j++) {
+			if (blockPos < datablocks[j].length) {
+				bitstream = bitstream.concat(datablocks[j].slice(blockPos, blockPos+8));
+			}
+		}
+		
+		blockPos += 8;
+	}
+	
+	/* interleave the EC codewords */
+	var blockPos = 0;
+	for (var i = 0; i < maxECBlock; i++) {
+		for (var j = 0; j < ecblocks.length; j++) {
+			if (blockPos < ecblocks[j].length) {
+				bitstream = bitstream.concat(ecblocks[j].slice(blockPos, blockPos+8));
+			}
+		}
+	
+		blockPos += 8;
+	}
+	
+	/* add on the remainder bits */
+	for (var i = 0; i < QR__Ver[this.ver].rem; i++) {
+		bitstream = bitstream.concat(QR__b2ba("0"));
+	}
+	
+	return bitstream;
 }

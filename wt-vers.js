@@ -7,6 +7,7 @@ var QR__Ver = [
 	{
 		dim: 21,
 		codewords: 26,
+		rem: 0,
 		align: [],
 		ec: {
 			H: {
@@ -16,7 +17,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 26,
 						ecwords: 17,
-						eccap: 8
 					}
 				]
 			},
@@ -27,7 +27,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 26,
 						ecwords: 13,
-						eccap: 6
 					}
 				]
 			},
@@ -38,7 +37,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 26,
 						ecwords: 10,
-						eccap: 4
 					}
 				]
 			},
@@ -49,7 +47,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 26,
 						ecwords: 7,
-						eccap: 2
 					}
 				]
 			}
@@ -64,6 +61,7 @@ var QR__Ver = [
 	{
 		dim: 25,
 		codewords: 44,
+		rem: 7,
 		align: [6,18],
 		ec: {
 			H: {
@@ -73,7 +71,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 44,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -84,7 +81,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 44,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -95,7 +91,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 44,
 						ecwords: 16,
-						eccap: 8
 					}
 				]
 			},
@@ -106,7 +101,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 44,
 						ecwords: 10,
-						eccap: 4
 					}
 				]
 			}
@@ -121,6 +115,7 @@ var QR__Ver = [
 	{
 		dim: 29,
 		codewords: 70,
+		rem: 7,
 		align: [6,22],
 		ec: {
 			H: {
@@ -130,7 +125,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 35,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -141,7 +135,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 35,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			},
@@ -152,7 +145,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 70,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -163,7 +155,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 70,
 						ecwords: 15,
-						eccap: 7
 					}
 				]
 			}
@@ -178,6 +169,7 @@ var QR__Ver = [
 	{
 		dim: 33,
 		codewords: 100,
+		rem: 7,
 		align: [6,26],
 		ec: {
 			H: {
@@ -187,7 +179,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 25,
 						ecwords: 16,
-						eccap: 8
 					}
 				]
 			},
@@ -198,7 +189,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 50,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -209,7 +199,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 50,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			},
@@ -220,7 +209,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 100,
 						ecwords: 20,
-						eccap: 10
 					}
 				]
 			}
@@ -235,6 +223,7 @@ var QR__Ver = [
 	{
 		dim: 37,
 		codewords: 134,
+		rem: 7,
 		align: [6,30],
 		ec: {
 			H: {
@@ -244,13 +233,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 33,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 2,
 						codewords: 34,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -261,13 +248,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 33,
 						ecwords: 18,
-						eccap: 9
 					},
 					{
 						blocks: 2,
 						codewords: 34,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			},
@@ -278,7 +263,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 67,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -289,7 +273,6 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 134,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			}
@@ -304,6 +287,7 @@ var QR__Ver = [
 	{
 		dim: 41,
 		codewords: 172,
+		rem: 7,
 		align: [6,34],
 		ec: {
 			H: {
@@ -313,7 +297,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 43,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -324,7 +307,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 43,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -335,7 +317,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 43,
 						ecwords: 16,
-						eccap: 8
 					}
 				]
 			},
@@ -346,7 +327,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 86,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			}
@@ -361,6 +341,7 @@ var QR__Ver = [
 	{
 		dim: 45,
 		codewords: 196,
+		rem: 0,
 		align: [6,22,38],
 		ec: {
 			H: {
@@ -370,13 +351,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 39,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 1,
 						codewords: 40,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -387,13 +366,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 32,
 						ecwords: 18,
-						eccap: 9
 					},
 					{
 						blocks: 4,
 						codewords: 33,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			},
@@ -404,7 +381,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 49,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			},
@@ -415,7 +391,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 98,
 						ecwords: 20,
-						eccap: 10
 					}
 				]
 			}
@@ -430,6 +405,7 @@ var QR__Ver = [
 	{
 		dim: 49,
 		codewords: 242,
+		rem: 0,
 		align: [6,24,42],
 		ec: {
 			H: {
@@ -439,13 +415,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 40,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 2,
 						codewords: 41,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -456,13 +430,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 40,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 2,
 						codewords: 41,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -473,13 +445,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 60,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 2,
 						codewords: 61,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -490,7 +460,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 121,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			}
@@ -505,6 +474,7 @@ var QR__Ver = [
 	{
 		dim: 53,
 		codewords: 292,
+		rem: 0,
 		align: [6,26,46],
 		ec: {
 			H: {
@@ -514,13 +484,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 36,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 4,
 						codewords: 37,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -531,13 +499,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 36,
 						ecwords: 20,
-						eccap: 10
 					},
 					{
 						blocks: 4,
 						codewords: 37,
 						ecwords: 20,
-						eccap: 10
 					}
 				]
 			},
@@ -548,13 +514,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 58,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 2,
 						codewords: 59,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -565,7 +529,6 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -580,6 +543,7 @@ var QR__Ver = [
 	{
 		dim: 57,
 		codewords: 346,
+		rem: 0,
 		align: [6,28,50],
 		ec: {
 			H: {
@@ -589,13 +553,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 43,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 2,
 						codewords: 44,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -606,13 +568,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 43,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 2,
 						codewords: 44,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -623,13 +583,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 69,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 1,
 						codewords: 70,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -640,13 +598,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 86,
 						ecwords: 18,
-						eccap: 9
 					},
 					{
 						blocks: 2,
 						codewords: 87,
 						ecwords: 18,
-						eccap: 9
 					}
 				]
 			}
@@ -661,6 +617,7 @@ var QR__Ver = [
 	{
 		dim: 61,
 		codewords: 404,
+		rem: 0,
 		align: [6,30,54],
 		ec: {
 			H: {
@@ -670,13 +627,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 36,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 8,
 						codewords: 37,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -687,13 +642,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 50,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 4,
 						codewords: 51,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -704,13 +657,11 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 80,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 4,
 						codewords: 81,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -721,7 +672,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 101,
 						ecwords: 20,
-						eccap: 10
 					}
 				]
 			}
@@ -736,6 +686,7 @@ var QR__Ver = [
 	{
 		dim: 65,
 		codewords: 466,
+		rem: 0,
 		align: [6,32,58],
 		ec: {
 			H: {
@@ -745,13 +696,11 @@ var QR__Ver = [
 						blocks: 7,
 						codewords: 42,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 4,
 						codewords: 43,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -762,13 +711,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 46,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 6,
 						codewords: 47,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -779,13 +726,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 58,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 2,
 						codewords: 59,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -796,13 +741,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 116,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 2,
 						codewords: 117,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			}
@@ -817,6 +760,7 @@ var QR__Ver = [
 	{
 		dim: 69,
 		codewords: 532,
+		rem: 0,
 		align: [6,34,62],
 		ec: {
 			H: {
@@ -826,13 +770,11 @@ var QR__Ver = [
 						blocks: 12,
 						codewords: 33,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 4,
 						codewords: 34,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -843,13 +785,11 @@ var QR__Ver = [
 						blocks: 8,
 						codewords: 44,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 4,
 						codewords: 45,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -860,13 +800,11 @@ var QR__Ver = [
 						blocks: 8,
 						codewords: 59,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 1,
 						codewords: 60,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			},
@@ -877,7 +815,6 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 133,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			}
@@ -892,6 +829,7 @@ var QR__Ver = [
 	{
 		dim: 73,
 		codewords: 581,
+		rem: 3,
 		align: [6,26,46,66],
 		ec: {
 			H: {
@@ -901,13 +839,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 36,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 5,
 						codewords: 37,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -918,13 +854,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 36,
 						ecwords: 20,
-						eccap: 10
 					},
 					{
 						blocks: 5,
 						codewords: 37,
 						ecwords: 20,
-						eccap: 10
 					}
 				]
 			},
@@ -935,13 +869,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 64,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 5,
 						codewords: 65,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -952,13 +884,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 145,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 1,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -973,6 +903,7 @@ var QR__Ver = [
 	{
 		dim: 77,
 		codewords: 655,
+		rem: 3,
 		align: [6,26,48,70],
 		ec: {
 			H: {
@@ -982,13 +913,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 36,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 7,
 						codewords: 37,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -999,13 +928,11 @@ var QR__Ver = [
 						blocks: 5,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 7,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1016,13 +943,11 @@ var QR__Ver = [
 						blocks: 5,
 						codewords: 65,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 5,
 						codewords: 66,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -1033,13 +958,11 @@ var QR__Ver = [
 						blocks: 5,
 						codewords: 109,
 						ecwords: 22,
-						eccap: 11
 					},
 					{
 						blocks: 1,
 						codewords: 110,
 						ecwords: 22,
-						eccap: 11
 					}
 				]
 			}
@@ -1054,6 +977,7 @@ var QR__Ver = [
 	{
 		dim: 81,
 		codewords: 733,
+		rem: 3,
 		align: [6,26,50,74],
 		ec: {
 			H: {
@@ -1063,13 +987,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 13,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1080,13 +1002,11 @@ var QR__Ver = [
 						blocks: 15,
 						codewords: 43,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 2,
 						codewords: 44,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -1097,13 +1017,11 @@ var QR__Ver = [
 						blocks: 7,
 						codewords: 73,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 3,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1114,13 +1032,11 @@ var QR__Ver = [
 						blocks: 5,
 						codewords: 122,
 						ecwords: 24,
-						eccap: 12
 					},
 					{
 						blocks: 1,
 						codewords: 123,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			}
@@ -1135,6 +1051,7 @@ var QR__Ver = [
 	{
 		dim: 85,
 		codewords: 815,
+		rem: 3,
 		align: [6,30,54,78],
 		ec: {
 			H: {
@@ -1144,13 +1061,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 42,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 17,
 						codewords: 43,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1161,13 +1076,11 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 50,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 15,
 						codewords: 51,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1178,13 +1091,11 @@ var QR__Ver = [
 						blocks: 10,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 1,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1195,13 +1106,11 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 135,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 5,
 						codewords: 136,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			}
@@ -1216,6 +1125,7 @@ var QR__Ver = [
 	{
 		dim: 89,
 		codewords: 901,
+		rem: 3,
 		align: [6,30,56,82],
 		ec: {
 			H: {
@@ -1225,13 +1135,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 42,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 19,
 						codewords: 43,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1242,13 +1150,11 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 50,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 1,
 						codewords: 51,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1259,13 +1165,11 @@ var QR__Ver = [
 						blocks: 9,
 						codewords: 69,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 4,
 						codewords: 70,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -1276,13 +1180,11 @@ var QR__Ver = [
 						blocks: 5,
 						codewords: 150,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 1,
 						codewords: 151,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -1297,6 +1199,7 @@ var QR__Ver = [
 	{
 		dim: 93,
 		codewords: 991,
+		rem: 3,
 		align: [6,30,58,86],
 		ec: {
 			H: {
@@ -1306,13 +1209,11 @@ var QR__Ver = [
 						blocks: 9,
 						codewords: 39,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 16,
 						codewords: 40,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -1323,13 +1224,11 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 47,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 4,
 						codewords: 48,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -1340,13 +1239,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 70,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 11,
 						codewords: 71,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -1357,13 +1254,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 141,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 4,
 						codewords: 142,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			}
@@ -1378,6 +1273,7 @@ var QR__Ver = [
 	{
 		dim: 97,
 		codewords: 1085,
+		rem: 085,
 		align: [6,34,62,90],
 		ec: {
 			H: {
@@ -1387,13 +1283,11 @@ var QR__Ver = [
 						blocks: 15,
 						codewords: 43,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 10,
 						codewords: 44,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1404,13 +1298,11 @@ var QR__Ver = [
 						blocks: 15,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 5,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1421,13 +1313,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 67,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 13,
 						codewords: 68,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -1438,13 +1328,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 135,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 5,
 						codewords: 136,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			}
@@ -1459,6 +1347,7 @@ var QR__Ver = [
 	{
 		dim: 101,
 		codewords: 1156,
+		rem: 156,
 		align: [6,28,50,72,94],
 		ec: {
 			H: {
@@ -1468,13 +1357,11 @@ var QR__Ver = [
 						blocks: 19,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 6,
 						codewords: 47,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1485,13 +1372,11 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 50,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 6,
 						codewords: 51,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1502,7 +1387,6 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 68,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			},
@@ -1513,13 +1397,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 144,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 4,
 						codewords: 145,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			}
@@ -1534,6 +1416,7 @@ var QR__Ver = [
 	{
 		dim: 105,
 		codewords: 1258,
+		rem: 258,
 		align: [6,26,50,74,98],
 		ec: {
 			H: {
@@ -1543,7 +1426,6 @@ var QR__Ver = [
 						blocks: 34,
 						codewords: 37,
 						ecwords: 24,
-						eccap: 12
 					}
 				]
 			},
@@ -1554,13 +1436,11 @@ var QR__Ver = [
 						blocks: 7,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 16,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1571,7 +1451,6 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1582,13 +1461,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 139,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 7,
 						codewords: 140,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			}
@@ -1603,6 +1480,7 @@ var QR__Ver = [
 	{
 		dim: 109,
 		codewords: 1364,
+		rem: 364,
 		align: [6,30,54,78,102],
 		ec: {
 			H: {
@@ -1612,13 +1490,11 @@ var QR__Ver = [
 						blocks: 16,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 14,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1629,13 +1505,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 14,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1646,13 +1520,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 14,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1663,13 +1535,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 151,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 5,
 						codewords: 152,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -1684,6 +1554,7 @@ var QR__Ver = [
 	{
 		dim: 113,
 		codewords: 1474,
+		rem: 474,
 		align: [6,28,54,80,106],
 		ec: {
 			H: {
@@ -1693,13 +1564,11 @@ var QR__Ver = [
 						blocks: 30,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 2,
 						codewords: 47,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1710,13 +1579,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 16,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1727,13 +1594,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 73,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 14,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1744,13 +1609,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 147,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 4,
 						codewords: 148,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -1765,6 +1628,7 @@ var QR__Ver = [
 	{
 		dim: 117,
 		codewords: 1588,
+		rem: 588,
 		align: [6,32,58,84,110],
 		ec: {
 			H: {
@@ -1774,13 +1638,11 @@ var QR__Ver = [
 						blocks: 22,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 13,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1791,13 +1653,11 @@ var QR__Ver = [
 						blocks: 7,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 22,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1808,13 +1668,11 @@ var QR__Ver = [
 						blocks: 8,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 13,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1825,13 +1683,11 @@ var QR__Ver = [
 						blocks: 8,
 						codewords: 132,
 						ecwords: 26,
-						eccap: 13
 					},
 					{
 						blocks: 4,
 						codewords: 133,
 						ecwords: 26,
-						eccap: 13
 					}
 				]
 			}
@@ -1846,6 +1702,7 @@ var QR__Ver = [
 	{
 		dim: 121,
 		codewords: 1706,
+		rem: 706,
 		align: [6,30,58,86,114],
 		ec: {
 			H: {
@@ -1855,13 +1712,11 @@ var QR__Ver = [
 						blocks: 33,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 4,
 						codewords: 47,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1872,13 +1727,11 @@ var QR__Ver = [
 						blocks: 28,
 						codewords: 50,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 6,
 						codewords: 51,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1889,13 +1742,11 @@ var QR__Ver = [
 						blocks: 19,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 4,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1906,13 +1757,11 @@ var QR__Ver = [
 						blocks: 10,
 						codewords: 142,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 2,
 						codewords: 143,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			}
@@ -1927,6 +1776,7 @@ var QR__Ver = [
 	{
 		dim: 125,
 		codewords: 1828,
+		rem: 828,
 		align: [6,34,62,90,118],
 		ec: {
 			H: {
@@ -1936,13 +1786,11 @@ var QR__Ver = [
 						blocks: 12,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 28,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1953,13 +1801,11 @@ var QR__Ver = [
 						blocks: 8,
 						codewords: 53,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 26,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -1970,13 +1816,11 @@ var QR__Ver = [
 						blocks: 22,
 						codewords: 73,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 3,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -1987,13 +1831,11 @@ var QR__Ver = [
 						blocks: 8,
 						codewords: 152,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 4,
 						codewords: 153,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2008,6 +1850,7 @@ var QR__Ver = [
 	{
 		dim: 129,
 		codewords: 1921,
+		rem: 1,
 		align: [6,26,50,74,98,122],
 		ec: {
 			H: {
@@ -2017,13 +1860,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 31,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2034,13 +1875,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 31,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2051,13 +1890,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 73,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 23,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2068,13 +1905,11 @@ var QR__Ver = [
 						blocks: 3,
 						codewords: 147,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 10,
 						codewords: 148,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2089,6 +1924,7 @@ var QR__Ver = [
 	{
 		dim: 133,
 		codewords: 2051,
+		rem: 2,
 		align: [6,30,54,78,102,126],
 		ec: {
 			H: {
@@ -2098,13 +1934,11 @@ var QR__Ver = [
 						blocks: 19,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 26,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2115,13 +1949,11 @@ var QR__Ver = [
 						blocks: 1,
 						codewords: 53,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 37,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2132,13 +1964,11 @@ var QR__Ver = [
 						blocks: 21,
 						codewords: 73,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 7,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2149,13 +1979,11 @@ var QR__Ver = [
 						blocks: 7,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 7,
 						codewords: 147,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2170,6 +1998,7 @@ var QR__Ver = [
 	{
 		dim: 137,
 		codewords: 2185,
+		rem: 2,
 		align: [6,26,52,78,104,130],
 		ec: {
 			H: {
@@ -2179,13 +2008,11 @@ var QR__Ver = [
 						blocks: 23,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 25,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2196,13 +2023,11 @@ var QR__Ver = [
 						blocks: 15,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 25,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2213,13 +2038,11 @@ var QR__Ver = [
 						blocks: 19,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 10,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2230,13 +2053,11 @@ var QR__Ver = [
 						blocks: 5,
 						codewords: 145,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 10,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2251,6 +2072,7 @@ var QR__Ver = [
 	{
 		dim: 141,
 		codewords: 2323,
+		rem: 2,
 		align: [6,30,56,82,108,134],
 		ec: {
 			H: {
@@ -2260,13 +2082,11 @@ var QR__Ver = [
 						blocks: 23,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 28,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2277,13 +2097,11 @@ var QR__Ver = [
 						blocks: 42,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 1,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2294,13 +2112,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 29,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2311,13 +2127,11 @@ var QR__Ver = [
 						blocks: 13,
 						codewords: 145,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 3,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2332,6 +2146,7 @@ var QR__Ver = [
 	{
 		dim: 145,
 		codewords: 2465,
+		rem: 2,
 		align: [6,34,60,86,112,138],
 		ec: {
 			H: {
@@ -2341,13 +2156,11 @@ var QR__Ver = [
 						blocks: 19,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 35,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2358,13 +2171,11 @@ var QR__Ver = [
 						blocks: 10,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 35,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2375,13 +2186,11 @@ var QR__Ver = [
 						blocks: 10,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 23,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2392,7 +2201,6 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 145,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2407,6 +2215,7 @@ var QR__Ver = [
 	{
 		dim: 149,
 		codewords: 2611,
+		rem: 2,
 		align: [6,30,58,86,114,142],
 		ec: {
 			H: {
@@ -2416,13 +2225,11 @@ var QR__Ver = [
 						blocks: 11,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 46,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2433,13 +2240,11 @@ var QR__Ver = [
 						blocks: 29,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 19,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2450,13 +2255,11 @@ var QR__Ver = [
 						blocks: 14,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 21,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2467,13 +2270,11 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 145,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 1,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2488,6 +2289,7 @@ var QR__Ver = [
 	{
 		dim: 153,
 		codewords: 2761,
+		rem: 2,
 		align: [6,34,62,90,118,146],
 		ec: {
 			H: {
@@ -2497,13 +2299,11 @@ var QR__Ver = [
 						blocks: 59,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 1,
 						codewords: 47,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2514,13 +2314,11 @@ var QR__Ver = [
 						blocks: 44,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 7,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2531,13 +2329,11 @@ var QR__Ver = [
 						blocks: 14,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 23,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2548,13 +2344,11 @@ var QR__Ver = [
 						blocks: 13,
 						codewords: 145,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 6,
 						codewords: 146,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2569,6 +2363,7 @@ var QR__Ver = [
 	{
 		dim: 157,
 		codewords: 2876,
+		rem: 2,
 		align: [6,30,54,78,102,126,150],
 		ec: {
 			H: {
@@ -2578,13 +2373,11 @@ var QR__Ver = [
 						blocks: 22,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 41,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2595,13 +2388,11 @@ var QR__Ver = [
 						blocks: 39,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 14,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2612,13 +2403,11 @@ var QR__Ver = [
 						blocks: 12,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 26,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2629,13 +2418,11 @@ var QR__Ver = [
 						blocks: 12,
 						codewords: 151,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 7,
 						codewords: 152,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2650,6 +2437,7 @@ var QR__Ver = [
 	{
 		dim: 161,
 		codewords: 3034,
+		rem: 3,
 		align: [6,24,50,76,102,128,154],
 		ec: {
 			H: {
@@ -2659,13 +2447,11 @@ var QR__Ver = [
 						blocks: 2,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 64,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2676,13 +2462,11 @@ var QR__Ver = [
 						blocks: 46,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 10,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2693,13 +2477,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 34,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2710,13 +2492,11 @@ var QR__Ver = [
 						blocks: 6,
 						codewords: 151,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 14,
 						codewords: 152,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2731,6 +2511,7 @@ var QR__Ver = [
 	{
 		dim: 165,
 		codewords: 3196,
+		rem: 3,
 		align: [6,28,54,80,106,132,158],
 		ec: {
 			H: {
@@ -2740,13 +2521,11 @@ var QR__Ver = [
 						blocks: 24,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 46,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2757,13 +2536,11 @@ var QR__Ver = [
 						blocks: 49,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 10,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2774,13 +2551,11 @@ var QR__Ver = [
 						blocks: 29,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 14,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2791,13 +2566,11 @@ var QR__Ver = [
 						blocks: 17,
 						codewords: 152,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 4,
 						codewords: 153,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2812,6 +2585,7 @@ var QR__Ver = [
 	{
 		dim: 169,
 		codewords: 3362,
+		rem: 3,
 		align: [6,32,58,84,110,136,162],
 		ec: {
 			H: {
@@ -2821,13 +2595,11 @@ var QR__Ver = [
 						blocks: 42,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 32,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2838,13 +2610,11 @@ var QR__Ver = [
 						blocks: 48,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 14,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2855,13 +2625,11 @@ var QR__Ver = [
 						blocks: 13,
 						codewords: 74,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 32,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2872,13 +2640,11 @@ var QR__Ver = [
 						blocks: 4,
 						codewords: 152,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 18,
 						codewords: 153,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2893,6 +2659,7 @@ var QR__Ver = [
 	{
 		dim: 173,
 		codewords: 3532,
+		rem: 3,
 		align: [6,26,54,82,110,138,166],
 		ec: {
 			H: {
@@ -2902,13 +2669,11 @@ var QR__Ver = [
 						blocks: 10,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 67,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2919,13 +2684,11 @@ var QR__Ver = [
 						blocks: 43,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 22,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -2936,13 +2699,11 @@ var QR__Ver = [
 						blocks: 40,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 7,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -2953,13 +2714,11 @@ var QR__Ver = [
 						blocks: 20,
 						codewords: 147,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 4,
 						codewords: 148,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
@@ -2974,6 +2733,7 @@ var QR__Ver = [
 	{
 		dim: 177,
 		codewords: 3706,
+		rem: 3,
 		align: [6,30,58,86,114,142,170],
 		ec: {
 			H: {
@@ -2983,13 +2743,11 @@ var QR__Ver = [
 						blocks: 20,
 						codewords: 45,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 61,
 						codewords: 46,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -3000,13 +2758,11 @@ var QR__Ver = [
 						blocks: 34,
 						codewords: 54,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 34,
 						codewords: 55,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			},
@@ -3017,13 +2773,11 @@ var QR__Ver = [
 						blocks: 18,
 						codewords: 75,
 						ecwords: 28,
-						eccap: 14
 					},
 					{
 						blocks: 31,
 						codewords: 76,
 						ecwords: 28,
-						eccap: 14
 					}
 				]
 			},
@@ -3034,13 +2788,11 @@ var QR__Ver = [
 						blocks: 19,
 						codewords: 148,
 						ecwords: 30,
-						eccap: 15
 					},
 					{
 						blocks: 6,
 						codewords: 149,
 						ecwords: 30,
-						eccap: 15
 					}
 				]
 			}
