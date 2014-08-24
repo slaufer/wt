@@ -2,6 +2,28 @@
  *  ENCODING FUNCTIONS
  */
 
+function QR__encNum(data) {
+	/* start with mode identifier and char count indicator */
+	var output = QR__i2ba(QR__Mode.num, 4).concat(
+		QR__i2ba(data.length, QR__Ver[this.ver].cci.num));
+	
+	/* make sure the data is okay. this might not be the best way to do this. */
+	for (var i = 0; i < data.length; i++) {
+		if (data.charCodeAt(i) < 48 || data.charCodeAt(i) > 57) {
+			throw new Error("Bad data for numeric encoding");
+		}
+	}
+	
+	/* encode and append data */
+	for (var i = 0; i < data.length; i += 3) {
+		var chunk = data.slice(i, i+3);
+		var size = + chunk.length * 3 + 1;
+		output = output.concat(QR__i2ba(parseInt(chunk), size));
+	}
+	
+	return output;
+}
+ 
 /* QR__encAlNum - Encodes a string in alphanumeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
@@ -68,6 +90,9 @@ function QR__generateMessage(data) {
 			break;
 		case QR__Mode.eightBit:
 			encoded = encoded.concat(this.encEightBit(data[i].data));
+			break;
+		case QR__Mode.num:
+			encoded = encoded.concat(this.encNum(data[i].data));
 			break;
 		default:
 			throw new Error("Bad encoding type");

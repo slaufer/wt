@@ -26,6 +26,7 @@ var QRCode = function() {
 	this.setData = QR__setData;
 	
 	/* encoding functions */
+	this.encNum = QR__encNum;
 	this.encAlNum = QR__encAlNum;
 	this.encEightBit = QR__encEightBit;
 	this.generateMessage = QR__generateMessage;

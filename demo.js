@@ -38,7 +38,8 @@ function startDemo() {
 	qr.setVersion(12, QR__EC.M);
 	qr.setData([
 		{data: "abc def", mode: QR__Mode.eightBit},
-		{data: "GHI JKL", mode: QR__Mode.alNum}
+		{data: "GHI JKL", mode: QR__Mode.alNum},
+		{data: "01234567", mode: QR__Mode.num}
 	]);
 	
 	drawQR(qr, document.getElementById('qrcanvas'), 4);
