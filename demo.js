@@ -56,11 +56,11 @@ function drawReserve(qr, c, scale) {
 
 function startDemo() {
 	var qr = new QRCode();
-	qr.setVersion(1, QR__EC.M);
+	qr.setVersion(6, QR__EC.M);
 	qr.setData([{data: document.getElementById("qrdata").value, mode: QR__Mode.alNum}]);
 	
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
-	drawReserve(qr, document.getElementById('rescanvas'), 8);
+	//drawReserve(qr, document.getElementById('rescanvas'), 8);
 }
 
 window.onload = function() {

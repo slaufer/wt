@@ -20,6 +20,7 @@ var QRCode = function() {
 	this.drawBitstream = QR__drawBitstream;
 	this.drawSymbol = QR__drawSymbol;
 	this.drawMask = QR__drawMask;
+	this.drawFormat = QR__drawFormat;
 	this.reserveFormat = QR__reserveFormat;
 	this.setVersion = QR__setVersion;
 	this.setData = QR__setData;
