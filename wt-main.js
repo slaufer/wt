@@ -29,11 +29,12 @@ var QRCode = function() {
 	this.encNum = QR__encNum;
 	this.encAlNum = QR__encAlNum;
 	this.encEightBit = QR__encEightBit;
+	this.encECI = QR__encECI;
 	this.generateMessage = QR__generateMessage;
 	this.generateECC = QR__generateECC;
 	this.generateBitstream = QR__generateBitstream;
 	
-	
+	/* class vars */
 	this.ver = null;
 	this.dim = null;
 	this.mode = null;

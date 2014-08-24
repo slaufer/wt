@@ -11,10 +11,10 @@ var QR__Mode = {
 	alNum: 2,
 	append: 3,
 	eightBit: 4,
-	fnc11: 5,
-	eci: 7,
+	FNC11: 5,
+	ECI: 7,
 	kanji: 8,
-	fnc12: 9
+	FNC12: 9
 }
 
 /* EC Mode constants. */

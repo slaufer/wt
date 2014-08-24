@@ -26,17 +26,13 @@ function drawQR(qr, c, scale) {
 function startDemo() {
 	var qr = new QRCode();
 	qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);
-	qr.setData([{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}]);
+	qr.setData([
+		{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
+		{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}
+	]);
+	qr.drawSymbol();
 	
-	//qr.setVersion(12, QR__EC.M);
-	//qr.setData([
-	//	{data: "abc def", mode: QR__Mode.eightBit},
-	//	{data: "AC-42", mode: QR__Mode.alNum},
-	//	{data: "01234567", mode: QR__Mode.num}
-	//]);
-	
-	drawQR(qr, document.getElementById('qrcanvas'), 4);
-	//drawReserve(qr, document.getElementById('rescanvas'), 8);
+	drawQR(qr, document.getElementById('qrcanvas'), 8);
 }
 
 window.onload = function() {

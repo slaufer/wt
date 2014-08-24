@@ -289,6 +289,14 @@ function QR__drawFormat() {
 }
 
 function QR__drawSymbol() {
+	if (this.ver == null) {
+		throw new Error("QR version not set");
+	}
+	
+	if (this.data == null) {
+		throw new Error("Data not set");
+	}
+	
 	this.reserved = [];
 	this.symbol = [];
 	this.maskBalance = [];
@@ -320,16 +328,8 @@ function QR__setVersion(ver, ec) {
 	this.ver = ver;
 	this.dim = QR__Ver[ver].dim;
 	this.ec = ec;
-	
-	if (this.data != null) {
-		this.drawSymbol();
-	}
 }
 
 function QR__setData(data) {
 	this.data = data;
-	
-	if (this.ver != null) {
-		this.drawSymbol();
-	}
 }

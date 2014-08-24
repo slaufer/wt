@@ -7,7 +7,7 @@ function QR__encNum(data) {
 	var output = QR__i2ba(QR__Mode.num, 4).concat(
 		QR__i2ba(data.length, QR__Ver[this.ver].cci.num));
 	
-	/* make sure the data is okay. this might not be the best way to do this. */
+	/* make sure the data is okay. */
 	for (var i = 0; i < data.length; i++) {
 		if (data.charCodeAt(i) < 48 || data.charCodeAt(i) > 57) {
 			throw new Error("Bad data for numeric encoding");
@@ -70,6 +70,24 @@ function QR__encEightBit(data) {
 	return output;
 }
 
+function QR__encECI(data) {
+	var output = QR__i2ba(QR__Mode.ECI, 4);
+	
+	if (data < 0 || data > 999999) {
+		throw new Error("ECI Assignment Number out of range");
+	}
+	
+	if (data < 128) {
+		output = output.concat(QR__b2ba("0")).concat(QR__i2ba(data, 7));
+	} else if (data < 16384) {
+		output = output.concat(QR__b2ba("10")).concat(QR__i2ba(data, 14));
+	} else {
+		output = output.concat(QR__b2ba("110")).concat(QR__i2ba(data, 21));	
+	}
+	
+	return output;
+}
+
 /* QR__generateMessage - generates the message segment of the bitstream
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
@@ -91,6 +109,9 @@ function QR__generateMessage(data) {
 			break;
 		case QR__Mode.num:
 			encoded = encoded.concat(this.encNum(data[i].data));
+			break;
+		case QR__Mode.ECI:
+			encoded = encoded.concat(this.encECI(data[i].data));
 			break;
 		default:
 			throw new Error("Bad encoding type");
@@ -147,7 +168,7 @@ function QR__generateECC(data, count) {
 	
 	/* if you alter this, beware: it is deceptively easy to introduce off-by-one
 	   errors in this loop. */
-	for (var i = msgPoly.length-1; i >= count; i--) {
+	for (var i = msgPoly.length-1; i >= count;) {
 		/* now perform the XOR multiplication -- the offset makes this behave
 		   as though genPoly and msgPoly have the same degree. */
 		var leadCoeffAlpha = QR__GF256.indexOf(msgPoly[msgPoly.length-1]);
@@ -162,8 +183,11 @@ function QR__generateECC(data, count) {
 			msgPoly[j+offset] ^= genPolyCoeff;
 		}
 		
-		/* the lead term of the msg poly should be zero now, discard it */
-		msgPoly.pop();
+		/* discard all leading zero terms. */
+		while (msgPoly[msgPoly.length-1] == 0) {
+			msgPoly.pop();
+			i--;
+		}
 	}
 	
 	/* now, return the remainder as a binary array */
