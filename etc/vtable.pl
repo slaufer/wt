@@ -46,6 +46,16 @@ close(CAP);
 close(CCI);
 close(ALIGN);
 
+open(VI, "vi.txt");
+while (!eof(VI)) {
+	my $line = <VI>;
+	chomp $line;
+	my @vi = split /\s+/, $line;
+	
+	$vers[$vi[0]]{vi} = $vi[1];
+}
+close(VI);
+
 open(ECC, "ecc.txt");
 read(ECC, my $file, -s ECC);
 close(ECC);
@@ -104,8 +114,13 @@ for (my $i = 1; $i < @vers; $i++) {
 		. "\t\tdim: $vers[$i]{dim},\n"
 		. "\t\tcodewords: $vers[$i]{codewords},\n"
 		. "\t\trem: $vers[$i]{rem},\n"
-		. "\t\talign: [".(join ',', @{$vers[$i]{align}})."],\n"
-		. "\t\tec: {\n";
+		. "\t\talign: [".(join ',', @{$vers[$i]{align}})."],\n";
+		
+	if ($i >= 7) {
+		print "\t\tvi: QR__b2ba(\"" .$vers[$i]{vi}. "\"),\n";
+	}
+		
+	print "\t\tec: {\n";
 	
 	my @strings2;
 	foreach my $eclevel (keys %{$vers[$i]{ec}}) {

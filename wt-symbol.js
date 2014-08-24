@@ -276,6 +276,16 @@ function QR__drawFormat() {
 	for (var i = 0; i < 7; i++) {
 		this.setBit(8,  this.dim - 1 - i, QR__FormatString[this.ec][this.mask][i]);
 	}
+	
+	/* draw the version blocks, if necessary */
+	if (this.ver >= 7) {
+		for (var i = 0; i < 3; i++) {
+			for (var j = 0; j < 6; j++) {
+				this.setBit(j, this.dim - 11 + i, QR__Ver[this.ver].vi[17 - (j*3+i)]);
+				this.setBit(this.dim - 11 + i, j, QR__Ver[this.ver].vi[17 - (j*3+i)]);
+			}
+		}
+	}
 }
 
 function QR__drawSymbol() {

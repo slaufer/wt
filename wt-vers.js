@@ -343,6 +343,7 @@ var QR__Ver = [
 		codewords: 196,
 		rem: 0,
 		align: [6,22,38],
+		vi: QR__b2ba("000111110010010100"),
 		ec: {
 			H: {
 				ecwords: 130,
@@ -407,6 +408,7 @@ var QR__Ver = [
 		codewords: 242,
 		rem: 0,
 		align: [6,24,42],
+		vi: QR__b2ba("001000010110111100"),
 		ec: {
 			H: {
 				ecwords: 156,
@@ -476,6 +478,7 @@ var QR__Ver = [
 		codewords: 292,
 		rem: 0,
 		align: [6,26,46],
+		vi: QR__b2ba("001001101010011001"),
 		ec: {
 			H: {
 				ecwords: 192,
@@ -545,6 +548,7 @@ var QR__Ver = [
 		codewords: 346,
 		rem: 0,
 		align: [6,28,50],
+		vi: QR__b2ba("001010010011010011"),
 		ec: {
 			H: {
 				ecwords: 224,
@@ -619,6 +623,7 @@ var QR__Ver = [
 		codewords: 404,
 		rem: 0,
 		align: [6,30,54],
+		vi: QR__b2ba("001011101111110110"),
 		ec: {
 			H: {
 				ecwords: 264,
@@ -688,6 +693,7 @@ var QR__Ver = [
 		codewords: 466,
 		rem: 0,
 		align: [6,32,58],
+		vi: QR__b2ba("001100011101100010"),
 		ec: {
 			H: {
 				ecwords: 308,
@@ -762,6 +768,7 @@ var QR__Ver = [
 		codewords: 532,
 		rem: 0,
 		align: [6,34,62],
+		vi: QR__b2ba("001101100001000111"),
 		ec: {
 			H: {
 				ecwords: 352,
@@ -831,6 +838,7 @@ var QR__Ver = [
 		codewords: 581,
 		rem: 3,
 		align: [6,26,46,66],
+		vi: QR__b2ba("001110011000001101"),
 		ec: {
 			H: {
 				ecwords: 384,
@@ -905,6 +913,7 @@ var QR__Ver = [
 		codewords: 655,
 		rem: 3,
 		align: [6,26,48,70],
+		vi: QR__b2ba("001111100100101000"),
 		ec: {
 			H: {
 				ecwords: 432,
@@ -979,6 +988,7 @@ var QR__Ver = [
 		codewords: 733,
 		rem: 3,
 		align: [6,26,50,74],
+		vi: QR__b2ba("010000101101111000"),
 		ec: {
 			H: {
 				ecwords: 480,
@@ -1053,6 +1063,7 @@ var QR__Ver = [
 		codewords: 815,
 		rem: 3,
 		align: [6,30,54,78],
+		vi: QR__b2ba("010001010001011101"),
 		ec: {
 			H: {
 				ecwords: 532,
@@ -1127,6 +1138,7 @@ var QR__Ver = [
 		codewords: 901,
 		rem: 3,
 		align: [6,30,56,82],
+		vi: QR__b2ba("010010101000010111"),
 		ec: {
 			H: {
 				ecwords: 588,
@@ -1201,6 +1213,7 @@ var QR__Ver = [
 		codewords: 991,
 		rem: 3,
 		align: [6,30,58,86],
+		vi: QR__b2ba("010011010100110010"),
 		ec: {
 			H: {
 				ecwords: 650,
@@ -1275,6 +1288,7 @@ var QR__Ver = [
 		codewords: 1085,
 		rem: 085,
 		align: [6,34,62,90],
+		vi: QR__b2ba("010100100110100110"),
 		ec: {
 			H: {
 				ecwords: 700,
@@ -1349,6 +1363,7 @@ var QR__Ver = [
 		codewords: 1156,
 		rem: 156,
 		align: [6,28,50,72,94],
+		vi: QR__b2ba("010101011010000011"),
 		ec: {
 			H: {
 				ecwords: 750,
@@ -1418,6 +1433,7 @@ var QR__Ver = [
 		codewords: 1258,
 		rem: 258,
 		align: [6,26,50,74,98],
+		vi: QR__b2ba("010110100011001001"),
 		ec: {
 			H: {
 				ecwords: 816,
@@ -1482,6 +1498,7 @@ var QR__Ver = [
 		codewords: 1364,
 		rem: 364,
 		align: [6,30,54,78,102],
+		vi: QR__b2ba("010111011111101100"),
 		ec: {
 			H: {
 				ecwords: 900,
@@ -1556,6 +1573,7 @@ var QR__Ver = [
 		codewords: 1474,
 		rem: 474,
 		align: [6,28,54,80,106],
+		vi: QR__b2ba("011000111011000100"),
 		ec: {
 			H: {
 				ecwords: 960,
@@ -1630,6 +1648,7 @@ var QR__Ver = [
 		codewords: 1588,
 		rem: 588,
 		align: [6,32,58,84,110],
+		vi: QR__b2ba("011001000111100001"),
 		ec: {
 			H: {
 				ecwords: 1050,
@@ -1704,6 +1723,7 @@ var QR__Ver = [
 		codewords: 1706,
 		rem: 706,
 		align: [6,30,58,86,114],
+		vi: QR__b2ba("011010111110101011"),
 		ec: {
 			H: {
 				ecwords: 1110,
@@ -1778,6 +1798,7 @@ var QR__Ver = [
 		codewords: 1828,
 		rem: 828,
 		align: [6,34,62,90,118],
+		vi: QR__b2ba("011011000010001110"),
 		ec: {
 			H: {
 				ecwords: 1200,
@@ -1852,6 +1873,7 @@ var QR__Ver = [
 		codewords: 1921,
 		rem: 1,
 		align: [6,26,50,74,98,122],
+		vi: QR__b2ba("011100110000011010"),
 		ec: {
 			H: {
 				ecwords: 1260,
@@ -1926,6 +1948,7 @@ var QR__Ver = [
 		codewords: 2051,
 		rem: 2,
 		align: [6,30,54,78,102,126],
+		vi: QR__b2ba("011101001100111111"),
 		ec: {
 			H: {
 				ecwords: 1350,
@@ -2000,6 +2023,7 @@ var QR__Ver = [
 		codewords: 2185,
 		rem: 2,
 		align: [6,26,52,78,104,130],
+		vi: QR__b2ba("011110110101110101"),
 		ec: {
 			H: {
 				ecwords: 1440,
@@ -2074,6 +2098,7 @@ var QR__Ver = [
 		codewords: 2323,
 		rem: 2,
 		align: [6,30,56,82,108,134],
+		vi: QR__b2ba("011111001001010000"),
 		ec: {
 			H: {
 				ecwords: 1530,
@@ -2148,6 +2173,7 @@ var QR__Ver = [
 		codewords: 2465,
 		rem: 2,
 		align: [6,34,60,86,112,138],
+		vi: QR__b2ba("100000100111010101"),
 		ec: {
 			H: {
 				ecwords: 1620,
@@ -2217,6 +2243,7 @@ var QR__Ver = [
 		codewords: 2611,
 		rem: 2,
 		align: [6,30,58,86,114,142],
+		vi: QR__b2ba("100001011011110000"),
 		ec: {
 			H: {
 				ecwords: 1710,
@@ -2291,6 +2318,7 @@ var QR__Ver = [
 		codewords: 2761,
 		rem: 2,
 		align: [6,34,62,90,118,146],
+		vi: QR__b2ba("100010100010111010"),
 		ec: {
 			H: {
 				ecwords: 1800,
@@ -2365,6 +2393,7 @@ var QR__Ver = [
 		codewords: 2876,
 		rem: 2,
 		align: [6,30,54,78,102,126,150],
+		vi: QR__b2ba("100011011110011111"),
 		ec: {
 			H: {
 				ecwords: 1890,
@@ -2439,6 +2468,7 @@ var QR__Ver = [
 		codewords: 3034,
 		rem: 3,
 		align: [6,24,50,76,102,128,154],
+		vi: QR__b2ba("100100101100001011"),
 		ec: {
 			H: {
 				ecwords: 1980,
@@ -2513,6 +2543,7 @@ var QR__Ver = [
 		codewords: 3196,
 		rem: 3,
 		align: [6,28,54,80,106,132,158],
+		vi: QR__b2ba("100101010000101110"),
 		ec: {
 			H: {
 				ecwords: 2100,
@@ -2587,6 +2618,7 @@ var QR__Ver = [
 		codewords: 3362,
 		rem: 3,
 		align: [6,32,58,84,110,136,162],
+		vi: QR__b2ba("100110101001100100"),
 		ec: {
 			H: {
 				ecwords: 2220,
@@ -2661,6 +2693,7 @@ var QR__Ver = [
 		codewords: 3532,
 		rem: 3,
 		align: [6,26,54,82,110,138,166],
+		vi: QR__b2ba("100111010101000001"),
 		ec: {
 			H: {
 				ecwords: 2310,
@@ -2735,6 +2768,7 @@ var QR__Ver = [
 		codewords: 3706,
 		rem: 3,
 		align: [6,30,58,86,114,142,170],
+		vi: QR__b2ba("101000110001101001"),
 		ec: {
 			H: {
 				ecwords: 2430,
