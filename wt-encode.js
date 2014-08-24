@@ -11,11 +11,8 @@
  */
  
 function QR__encAlNum(data) {
-	/* start with mode identifier */
-	var output = QR__i2ba(QR__Mode.alNum, 4);
-	
-	/* append character count indicator */
-	output = output.concat(
+	/* start with mode identifier and char count indicator */
+	var output = QR__i2ba(QR__Mode.alNum, 4).concat(
 		QR__i2ba(data.length, QR__Ver[this.ver].cci.alNum));
 	
 	/* encode and append data */
@@ -40,6 +37,19 @@ function QR__encAlNum(data) {
 	return output;
 }
 
+function QR__encEightBit(data) {
+	/* start with mode identifier and char count indicator */
+	var output = QR__i2ba(QR__Mode.eightBit, 4).concat(
+		QR__i2ba(data.length, QR__Ver[this.ver].cci.eightBit));
+	
+	/* encode and append data */
+	for (var i = 0; i < data.length; i++) {
+		output = output.concat(QR__i2ba(data.charCodeAt(i), 8));
+	}
+	
+	return output;
+}
+
 /* QR__generateMessage - generates the message segment of the bitstream
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
@@ -56,8 +66,11 @@ function QR__generateMessage(data) {
 		case QR__Mode.alNum:
 			encoded = encoded.concat(this.encAlNum(data[i].data));
 			break;
+		case QR__Mode.eightBit:
+			encoded = encoded.concat(this.encEightBit(data[i].data));
+			break;
 		default:
-			return false;
+			throw new Error("Bad encoding type");
 		}
 	}
 	

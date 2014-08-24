@@ -12,8 +12,14 @@
 		<script type="text/javascript" src="demo.js"></script>
 	</head>
 	<body>
-		<input type="text" id="qrdata" value="HELLO WORLD" onkeyup="startDemo()">
-		<canvas id="qrcanvas"></canvas>
-		<canvas id="rescanvas"></canvas>
+		<p>
+			<label for="qrdata">Data</label>
+			<input type="text" id="qrdata" value="HELLO WORLD" onkeyup="startDemo()"><br>
+			<label for="qrver">Version</label>
+			<input type="text" id="qrver" value="1" onkeyup="startDemo()">
+			<label for="qrec">EC Mode</label>
+			<input type="text" id="qrec" value="M" onkeyup="startDemo()"><br>
+			<canvas id="qrcanvas"></canvas>
+		</p>
 	</body>
 </html>
