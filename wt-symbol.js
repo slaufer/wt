@@ -189,9 +189,7 @@ function QR__reserveFormat() {
 	}
 }
 
-function QR__drawBitstream() {
-	var bitstream = this.generateBitstream(this.data);
-	
+function QR__drawBitstream(bitstream) {
 	var y = this.dim - 1;
 	var x = this.dim - 1;
 	var offset = 0;
@@ -289,7 +287,8 @@ function QR__drawFormat() {
 }
 
 function QR__drawSymbol() {
-	if (this.ver == null) {
+	/* make sure our inputs are okay */
+	if (this.ver == null && !this.autover) {
 		throw new Error("QR version not set");
 	}
 	
@@ -297,6 +296,7 @@ function QR__drawSymbol() {
 		throw new Error("Data not set");
 	}
 	
+	/* (re)initialize the symbol */
 	this.reserved = [];
 	this.symbol = [];
 	this.maskBalance = [];
@@ -307,19 +307,49 @@ function QR__drawSymbol() {
 	
 	for (var i = 0; i < this.dim * this.dim; i++) {
 		this.symbol[i] = null;
-	}	
+	}
+	
+	/* figure out the best version */
+	if (this.autover) {
+		this.ver = null;
+		for (var i = 1; i < QR__Ver.length; i++) {
+			var len = 0;
+			var databits = (QR__Ver[i].codewords - QR__Ver[i].ec[this.ec].ecwords) * 8;
+			
+			/* figure out the total encoding length at this version */
+			for (var j = 0; j < this.data.length; j++) {
+				len += QR__EncodeLen[this.data[j].mode](this.data[j].data,i);
+			}
+			
+			/* if our data can fit in this version, stop */
+			if (len <= databits) {
+				this.ver = i;
+				this.dim = QR__Ver[i].dim;
+				break;
+			}
+		}
+		
+		if (this.ver == null) {
+			throw new Error("Data too large");
+		}
+	}
+	
+	/* draw the symbol */
+	var bitstream = this.generateBitstream(this.data);
 	
 	this.drawPatterns();
 	this.reserveFormat();
-	this.drawBitstream();
+	this.drawBitstream(bitstream);
 	this.drawMask();
 	this.drawFormat();
 }
 
 function QR__setVersion(ver, ec) {
-	if (typeof ver !== 'number' || ver < 1 || ver > 40) {
+	if (typeof ver !== 'number' || ver < 0 || ver > 40) {
 		throw new Error("Invalid QR Version");
 	}
+	
+	this.autover = (ver == 0) ? true : false;
 	
 	if (ec != QR__EC.L && ec != QR__EC.M && ec != QR__EC.Q && ec != QR__EC.H) {
 		throw new Error("Bad error correction level");

@@ -17,19 +17,26 @@ var QR__Mode = {
 	FNC12: 9
 }
 
+/* encoding max-length functions, used to automatically select a QR version */
+var QR__EncodeLen = [];
+QR__EncodeLen[QR__Mode.num] = function(d,v) { return 4
+	+ QR__Ver[v].cci.num + 10 * Math.floor(d.length / 3) + [ 0, 4, 7 ][d.length % 3]; };
+	
+QR__EncodeLen[QR__Mode.alNum] = function(d,v) { return 4
+	+ QR__Ver[v].cci.alNum + 11 * Math.floor(d.length / 3) + 6 * (d.length % 2); };
+	
+QR__EncodeLen[QR__Mode.eightBit] = function(d,v) { return 4
+	+ QR__Ver[v].cci.eightBit + 8 * d.length; },
+	
+QR__EncodeLen[QR__Mode.ECI] = function(d,v) { if (d < 128) { return 12 }
+	else if (d < 16384) { return 20 } else { return 28 } };
+
 /* EC Mode constants. */
 var QR__EC = {
 	L: 'L',
 	M: 'M',
 	Q: 'Q',
 	H: 'H'
-};
-
-var QR__ECBits = {
-	L: QR__b2ba("01"),
-	M: QR__b2ba("00"),
-	Q: QR__b2ba("11"),
-	H: QR__b2ba("10")
 };
 
 /* mask functions */

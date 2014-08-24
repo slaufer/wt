@@ -14,9 +14,10 @@
 	<body>
 		<p>
 			<label for="qrdata">Data</label>
-			<textarea id="qrdata" value="type stuff here" onkeyup="startDemo()"></textarea><br>
+			<textarea id="qrdata" value="type stuff here" onkeyup="startDemo()">enter test data here</textarea><br>
 			<label for="qrver">Version</label>
 			<select id="qrver" onchange="startDemo()">
+				<option value="0" SELECTED>Auto</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
@@ -26,7 +27,7 @@
 				<option value="7">7</option>
 				<option value="8">8</option>
 				<option value="9">9</option>
-				<option value="10" SELECTED>10</option>
+				<option value="10">10</option>
 				<option value="11">11</option>
 				<option value="12">12</option>
 				<option value="13">13</option>
@@ -62,8 +63,8 @@
 			<select id="qrec" onchange="startDemo()">
 				<option value="L">L</option>
 				<option value="M" SELECTED>M</option>
-				<option value="M">Q</option>
-				<option value="M">H</option>
+				<option value="Q">Q</option>
+				<option value="H">H</option>
 			</select>
 			<br>
 			<canvas id="qrcanvas"></canvas>

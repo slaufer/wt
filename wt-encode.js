@@ -2,6 +2,8 @@
  *  ENCODING FUNCTIONS
  */
 
+
+ 
 function QR__encNum(data) {
 	/* start with mode identifier and char count indicator */
 	var output = QR__i2ba(QR__Mode.num, 4).concat(
@@ -50,7 +52,6 @@ function QR__encAlNum(data) {
 		}
 		
 		var chunkVal = (chunk.length == 2) ? c1 * 45 + c2 : c1;
-		console.log(chunkVal);
 		output = output.concat(QR__i2ba(chunkVal, size));
 	}
 	
@@ -113,6 +114,14 @@ function QR__generateMessage(data) {
 		case QR__Mode.ECI:
 			encoded = encoded.concat(this.encECI(data[i].data));
 			break;
+		case QR__Mode.kanji:
+			throw new Error("Kanji mode not implemented");
+		case QR__Mode.FNC11:
+			throw new Error("FNC1 First Position mode not implemented");
+		case QR__Mode.FNC12:
+			throw new Error("FNC1 Second Position mode not implemented");
+		case QR__Mode.append:
+			throw new Error("Structured Append mode not implemented");
 		default:
 			throw new Error("Bad encoding type");
 		}
@@ -121,6 +130,7 @@ function QR__generateMessage(data) {
 	/* make sure we didn't end up with a message that's too long */
 	var databits = (QR__Ver[this.ver].codewords
 		- QR__Ver[this.ver].ec[this.ec].ecwords) * 8;
+	
 	if (encoded.length > databits) {
 		throw new Error("Message too long");
 	}

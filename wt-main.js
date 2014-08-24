@@ -36,6 +36,7 @@ var QRCode = function() {
 	
 	/* class vars */
 	this.ver = null;
+	this.autover = null;
 	this.dim = null;
 	this.mode = null;
 	this.ec = null;

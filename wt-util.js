@@ -1,8 +1,6 @@
 /*
  *  UTILITY FUNCTIONS
  */
- 
-
 
 /* converts a binary array into a binary string */
 function QR__ba2b(arr) {
