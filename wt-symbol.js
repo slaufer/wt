@@ -225,7 +225,7 @@ function QR__drawMask() {
 	/* let me begin by saying that i'm really, really sorry about this. the
 	   algorithm to select a mask per the ISO standard is very slow and very
 	   difficult to write, so I'm selecting a mask at random. */
-	this.mask = 0;
+	this.mask = 7;
 	
 	for (var x = 0; x < this.dim; x++) {
 		for (var y = 0; y < this.dim; y++) {

@@ -39,10 +39,10 @@ var QR__MaskPattern = [
 	function(i,j) { return i % 2 == 0; },
 	function(i,j) { return j % 3 == 0; },
 	function(i,j) { return (i + j) % 3 == 0; },
-	function(i,j) { return (Math.floor(i / 2) + Math.floor(i / 3)) % 2 == 0; },
+	function(i,j) { return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0; },
 	function(i,j) { return (i * j) % 2 + (i * j) % 3 == 0; },
 	function(i,j) { return ((i * j) % 2 + (i * j) % 3) % 2 == 0; },
-	function(i,j) { return ((i + j) % 2 + (i + j) % 3) % 2 == 0; } 
+	function(i,j) { return ((i + j) % 2 + (i * j) % 3) % 2 == 0; } 
 ];
 
 /* Table of alphanumeric encoding values. */
