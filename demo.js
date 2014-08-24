@@ -38,7 +38,7 @@ function startDemo() {
 	qr.setVersion(12, QR__EC.M);
 	qr.setData([
 		{data: "abc def", mode: QR__Mode.eightBit},
-		{data: "GHI JKL", mode: QR__Mode.alNum},
+		{data: "AC-42", mode: QR__Mode.alNum},
 		{data: "01234567", mode: QR__Mode.num}
 	]);
 	

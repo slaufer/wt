@@ -152,8 +152,7 @@ var QR__GenPoly = [
 	[238,163,8,5,3,127,184,101,27,235,238,43,198,175,215,82,32,54,2,118,225,166,241,137,125,41,177,52,231,95,97,199,52,227,89,160,173,253,84,15,84,93,151,203,220,165,202,60,52,133,205,190,101,84,150,43,254,32,160,90,70,77,93,224,33,223,159,247,0]
 ];
 
-/* Format/version strings. Generating these would be pointless given that there
-   are only 28 possible strings. */
+/* Format strings. */
 var QR__FormatString = {
 	L: [
 		QR__b2ba("111011111000100"),

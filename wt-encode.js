@@ -38,24 +38,22 @@ function QR__encAlNum(data) {
 		QR__i2ba(data.length, QR__Ver[this.ver].cci.alNum));
 	
 	/* encode and append data */
-	for (var i = 0; i < data.length;) {
-		var c1 = QR__EncAlNumVals.indexOf(data.charAt(i));
-		i++;
-		if (c1 == -1) {
+	for (var i = 0; i < data.length; i += 2) {
+		var chunk = data.slice(i, i+2);
+		var size = chunk.length * 5 + 1;
+		
+		var c1 = QR__EncAlNumVals.indexOf(chunk.charAt(0));
+		var c2 = QR__EncAlNumVals.indexOf(chunk.charAt(1));
+		
+		if (c1 == -1 || (chunk.length == 2 && c2 == -1)) {
 			throw new Error("Bad data for alphanumeric encoding");
 		}
-		if (i < data.length) {
-			var c2 = QR__EncAlNumVals.indexOf(data.charAt(i));
-			i++;
-			if (c2 == -1) {
-				throw new Error("Bad data for alphanumeric encoding");
-			}
-			
-			output = output.concat(QR__i2ba(c1 * 45 + c2, 11));
-		} else {
-			output = output.concat(QR__i2ba(c1, 6)); 
-		}
+		
+		var chunkVal = (chunk.length == 2) ? c1 * 45 + c2 : c1;
+		console.log(chunkVal);
+		output = output.concat(QR__i2ba(chunkVal, size));
 	}
+	
 	return output;
 }
 
