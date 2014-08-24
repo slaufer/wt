@@ -197,13 +197,22 @@ function QR__drawBitstream() {
 	var offset = 0;
 	var direction = -1;
 	for (var i = 0; 1; i++) {
+		/* put the next bit into the symbol */
 		this.setBit(x - offset, y, bitstream[i]);
-		/* this.setBit(x - offset, y, i%256); /* for placement tests */
+		
+		/* keep track of which mask has the closest balance of 1 and 0 bits. 
+		   this is our miserly way of selecting a mask pattern. it doesn't
+		   comply with the standard, but it is a _LOT_ cheaper. */
+		for (var j = 0; j < QR__MaskPattern.length; j++) {
+			this.maskBalance[j] +=
+				(QR__MaskPattern[j](y, x) ? !bitstream[i] : bitstream[i]) ? 1 : -1;
+		}
+		
 		if (i == bitstream.length) {
 			break;
 		}
 
-		/* find the next unreserved module */
+		/* find the next unreserved module. */
 		while (this.getReserveBit(x-offset,y) || this.getBit(x-offset,y) != null) {
 			if (offset == 1) {
 				offset = 0;
@@ -224,8 +233,16 @@ function QR__drawBitstream() {
 function QR__drawMask() {
 	/* let me begin by saying that i'm really, really sorry about this. the
 	   algorithm to select a mask per the ISO standard is very slow and very
-	   difficult to write, so I'm selecting a mask at random. */
-	this.mask = 7;
+	   difficult to write, so I'm selecting a mask based on which one has the 
+	   closest balance of 1 and 0 bits. */
+	var minBalance = Math.abs(this.maskBalance[0]);
+	this.mask = 0;
+	for (var i = 1; i < QR__MaskPattern.length; i++) {
+		if (Math.abs(this.maskBalance[i]) < minBalance) {
+			this.mask = i;
+			minBalance = Math.abs(this.maskBalance[i]);
+		}
+	}
 	
 	for (var x = 0; x < this.dim; x++) {
 		for (var y = 0; y < this.dim; y++) {
@@ -264,6 +281,11 @@ function QR__drawFormat() {
 function QR__drawSymbol() {
 	this.reserved = [];
 	this.symbol = [];
+	this.maskBalance = [];
+	
+	for (var i = 0; i < QR__MaskPattern.length; i++) {
+		this.maskBalance[i] = null;
+	}
 	
 	for (var i = 0; i < this.dim * this.dim; i++) {
 		this.symbol[i] = null;

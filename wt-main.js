@@ -40,5 +40,6 @@ var QRCode = function() {
 	this.reserved = null;
 	this.mask = null;
 	this.symbol = null;
+	this.maskBalance = null;
 };
 
