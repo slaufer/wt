@@ -30,9 +30,9 @@ function startDemo() {
 		{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
 		{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}
 	]);
+	/*qr.setVersion(1, QR__EC.M);
+	qr.setData([{data: 'HELLO WORLD', mode: QR__Mode.alNum}]);*/
 	qr.drawSymbol();
-	console.log(qr.maskBalance);
-	
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	
 }

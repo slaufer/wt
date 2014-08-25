@@ -3,8 +3,9 @@
  */
 
 /* encoding modes -- these match up with the 4-bit mode flags that go into the
-   bit stream, so you can use QR__i2ba to convert them and then concat them
-   directly into the stream. */
+   bitstream, so you can use QR__i2ba to convert them and then concat them
+   directly into the stream (with the exception of smart/10, that's for internal
+   use only). */
 var QR__Mode = {
 	term: 0,
 	num: 1,
@@ -14,7 +15,8 @@ var QR__Mode = {
 	FNC11: 5,
 	ECI: 7,
 	kanji: 8,
-	FNC12: 9
+	FNC12: 9,
+	smart: 10
 }
 
 /* encoding max-length functions, used to automatically select a QR version */

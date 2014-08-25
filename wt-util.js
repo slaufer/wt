@@ -13,6 +13,20 @@ function QR__apush(dest, src) {
 		dest.push(src[i]);
 	}
 }
+
+/* QR__apushr
+ * concatenates two arrays using push() -- much faster than using concat()
+ *
+ * @arg dest - destination array
+ * @arg src - source array
+ * @arg off - start offset
+ * @arg len - data length
+ */
+function QR__apushr(dest, src, off, len) {
+	for (var i = off; i < off+len; i++) {
+		dest.push(src[i]);
+	}
+}
  
 /* QR__ba2b
  * turns a binary array into a binary string
@@ -102,16 +116,19 @@ function QR__pi2ba(output, val, size) {
 }
 
 /* QR_ba2i
- * converts a binary array to an integer. may or may not work on negative
- * numbers. bear in mind that most javascript implementations limit integer
- * size.
+ * converts a slice of a binary array to an integer. may or may not work on
+ * negative numbers. bear in mind that most javascript implementations limit
+ * integer size.
  * @arg arr - array to convert
+ * @arg off - array start offset
+ * @arg len - array length
  * @return - integer value of array 
  */
-function QR__ba2i(arr) {
+function QR__ba2i(arr, off, len) {
 	var output = 0;
 	
-	for (var i = 0; i < arr.length; i++) {
+	
+	for (var i = off; i < off+len; i++) {
 		output = output << 1;
 		if (arr[i]) {
 			output = output | 1;

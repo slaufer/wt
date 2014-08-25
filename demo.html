@@ -15,12 +15,12 @@
 		<p>
 			<label for="qrver">Version</label>
 			<select id="qrver" onchange="startDemo()">
-				<option value="0" SELECTED>Auto</option>
+				<option value="0">Auto</option>
 				<option value="1">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="4">4</option>
-				<option value="5">5</option>
+				<option value="5" SELECTED>5</option>
 				<option value="6">6</option>
 				<option value="7">7</option>
 				<option value="8">8</option>
@@ -60,12 +60,12 @@
 			<label for="qrec">EC Mode</label>
 			<select id="qrec" onchange="startDemo()">
 				<option value="L">L</option>
-				<option value="M" SELECTED>M</option>
-				<option value="Q">Q</option>
+				<option value="M">M</option>
+				<option value="Q" SELECTED>Q</option>
 				<option value="H">H</option>
 			</select>
 			<br>
-			<textarea id="qrdata" placeholder="Enter test data" onkeyup="startDemo()" style="width: 232px; height: 232px;"></textarea><br>
+			<textarea id="qrdata" placeholder="Enter test data" onkeyup="startDemo()" style="width: 232px; height: 232px;">TEST</textarea><br>
 			<canvas id="qrcanvas"></canvas>
 		</p>
 	</body>

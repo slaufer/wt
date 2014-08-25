@@ -260,9 +260,9 @@ function QR__reserveFormat() {
  * Draws a given bitstream onto the symbol.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
- * @arg bitstream - binary array containing bitstream to draw.
  */
-function QR__drawBitstream(bitstream) {
+function QR__drawBitstream() {
+	var bitstream = this.generateBitstream(this.data);
 	var y = this.dim - 1;
 	var x = this.dim - 1;
 	var offset = 0;
@@ -395,7 +395,7 @@ function QR__drawSymbol() {
 		this.symbol[i] = null;
 	}
 	
-	/* figure out the best version */
+	/* figure out the optimal version */
 	if (this.autover) {
 		this.ver = null;
 		for (var i = 1; i < QR__Ver.length; i++) {
@@ -421,11 +421,9 @@ function QR__drawSymbol() {
 	}
 	
 	/* draw the symbol */
-	var bitstream = this.generateBitstream(this.data);
-	
 	this.drawPatterns();
 	this.reserveFormat();
-	this.drawBitstream(bitstream);
+	this.drawBitstream();
 	this.drawMask();
 	this.drawFormat();
 }

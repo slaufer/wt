@@ -168,19 +168,23 @@ function QR__generateMessage(data) {
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg data - data to be encoded
+ * @arg offset - start offset within data
+ * @arg len - bit length of data
+ * @arg output - output binary array ref to which EC codewords are appended
  * @arg count - number of EC codewords to generate
  * @return - binary array containing error correction segment for given data
  */ 
-function QR__generateECC(data, count) {
-	if (data.length % 8 != 0) {
+function QR__generateECC(data, offset, len, output, count) {
+	if (len % 8 != 0) {
 		throw new Error("Bad message length");
 	}
 	
 	/* create the message polynomial in integer notation */
 	var msgPoly = [];
-	for (var i = 0; i < data.length; i += 8) {
-		msgPoly.unshift(QR__ba2i(data.slice(i, i+8)));
+	for (var i = offset+len-8; i >= offset; i -= 8) {
+		msgPoly.push(QR__ba2i(data, i, 8));
 	}
+	
 	
 	/* multiply message polynomial by x^n; n is the number of ec codewords. */
 	for (var i = 0; i < count; i++) {
@@ -212,7 +216,6 @@ function QR__generateECC(data, count) {
 	}
 	
 	/* now, return the remainder as a binary array */
-	var output = [];
 	for (var i = msgPoly.length-1; i > -1; i--) {
 		QR__pi2ba(output, msgPoly[i], 8);
 	}
@@ -231,34 +234,37 @@ function QR__generateECC(data, count) {
 function QR__generateBitstream(data) {
 	/* generate the message */
 	var message = this.generateMessage(data);
-
-	var datablocks = [];
-	var ecblocks = [];
+	var ecc = [];
 	
-	/* iterate over the groups */
-	var msgPos = 0;
+	var dataOffsets = [ 0 ];
+	var ecOffsets = [ 0 ];
 	var maxDataBlock = 0;
 	var maxECBlock = 0;
-	for (var i = 0; i < QR__Ver[this.ver].ec[this.ec].groups.length; i++) {
+	
+	/* iterate over the groups */
+	for (var i = 0, k = 0; i < QR__Ver[this.ver].ec[this.ec].groups.length; i++) {
 		/* figure out how many bits of data and EC codewords in this block  */
-		var ecwords = QR__Ver[this.ver].ec[this.ec].groups[i].ecwords;
-		var databits = (QR__Ver[this.ver].ec[this.ec].groups[i].codewords - ecwords) * 8;
+		var ecbits = QR__Ver[this.ver].ec[this.ec].groups[i].ecwords * 8;
+		var databits = QR__Ver[this.ver].ec[this.ec].groups[i].codewords * 8 - ecbits;
 		
-		/* remember the longest data and EC blocks */
-		if (databits / 8 > maxDataBlock) {
-			maxDataBlock = databits / 8;
+		if (QR__Ver[this.ver].ec[this.ec].groups[i].ecwords > maxECBlock) {
+			maxECBlock = QR__Ver[this.ver].ec[this.ec].groups[i].ecwords;
 		}
 		
-		if (ecwords > maxECBlock) {
-			maxECBlock = ecwords; 
+		if (QR__Ver[this.ver].ec[this.ec].groups[i].codewords 
+			- QR__Ver[this.ver].ec[this.ec].groups[i].ecwords > maxDataBlock) {
+			maxDataBlock = QR__Ver[this.ver].ec[this.ec].groups[i].codewords
+				- QR__Ver[this.ver].ec[this.ec].groups[i].ecwords;
 		}
 		
 		/* iterate over blocks */
 		for (var j = 0; j < QR__Ver[this.ver].ec[this.ec].groups[i].blocks; j++) {
-			/* copy the blocks into separate arrays, and generate EC blocks */
-			datablocks.push(message.slice(msgPos, msgPos + databits));
-			msgPos += databits;
-			ecblocks.push(this.generateECC(datablocks[datablocks.length-1], ecwords));
+			/* calculate block offsets and generate EC data */
+			dataOffsets.push(databits + dataOffsets[k]);
+			ecOffsets.push(ecbits + ecOffsets[k]);
+			this.generateECC(message, dataOffsets[k], databits, ecc, 
+				QR__Ver[this.ver].ec[this.ec].groups[i].ecwords);
+			k++;
 		}
 	}
 	
@@ -266,9 +272,9 @@ function QR__generateBitstream(data) {
 	var bitstream = [];
 	var blockPos = 0;
 	for (var i = 0; i < maxDataBlock; i++) {	
-		for (var j = 0; j < datablocks.length; j++) {
-			if (blockPos < datablocks[j].length) {
-				QR__apush(bitstream, datablocks[j].slice(blockPos, blockPos+8));
+		for (var j = 0; j < dataOffsets.length; j++) {
+			if (dataOffsets[j+1] > dataOffsets[j] + blockPos) {
+				QR__apushr(bitstream, message, dataOffsets[j] + blockPos, 8);
 			}
 		}
 		
@@ -278,9 +284,9 @@ function QR__generateBitstream(data) {
 	/* interleave the EC codewords */
 	var blockPos = 0;
 	for (var i = 0; i < maxECBlock; i++) {
-		for (var j = 0; j < ecblocks.length; j++) {
-			if (blockPos < ecblocks[j].length) {
-				QR__apush(bitstream, ecblocks[j].slice(blockPos, blockPos+8));
+		for (var j = 0; j < ecOffsets.length; j++) {
+			if (ecOffsets[j+1] > ecOffsets[j] + blockPos) {
+				QR__apushr(bitstream, ecc, ecOffsets[j] + blockPos, 8);
 			}
 		}
 	
