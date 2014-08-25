@@ -13,8 +13,6 @@
 	</head>
 	<body>
 		<p>
-			<label for="qrdata">Data</label>
-			<textarea id="qrdata" value="type stuff here" onkeyup="startDemo()">enter test data here</textarea><br>
 			<label for="qrver">Version</label>
 			<select id="qrver" onchange="startDemo()">
 				<option value="0" SELECTED>Auto</option>
@@ -67,6 +65,7 @@
 				<option value="H">H</option>
 			</select>
 			<br>
+			<textarea id="qrdata" placeholder="Enter test data" onkeyup="startDemo()" style="width: 232px; height: 232px;"></textarea><br>
 			<canvas id="qrcanvas"></canvas>
 		</p>
 	</body>

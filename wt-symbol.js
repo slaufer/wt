@@ -2,25 +2,28 @@
  *  SYMBOL FUNCTIONS
  */
 
+/* QR__coordOK
+ * Checks to see if a coordinate is out-of-bounds.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg x - coordinate value to check. QR codes are always square, so it makes
+ * no difference if this coordinate is along the x or y axis.
+ * @return - false if coordinate is out-of-bounds, true otherwise.
+ */
 function QR__coordOK(x) {
 	return (x >= 0 && x < this.dim);
 }
 
-function QR__c2i(x, y) {
-	return (y * this.dim + x);
-}
-
-/* QR__i2c 
- * Converts an index in this.symbol to x,y coordinates.
+/* QR__c2i
+ * Converts x, y coordinates to an index to be used with this.symbol.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
+ * @arg x - x-coordinate
+ * @arg y - y-coordinate
+ * @return - value of equivalent index in array this.symbol
  */
-
-function QR__i2c(index) {
-	var x = index % this.dim;
-	var y = (index - x) / this.dim;
-	
-	return { x: x, y: y };
+function QR__c2i(x, y) {
+	return (y * this.dim + x);
 }
 
 /* QR__setReserveBit

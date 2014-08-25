@@ -23,8 +23,6 @@ function drawQR(qr, c, scale) {
 	}
 }
 
-
-
 function startDemo() {
 	var qr = new QRCode();
 	qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);
@@ -33,8 +31,10 @@ function startDemo() {
 		{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}
 	]);
 	qr.drawSymbol();
+	console.log(qr.maskBalance);
 	
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
+	
 }
 
 window.onload = function() {

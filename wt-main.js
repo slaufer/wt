@@ -6,7 +6,6 @@ var QRCode = function() {
 	/* Symbol manipulation functions */
 	this.coordOK = QR__coordOK;
 	this.c2i = QR__c2i;
-	this.i2c = QR__i2c;
 	this.setReserveBit = QR__setReserveBit;
 	this.getReserveBit = QR__getReserveBit;
 	this.getBit = QR__getBit;
