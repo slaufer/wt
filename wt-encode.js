@@ -3,11 +3,16 @@
  */
 
 
- 
-function QR__encNum(data) {
+/* QR__encNum - Encodes a string in numeric mode.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg data - numeric string to encode
+ * @return - binary array containing encoded numeric segment with headers
+ */
+function QR__encNum(output, data) {
 	/* start with mode identifier and char count indicator */
-	var output = QR__i2ba(QR__Mode.num, 4).concat(
-		QR__i2ba(data.length, QR__Ver[this.ver].cci.num));
+	QR__pi2ba(output, QR__Mode.num, 4);
+	QR__pi2ba(output, data.length, QR__Ver[this.ver].cci.num);
 	
 	/* make sure the data is okay. */
 	for (var i = 0; i < data.length; i++) {
@@ -20,24 +25,20 @@ function QR__encNum(data) {
 	for (var i = 0; i < data.length; i += 3) {
 		var chunk = data.slice(i, i+3);
 		var size = + chunk.length * 3 + 1;
-		output = output.concat(QR__i2ba(parseInt(chunk), size));
+		QR__pi2ba(output, parseInt(chunk), size);
 	}
-	
-	return output;
 }
  
 /* QR__encAlNum - Encodes a string in alphanumeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
- * @arg data - string to encode
+ * @arg data - alphanumeric string to encode
  * @return - binary array containing encoded alphanumeric segment with headers
- * TODO: optimize this function
  */
- 
-function QR__encAlNum(data) {
+function QR__encAlNum(output, data) {
 	/* start with mode identifier and char count indicator */
-	var output = QR__i2ba(QR__Mode.alNum, 4).concat(
-		QR__i2ba(data.length, QR__Ver[this.ver].cci.alNum));
+	QR__pi2ba(output, QR__Mode.alNum, 4);
+	QR__pi2ba(output, data.length, QR__Ver[this.ver].cci.alNum);
 	
 	/* encode and append data */
 	for (var i = 0; i < data.length; i += 2) {
@@ -52,48 +53,61 @@ function QR__encAlNum(data) {
 		}
 		
 		var chunkVal = (chunk.length == 2) ? c1 * 45 + c2 : c1;
-		output = output.concat(QR__i2ba(chunkVal, size));
+		QR__pi2ba(output, chunkVal, size);
 	}
-	
-	return output;
 }
 
-function QR__encEightBit(data) {
+/* QR__encNum - Encodes a string in 8-bit mode.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg data - 8-bit string to encode
+ * @return - binary array containing encoded 8-bit segment with headers
+ */
+function QR__encEightBit(output, data) {
 	/* start with mode identifier and char count indicator */
-	var output = QR__i2ba(QR__Mode.eightBit, 4).concat(
-		QR__i2ba(data.length, QR__Ver[this.ver].cci.eightBit));
+	QR__pi2ba(output, QR__Mode.eightBit, 4);
+	QR__pi2ba(output, data.length, QR__Ver[this.ver].cci.eightBit);
 	
 	/* encode and append data */
 	for (var i = 0; i < data.length; i++) {
-		output = output.concat(QR__i2ba(data.charCodeAt(i), 8));
+		QR__pi2ba(output, data.charCodeAt(i), 8);
 	}
-	
-	return output;
 }
 
-function QR__encECI(data) {
-	var output = QR__i2ba(QR__Mode.ECI, 4);
+/* QR__encNum - Encodes a string in numeric mode.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg data - ECI value to encode (Unsigned integer 0-999999)
+ * @return - binary array containing encoded ECI segment with headers
+ * TODO: optimize this function
+ */
+function QR__encECI(output, data) {
+	/* start with mode identifier */
+	QR__pi2ba(output, QR__Mode.ECI, 4);
 	
+	/* make sure input is good */
 	if (data < 0 || data > 999999) {
 		throw new Error("ECI Assignment Number out of range");
 	}
 	
+	/* encode and append ECI value */
 	if (data < 128) {
-		output = output.concat(QR__b2ba("0")).concat(QR__i2ba(data, 7));
+		QR__apush(output, [ false ]);
+		QR__pi2ba(output, data, 7);
 	} else if (data < 16384) {
-		output = output.concat(QR__b2ba("10")).concat(QR__i2ba(data, 14));
+		QR__apush(output, [ true, false ]);
+		QR__pi2ba(output, data, 14);
 	} else {
-		output = output.concat(QR__b2ba("110")).concat(QR__i2ba(data, 21));	
+		QR__apush(output, [ true, true, false ]);
+		QR__pi2ba(output, data, 21);	
 	}
-	
-	return output;
 }
 
 /* QR__generateMessage - generates the message segment of the bitstream
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
- * @arg data - array of objects containing data to be encoded, in the form:
- * [{ data: 'BLAH BLAH BLAH', mode: QR__Mode.alNum}, ...]
+ * @arg data - array of objects containing data to be encoded. see QR__setData
+ * for more details.
  * @return - binary array containing encoded data
  */
 function QR__generateMessage(data) {
@@ -103,16 +117,16 @@ function QR__generateMessage(data) {
 	for (var i = 0; i < data.length; i++) {
 		switch (data[i].mode) {
 		case QR__Mode.alNum:
-			encoded = encoded.concat(this.encAlNum(data[i].data));
+			this.encAlNum(encoded, data[i].data);
 			break;
 		case QR__Mode.eightBit:
-			encoded = encoded.concat(this.encEightBit(data[i].data));
+			this.encEightBit(encoded, data[i].data);
 			break;
 		case QR__Mode.num:
-			encoded = encoded.concat(this.encNum(data[i].data));
+			this.encNum(encoded, data[i].data);
 			break;
 		case QR__Mode.ECI:
-			encoded = encoded.concat(this.encECI(data[i].data));
+			this.encECI(encoded, data[i].data);
 			break;
 		case QR__Mode.kanji:
 			throw new Error("Kanji mode not implemented");
@@ -140,11 +154,11 @@ function QR__generateMessage(data) {
 	   - pad out the codeword the terminator is in, if it's not full
 	   - pad out any additional remaining codewords with pad codewords */
 	for (var i=0;(i<4||encoded.length%8!=0) && encoded.length < databits; i++) {
-		encoded = encoded.concat(QR__b2ba("0"));
+		encoded.push(false);
 	}
 	
 	for (var i=0; encoded.length < databits; i=(i+1)%QR__PadCodewords.length) {
-		encoded = encoded.concat(QR__PadCodewords[i]);
+		QR__apush(encoded, QR__PadCodewords[i]);
 	}
 	
 	return encoded;
@@ -156,9 +170,6 @@ function QR__generateMessage(data) {
  * @arg data - data to be encoded
  * @arg count - number of EC codewords to generate
  * @return - binary array containing error correction segment for given data
- *
- * TODO: optimize this function so it doesn't create and discard a million new
- * arrays.
  */ 
 function QR__generateECC(data, count) {
 	if (data.length % 8 != 0) {
@@ -203,7 +214,7 @@ function QR__generateECC(data, count) {
 	/* now, return the remainder as a binary array */
 	var output = [];
 	for (var i = msgPoly.length-1; i > -1; i--) {
-		output = output.concat(QR__i2ba(msgPoly[i], 8));
+		QR__pi2ba(output, msgPoly[i], 8);
 	}
 	return output;
 }
@@ -211,9 +222,11 @@ function QR__generateECC(data, count) {
 /* QR__generateBitstream - generates the full bitstream for given data
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
- * @arg data - array of objects containing data to be encoded, in the form:
- * [{ data: 'BLAH BLAH BLAH', mode: QR__Mode.alNum}, ...]
+ * @arg data - array of objects containing data to be encoded. see QR__setData
+ * for more details.
  * @return - binary array containing bitstream data
+ *
+ * TODO: optimize this function
  */
 function QR__generateBitstream(data) {
 	/* generate the message */
@@ -255,7 +268,7 @@ function QR__generateBitstream(data) {
 	for (var i = 0; i < maxDataBlock; i++) {	
 		for (var j = 0; j < datablocks.length; j++) {
 			if (blockPos < datablocks[j].length) {
-				bitstream = bitstream.concat(datablocks[j].slice(blockPos, blockPos+8));
+				QR__apush(bitstream, datablocks[j].slice(blockPos, blockPos+8));
 			}
 		}
 		
@@ -267,7 +280,7 @@ function QR__generateBitstream(data) {
 	for (var i = 0; i < maxECBlock; i++) {
 		for (var j = 0; j < ecblocks.length; j++) {
 			if (blockPos < ecblocks[j].length) {
-				bitstream = bitstream.concat(ecblocks[j].slice(blockPos, blockPos+8));
+				QR__apush(bitstream, ecblocks[j].slice(blockPos, blockPos+8));
 			}
 		}
 	
@@ -276,7 +289,7 @@ function QR__generateBitstream(data) {
 	
 	/* add on the remainder bits */
 	for (var i = 0; i < QR__Ver[this.ver].rem; i++) {
-		bitstream = bitstream.concat(QR__b2ba("0"));
+		bitstream.push(false);
 	}
 	
 	return bitstream;

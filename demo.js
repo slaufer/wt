@@ -23,6 +23,8 @@ function drawQR(qr, c, scale) {
 	}
 }
 
+
+
 function startDemo() {
 	var qr = new QRCode();
 	qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);

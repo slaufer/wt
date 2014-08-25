@@ -10,6 +10,12 @@ function QR__c2i(x, y) {
 	return (y * this.dim + x);
 }
 
+/* QR__i2c 
+ * Converts an index in this.symbol to x,y coordinates.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ */
+
 function QR__i2c(index) {
 	var x = index % this.dim;
 	var y = (index - x) / this.dim;
@@ -17,16 +23,36 @@ function QR__i2c(index) {
 	return { x: x, y: y };
 }
 
+/* QR__setReserveBit
+ * Gets the value of a bit in the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg x - x-coordinate to get
+ * @arg y - y-coordinate to get
+ * @arg return - true if value is successfully reserved, are out-of-bounds
+ */
 function QR__setReserveBit(x, y) {
-	if (!this.coordOK(x) || !this.coordOK(y)
-		|| this.reserved.indexOf(this.c2i(x,y)) != -1) {
+	if (!this.coordOK(x) || !this.coordOK(y)) {
 		return false;	
+	}
+	
+	/* if the value is already reserved, we're fine */
+	if (this.reserved.indexOf(this.c2i(x,y)) != -1) {
+		return true;
 	}
 	
 	this.reserved.push(this.c2i(x,y));
 	return true;
 }
 
+/* QR__getReserveBit
+ * Gets the value of a bit in the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg x - x-coordinate to get
+ * @arg y - y-coordinate to get
+ * @arg return - true if value is reserved, false otherwise
+ */
 function QR__getReserveBit(x, y) {
 	if (!this.coordOK(x) || !this.coordOK(y)
 		|| this.reserved.indexOf(this.c2i(x,y)) == -1) {
@@ -36,7 +62,16 @@ function QR__getReserveBit(x, y) {
 	return true;
 }
 
-function QR__getBit(x, y, val) {
+/* QR__getBit
+ * Gets the value of a bit in the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg x - x-coordinate to get
+ * @arg y - y-coordinate to get
+ * @return - value of bit at given coordinate, null if value is uninitialized or
+ *           out-of-bounds
+ */
+function QR__getBit(x, y) {
 	/* ignore out-of-bounds coords */
 	if (this.coordOK(x) && this.coordOK(y)) {
 		return this.symbol[this.c2i(x,y)];
@@ -45,6 +80,15 @@ function QR__getBit(x, y, val) {
 	}
 }
 
+/* QR__setBit
+ * Sets a bit in the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg x - x-coordinate to set
+ * @arg y - y-coordinate to set
+ * @arg val - value to assign (true, false)
+ * @arg reserve - OPTIONAL true to add coordinate to reserve list (default: false)
+ */
 function QR__setBit(x, y, val, reserve) {
 	if (reserve !== true) {
 		reserve = false;
@@ -124,6 +168,13 @@ function QR__drawPDP(x, y) {
 	 return true;
 }
 
+/* QR__drawAlign
+ * Draws an alignment pattern on the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg x - x-position of center of alignment pattern.
+ * @arg y - y-position of center of alignment pattern.
+ */
 function QR__drawAlign(x, y) {
 	if (!this.checkRect(x-2, y-2, 5, 5)) {
 		return false;	
@@ -136,6 +187,10 @@ function QR__drawAlign(x, y) {
 	return true;
 }
 
+/* QR__drawFormat
+ * Applies a mask pattern to the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ */
 function QR__drawTiming() {
 	for (var i = 0; i < this.dim - 16; i++) {
 		if (this.getBit(6, i+8) == null) {
@@ -148,6 +203,10 @@ function QR__drawTiming() {
 	}
 }
 
+/* QR__drawPatterns
+ * Draws static patterns (Position Detection, Alignment, Timing) onto symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ */
 function QR__drawPatterns() {
 	/* position detection patterns */
 	this.drawPDP(3,3);
@@ -165,9 +224,14 @@ function QR__drawPatterns() {
 	/* dark module */
 	this.setBit(8, this.dim - 8, true, true);
 	
+	/* timing patterns */
 	this.drawTiming();
 }
 
+/* QR__reserveFormat
+ * Adds locations of format and version blocks to the reserve module list.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ */
 function QR__reserveFormat() {
 	for (var i = 0; i < 8; i++) {
 		this.setReserveBit(8, i);
@@ -189,6 +253,12 @@ function QR__reserveFormat() {
 	}
 }
 
+/* QR__drawBitstream
+ * Draws a given bitstream onto the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg bitstream - binary array containing bitstream to draw.
+ */
 function QR__drawBitstream(bitstream) {
 	var y = this.dim - 1;
 	var x = this.dim - 1;
@@ -228,6 +298,10 @@ function QR__drawBitstream(bitstream) {
 	}
 }
 
+/* QR__drawMask
+ * Selects and applies a mask pattern to the symbol.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ */
 function QR__drawMask() {
 	/* let me begin by saying that i'm really, really sorry about this. the
 	   algorithm to select a mask per the ISO standard is very slow and very
@@ -242,6 +316,7 @@ function QR__drawMask() {
 		}
 	}
 	
+	/* once the mask pattern is selected, apply it to the symbol */
 	for (var x = 0; x < this.dim; x++) {
 		for (var y = 0; y < this.dim; y++) {
 			if (!this.getReserveBit(x, y) && QR__MaskPattern[this.mask](y,x)) {
@@ -253,6 +328,10 @@ function QR__drawMask() {
 	
 }
 
+/* QR__drawFormat
+ * Draws format and version blocks on QR code.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ */
 function QR__drawFormat() {
 	/* draw the upper left format blocks */
 	
@@ -286,6 +365,10 @@ function QR__drawFormat() {
 	}
 }
 
+/* QR_drawSymbol
+ * Generates a QR code based on data entered with QR__setVersion and QR__setData
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ */
 function QR__drawSymbol() {
 	/* make sure our inputs are okay */
 	if (this.ver == null && !this.autover) {
@@ -344,22 +427,55 @@ function QR__drawSymbol() {
 	this.drawFormat();
 }
 
+/* QR__setVersion
+ * set the version and error correction level of the QR code
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg ver - QR code version -- 1 to 40, or 0 to select automatically
+ * @arg ec - Error Correction level:
+ *           QR__EC.L - L mode, 7% error correction
+ *           QR__EC.M - M mode, 15% error correction
+ *           QR__EC.Q - Q mode, 25% error correction
+ *           QR__EC.H - H mode, 30% error correction
+ */
 function QR__setVersion(ver, ec) {
 	if (typeof ver !== 'number' || ver < 0 || ver > 40) {
 		throw new Error("Invalid QR Version");
 	}
 	
-	this.autover = (ver == 0) ? true : false;
-	
 	if (ec != QR__EC.L && ec != QR__EC.M && ec != QR__EC.Q && ec != QR__EC.H) {
 		throw new Error("Bad error correction level");
 	}
 	
-	this.ver = ver;
+	if (ver == 0) {
+		this.ver = null;
+		this.autover = true;
+	} else {
+		this.ver = ver;
+		this.autover = false;
+	}
+
 	this.dim = QR__Ver[ver].dim;
 	this.ec = ec;
 }
 
+/* QR__setData
+ * set the data to be encoded.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg data - one or more data segments to encode, in the following format:
+ * data = [ { data: "abc!@#", mode: QR__Mode.eightBit },
+ *          { data: "123", mode: QR__Mode.num },
+ *          { data: "ABC123", mode: QR__Mode.alNum },
+ *          { data: 9, mode: QR__Mode.ECI },
+ *          ... ];
+ *
+ * The following encoding modes are currently available:
+ * - Numeric (QR__Mode.num)
+ * - Alphanumeric (QR__Mode.alNum)
+ * - 8-bit (QR__Mode.eightBit)
+ * - ECI (QR__Mode.ECI)
+ */
 function QR__setData(data) {
 	this.data = data;
 }

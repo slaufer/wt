@@ -2,7 +2,24 @@
  *  UTILITY FUNCTIONS
  */
 
-/* converts a binary array into a binary string */
+/* QR__apush
+ * concatenates two arrays using push() -- much faster than using concat()
+ *
+ * @arg dest - destination array
+ * @arg src - source array
+ */ 
+function QR__apush(dest, src) {
+	for (var i = 0; i < src.length; i++) {
+		dest.push(src[i]);
+	}
+}
+ 
+/* QR__ba2b
+ * turns a binary array into a binary string
+ *
+ * @arg arr - array to convert
+ * @return - string of 1s and 0s representing array
+ */
 function QR__ba2b(arr) {
 	var str = "";
 	for (var i = 0; i < arr.length; i++) {
@@ -11,7 +28,12 @@ function QR__ba2b(arr) {
 	return str;
 }
 
-/* converts a binary array into a binary string, with a space every 8 bits */
+/* QR__ba2b_s
+ * same as QR__ba2b, except with a space every 8 characters in the output
+ *
+ * @arg arr - array to convert
+ * @return - string of 1s and 0s representing array
+ */
 function QR__ba2b_s(arr) {
 	var str = "";
 	for (var i = 0; i < arr.length; i++) {
@@ -22,10 +44,12 @@ function QR__ba2b_s(arr) {
 	}	
 	return str;
 }
-
-/* converts a binary string to an array */
-/* mostly exists to make certain constant definitions more legible */
-/* ignores any character that isn't 1 or 0 */
+/* QR__b2ba 
+ * Converts a binary string to an array
+ *
+ * @arg str - string to convert
+ * @return - new binary array representing input string
+ */
 function QR__b2ba(str) {
 	var output = [];
 	for (var i = 0; i < str.length; i++) {
@@ -38,7 +62,13 @@ function QR__b2ba(str) {
 	return output;
 }
 
-/*converts an integer to a binary array of a given size */
+/* QR__i2ba
+ * converts an integer to a binary array
+ *
+ * @arg val - integer value to convert
+ * @arg size - size of output array
+ * @return - binary array of given size representing given value
+ */
 function QR__i2ba(val, size) {
 	var output = [];
 	
@@ -49,6 +79,26 @@ function QR__i2ba(val, size) {
 	}
 	
 	return output;
+}
+
+/* QR__pi2ba
+ * same as QR__i2ba, except resulting array is appended to a given array. in
+ * most cases, it is a good idea to use this instead of QR__i2ba if possible --
+ * this avoids creating extraneous duplicate/throwaway arrays, compared to:
+ * 
+ * output = output.concat(QR__i2ba(val, size))
+ *
+ * @arg val - integer value to convert
+ * @arg size - size of output array
+ * @arg output - array to append to
+ */
+function QR__pi2ba(output, val, size) {
+	var mask = 1;
+	var end = output.length;
+	for (var i = output.length + size - 1; i >= end; i--) {
+		output[i] = val & mask ? true : false;
+		mask = mask << 1;
+	}
 }
 
 /* QR_ba2i
