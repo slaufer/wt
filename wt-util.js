@@ -10,7 +10,7 @@
  */ 
 function QR__apush(dest, src) {
 	for (var i = 0; i < src.length; i++) {
-		dest.push(src[i]);
+		dest[dest.length] = src[i];
 	}
 }
 
@@ -24,7 +24,7 @@ function QR__apush(dest, src) {
  */
 function QR__apushr(dest, src, off, len) {
 	for (var i = off; i < off+len; i++) {
-		dest.push(src[i]);
+		dest[dest.length] = src[i];
 	}
 }
  
@@ -68,9 +68,9 @@ function QR__b2ba(str) {
 	var output = [];
 	for (var i = 0; i < str.length; i++) {
 		if (str.charAt(i) == '1') {
-			output.push(true);
+			output[output.length] = true;
 		} else if (str.charAt(i) == '0') {
-			output.push(false);
+			output[output.length] = false;
 		}
 	}
 	return output;

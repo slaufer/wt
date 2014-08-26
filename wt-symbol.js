@@ -44,7 +44,7 @@ function QR__setReserveBit(x, y) {
 		return true;
 	}
 	
-	this.reserved.push(this.c2i(x,y));
+	this.reserved[this.reserved.length] = this.c2i(x,y);
 	return true;
 }
 

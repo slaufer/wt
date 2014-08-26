@@ -127,6 +127,8 @@ function QR__encFNC12(output, app) {
 	QR__pi2ba(app, 8);
 }
 
+/* QR__encSmart
+
 /* QR__generateMessage - generates the message segment of the bitstream
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
@@ -160,6 +162,9 @@ function QR__generateMessage(data) {
 		case QR__Mode.FNC12:
 			this.encFNC12(encoded, data[i].data);
 			break;
+		case QR__Mode.smart:
+			this.encsmart(encoded, data[i].data);
+			break;
 		case QR__Mode.append:
 			throw new Error("Structured Append mode not implemented");
 		default:
@@ -180,7 +185,7 @@ function QR__generateMessage(data) {
 	   - pad out the codeword the terminator is in, if it's not full
 	   - pad out any additional remaining codewords with pad codewords */
 	for (var i=0;(i<4||encoded.length%8!=0) && encoded.length < databits; i++) {
-		encoded.push(false);
+		encoded[encoded.length] = false;
 	}
 	
 	for (var i=0; encoded.length < databits; i=(i+1)%QR__PadCodewords.length) {
@@ -209,12 +214,12 @@ function QR__generateECC(data, offset, len, output, count) {
 	   necessary degree. */
 		var msgPoly = [];
 	for (var i = 0; i < count; i++) {
-		msgPoly.push(0);
+		msgPoly[msgPoly.length] = 0;
 	}
 	
 	/* now add the real terms to the msg polynomial */
 	for (var i = offset+len-8; i >= offset; i -= 8) {
-		msgPoly.push(QR__ba2i(data, i, 8));
+		msgPoly[msgPoly.length] = QR__ba2i(data, i, 8);
 	}
 	
 	/* if you alter this, beware: it is deceptively easy to introduce off-by-one
@@ -286,8 +291,8 @@ function QR__generateBitstream(data) {
 		/* iterate over blocks */
 		for (var j = 0; j < QR__Ver[this.ver].ec[this.ec].groups[i].blocks; j++) {
 			/* calculate block offsets and generate EC data */
-			dataOffsets.push(databits + dataOffsets[k]);
-			ecOffsets.push(ecbits + ecOffsets[k]);
+			dataOffsets[dataOffsets.length] = databits + dataOffsets[k];
+			ecOffsets[ecOffsets.length] = ecbits + ecOffsets[k];
 			this.generateECC(message, dataOffsets[k], databits, ecc, 
 				QR__Ver[this.ver].ec[this.ec].groups[i].ecwords);
 			k++;
@@ -321,7 +326,7 @@ function QR__generateBitstream(data) {
 	
 	/* add on the remainder bits */
 	for (var i = 0; i < QR__Ver[this.ver].rem; i++) {
-		bitstream.push(false);
+		bitstream[bitstream.length] = false;
 	}
 	
 	return bitstream;
