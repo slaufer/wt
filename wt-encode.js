@@ -2,12 +2,11 @@
  *  ENCODING FUNCTIONS
  */
 
-
 /* QR__encNum - Encodes a string in numeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
+ * @arg output - array to append to
  * @arg data - numeric string to encode
- * @return - binary array containing encoded numeric segment with headers
  */
 function QR__encNum(output, data) {
 	/* start with mode identifier and char count indicator */
@@ -32,8 +31,8 @@ function QR__encNum(output, data) {
 /* QR__encAlNum - Encodes a string in alphanumeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
+ * @arg output - array to append to
  * @arg data - alphanumeric string to encode
- * @return - binary array containing encoded alphanumeric segment with headers
  */
 function QR__encAlNum(output, data) {
 	/* start with mode identifier and char count indicator */
@@ -60,8 +59,8 @@ function QR__encAlNum(output, data) {
 /* QR__encNum - Encodes a string in 8-bit mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
+ * @arg output - array to append to
  * @arg data - 8-bit string to encode
- * @return - binary array containing encoded 8-bit segment with headers
  */
 function QR__encEightBit(output, data) {
 	/* start with mode identifier and char count indicator */
@@ -77,8 +76,8 @@ function QR__encEightBit(output, data) {
 /* QR__encNum - Encodes a string in numeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
+ * @arg output - array to append to
  * @arg data - ECI value to encode (Unsigned integer 0-999999)
- * @return - binary array containing encoded ECI segment with headers
  * TODO: optimize this function
  */
 function QR__encECI(output, data) {
@@ -101,6 +100,31 @@ function QR__encECI(output, data) {
 		QR__apush(output, [ true, true, false ]);
 		QR__pi2ba(output, data, 21);	
 	}
+}
+
+/* QR__encFNC11 - encodes a FNC in first position header. please see the QR
+ * code standard (ISO/IEC 18004:2000(E)) for more information on how FNC1
+ * applications are encoded.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg output - array to append to
+ */
+function QR__encFNC11(output) {
+	/* just push on the FNC1 header. the user is responsible for the rest. */
+	QR__apush(output, [ false, true, false, true ]);
+}
+
+/* QR__encFNC12 - encodes a FNC in second position header. please see the QR
+ * code standard (ISO/IEC 18004:2000(E)) for more information on how FNC1
+ * applications are encoded.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg output - array to append to
+ * @arg app - FNC1 application identifier
+ */
+function QR__encFNC12(output, app) {
+	QR__apush(output, [ true, false, false, true ]);
+	QR__pi2ba(app, 8);
 }
 
 /* QR__generateMessage - generates the message segment of the bitstream
@@ -131,9 +155,11 @@ function QR__generateMessage(data) {
 		case QR__Mode.kanji:
 			throw new Error("Kanji mode not implemented");
 		case QR__Mode.FNC11:
-			throw new Error("FNC1 First Position mode not implemented");
+			this.encFNC11(encoded);
+			break;
 		case QR__Mode.FNC12:
-			throw new Error("FNC1 Second Position mode not implemented");
+			this.encFNC12(encoded, data[i].data);
+			break;
 		case QR__Mode.append:
 			throw new Error("Structured Append mode not implemented");
 		default:
@@ -179,16 +205,16 @@ function QR__generateECC(data, offset, len, output, count) {
 		throw new Error("Bad message length");
 	}
 	
-	/* create the message polynomial in integer notation */
-	var msgPoly = [];
-	for (var i = offset+len-8; i >= offset; i -= 8) {
-		msgPoly.push(QR__ba2i(data, i, 8));
+	/* pad the message polynomial with <count> terms to bring it up to the
+	   necessary degree. */
+		var msgPoly = [];
+	for (var i = 0; i < count; i++) {
+		msgPoly.push(0);
 	}
 	
-	
-	/* multiply message polynomial by x^n; n is the number of ec codewords. */
-	for (var i = 0; i < count; i++) {
-		msgPoly.unshift(0);
+	/* now add the real terms to the msg polynomial */
+	for (var i = offset+len-8; i >= offset; i -= 8) {
+		msgPoly.push(QR__ba2i(data, i, 8));
 	}
 	
 	/* if you alter this, beware: it is deceptively easy to introduce off-by-one

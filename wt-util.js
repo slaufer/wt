@@ -43,7 +43,7 @@ function QR__ba2b(arr) {
 }
 
 /* QR__ba2b_s
- * same as QR__ba2b, except with a space every 8 characters in the output
+ * turns a binary array into a binary string, with a space every 8 characters. 
  *
  * @arg arr - array to convert
  * @return - string of 1s and 0s representing array
@@ -51,9 +51,9 @@ function QR__ba2b(arr) {
 function QR__ba2b_s(arr) {
 	var str = "";
 	for (var i = 0; i < arr.length; i++) {
-		str = str + (arr[i] ? '1' : '0');
+		str += (arr[i] ? '1' : '0');
 		if (i % 8 == 7) {
-			str = str + ' ';
+			str += ' ';
 		}
 	}	
 	return str;
@@ -98,9 +98,7 @@ function QR__i2ba(val, size) {
 /* QR__pi2ba
  * same as QR__i2ba, except resulting array is appended to a given array. in
  * most cases, it is a good idea to use this instead of QR__i2ba if possible --
- * this avoids creating extraneous duplicate/throwaway arrays, compared to:
- * 
- * output = output.concat(QR__i2ba(val, size))
+ * this avoids creating throwaway arrays.
  *
  * @arg val - integer value to convert
  * @arg size - size of output array

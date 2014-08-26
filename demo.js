@@ -25,13 +25,29 @@ function drawQR(qr, c, scale) {
 
 function startDemo() {
 	var qr = new QRCode();
+
 	qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);
 	qr.setData([
 		{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
 		{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}
 	]);
+	
+	// test sequence
+	/* qr.setVersion(3, QR__EC.M);
+	qr.setData([
+		{data: 3, mode: QR__Mode.ECI},
+		{data: '!@#$%^&*()', mode: QR__Mode.eightBit},
+		{data: 'HELLO WORLD', mode: QR__Mode.alNum},
+		{data: '1234567890', mode: QR__Mode.num }
+	]);*/
+	
+	// FNC1 test sequence
 	/*qr.setVersion(1, QR__EC.M);
-	qr.setData([{data: 'HELLO WORLD', mode: QR__Mode.alNum}]);*/
+	qr.setData([
+			{ data: 1, mode: QR__Mode.FNC12 },
+			{ data: "04912345123459", mode: QR__Mode.num }
+	]);*/
+	
 	qr.drawSymbol();
 	drawQR(qr, document.getElementById('qrcanvas'), 8);
 	

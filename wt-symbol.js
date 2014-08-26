@@ -267,13 +267,15 @@ function QR__drawBitstream() {
 	var x = this.dim - 1;
 	var offset = 0;
 	var direction = -1;
+	
+	/* place bits into the symbol */
 	for (var i = 0; 1; i++) {
 		/* put the next bit into the symbol */
 		this.setBit(x - offset, y, bitstream[i]);
 		
 		/* keep track of which mask has the closest balance of 1 and 0 bits. 
-		   this is our miserly way of selecting a mask pattern. it doesn't
-		   comply with the standard, but it is a _LOT_ cheaper. */
+		   this is part of the mask selection algorithm. it doesn't comply with
+		   the standard, but it is a _LOT_ cheaper. */
 		for (var j = 0; j < QR__MaskPattern.length; j++) {
 			this.maskBalance[j] +=
 				(QR__MaskPattern[j](y, x) ? !bitstream[i] : bitstream[i]) ? 1 : -1;
@@ -284,7 +286,7 @@ function QR__drawBitstream() {
 		}
 
 		/* find the next unreserved module. */
-		while (this.getReserveBit(x-offset,y) || this.getBit(x-offset,y) != null) {
+		do {
 			if (offset == 1) {
 				offset = 0;
 				
@@ -297,7 +299,7 @@ function QR__drawBitstream() {
 			} else {
 				offset = 1;
 			}
-		}
+		} while (this.getReserveBit(x-offset,y));
 	}
 }
 
