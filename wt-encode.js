@@ -2,16 +2,21 @@
  *  ENCODING FUNCTIONS
  */
 
-/* QR__encNum - Encodes a string in numeric mode.
+/* encoding length functions, used for ver=auto */
+var QR__EncodeLen = [];
+var QR__Encode = [];
+ 
+/* QR__encNum
+ * Encodes a string in numeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
  * @arg data - numeric string to encode
  */
-function QR__encNum(output, data) {
+QR__Encode[QR__Mode.num] = function(output, data, sym) {
 	/* start with mode identifier and char count indicator */
 	QR__pi2ba(output, QR__Mode.num, 4);
-	QR__pi2ba(output, data.length, QR__Ver[this.ver].cci.num);
+	QR__pi2ba(output, data.length, QR__Ver[sym.ver].cci.num);
 	
 	/* make sure the data is okay. */
 	for (var i = 0; i < data.length; i++) {
@@ -27,17 +32,26 @@ function QR__encNum(output, data) {
 		QR__pi2ba(output, parseInt(chunk), size);
 	}
 }
+
+QR__EncodeLen[QR__Mode.num] = function(d,v) {
+	return 4 + QR__Ver[v].cci.num + 10 * Math.floor(d.length / 3)
+		+ [ 0, 4, 7 ][d.length % 3];
+};
  
-/* QR__encAlNum - Encodes a string in alphanumeric mode.
+/* QR__encAlNum
+ * Encodes a string in alphanumeric mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
  * @arg data - alphanumeric string to encode
+ * @arg sym - QR code object
  */
-function QR__encAlNum(output, data) {
+QR__Encode[QR__Mode.alNum] = function(output, data, sym) {
 	/* start with mode identifier and char count indicator */
 	QR__pi2ba(output, QR__Mode.alNum, 4);
-	QR__pi2ba(output, data.length, QR__Ver[this.ver].cci.alNum);
+	QR__pi2ba(output, data.length, QR__Ver[sym.ver].cci.alNum);
+	
+	var len = 4 + QR__Ver[sym.ver].cci.alNum;
 	
 	/* encode and append data */
 	for (var i = 0; i < data.length; i += 2) {
@@ -56,16 +70,23 @@ function QR__encAlNum(output, data) {
 	}
 }
 
-/* QR__encNum - Encodes a string in 8-bit mode.
+QR__EncodeLen[QR__Mode.alNum] = function(d,v) {
+	return 4 + QR__Ver[v].cci.alNum + 11 * Math.floor(d.length / 2) 
+		+ 6 * (d.length % 2);
+};
+
+/* QR__encEightBit
+ * Encodes a string in 8-bit mode.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
  * @arg data - 8-bit string to encode
+ * @arg sym - QR code object
  */
-function QR__encEightBit(output, data) {
+QR__Encode[QR__Mode.eightBit] = function(output, data, sym) {
 	/* start with mode identifier and char count indicator */
 	QR__pi2ba(output, QR__Mode.eightBit, 4);
-	QR__pi2ba(output, data.length, QR__Ver[this.ver].cci.eightBit);
+	QR__pi2ba(output, data.length, QR__Ver[sym.ver].cci.eightBit);
 	
 	/* encode and append data */
 	for (var i = 0; i < data.length; i++) {
@@ -73,14 +94,20 @@ function QR__encEightBit(output, data) {
 	}
 }
 
-/* QR__encNum - Encodes a string in numeric mode.
+QR__EncodeLen[QR__Mode.eightBit] = function(d,v) {
+	return 4 + QR__Ver[v].cci.eightBit + 8 * d.length;
+};
+
+/* QR__encECI
+ * Encodes an ECI header.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
  * @arg data - ECI value to encode (Unsigned integer 0-999999)
+ * @arg sym - NOT USED
  * TODO: optimize this function
  */
-function QR__encECI(output, data) {
+QR__Encode[QR__Mode.ECI] = function(output, data, sym) {
 	/* start with mode identifier */
 	QR__pi2ba(output, QR__Mode.ECI, 4);
 	
@@ -102,32 +129,109 @@ function QR__encECI(output, data) {
 	}
 }
 
-/* QR__encFNC11 - encodes a FNC in first position header. please see the QR
- * code standard (ISO/IEC 18004:2000(E)) for more information on how FNC1
- * applications are encoded.
+QR__EncodeLen[QR__Mode.ECI] = function(d,v) {
+	if (d < 128) {
+		return 12
+	} else if (d < 16384) {
+		return 20
+	} else {
+		return 28
+	}
+};
+
+/* QR__encFNC11
+ * encodes an FNC in first position header. please see the QR code standard
+ * (ISO/IEC 18004:2000(E)) for more information on how FNC1 applications are 
+ * encoded.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
+ * @arg data - NOT USED
+ * @arg sym - NOT USED
  */
-function QR__encFNC11(output) {
+QR__Encode[QR__Mode.FNC11] = function(output, data, sym) {
 	/* just push on the FNC1 header. the user is responsible for the rest. */
 	QR__apush(output, [ false, true, false, true ]);
 }
 
-/* QR__encFNC12 - encodes a FNC in second position header. please see the QR
- * code standard (ISO/IEC 18004:2000(E)) for more information on how FNC1
- * applications are encoded.
+QR__EncodeLen[QR__Mode.FNC11] = function(d,v) {
+	return 4;
+}
+
+/* QR__encFNC12
+ * encodes an FNC in second position header. please see the QR code standard
+ * (ISO/IEC 18004:2000(E)) for more information on how FNC1 applications are 
+ * encoded.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
  * @arg app - FNC1 application identifier
+ * @arg sym - QR code object
  */
-function QR__encFNC12(output, app) {
+QR__Encode[QR__Mode.FNC12] = function(output, data, sym) {
 	QR__apush(output, [ true, false, false, true ]);
-	QR__pi2ba(app, 8);
+	QR__pi2ba(data, 8);
+}
+
+QR__EncodeLen[QR__Mode.FNC12] = function(d,v) {
+	return 12;
 }
 
 /* QR__encSmart
+ * Encodes a string in the lowest of 3 possible modes: numeric, alphanumeric,
+ * and 8-bit. This is much cheaper than the mixed-mode algorithm.
+ * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+ *
+ * @arg output - array to append to
+ * @arg data - data to encode
+ */
+QR__Encode[QR__Mode.smart] = function(output, data, sym) {
+	var i = 0;
+	var encMode = QR__Mode.num;
+	
+	/* scan for numeric mode */
+	while (i < data.length) {
+		if (data.charCodeAt(i) < '48' || data.charCodeAt(i) > '57') {
+			encMode = QR__Mode.alNum;
+			break;
+		}
+		i++;
+	}
+	
+	/* scan for alphanumeric mode */
+	while (i < data.length) {
+		if (QR__EncAlNumVals.indexOf(data.charAt(i)) == -1) {
+			encMode = QR__Mode.eightBit;
+			break;
+		}
+		i++;
+	}
+	
+	QR__Encode[encMode](output, data, sym);
+}
+
+QR__EncodeLen[QR__Mode.smart] = function(d,v) {
+	var i = 0;
+	var encMode = QR__Mode.num;
+	
+	while (i < d.length) {
+		if (d.charCodeAt(i) < '48' || d.charCodeAt(i) > '57') {
+			encMode = QR__Mode.alNum;
+			break;
+		}
+		i++;
+	}
+	
+	while (i < d.length) {
+		if (QR__EncAlNumVals.indexOf(d.charAt(i)) == -1) {
+			encMode = QR__Mode.eightBit;
+			break;
+		}
+		i++;
+	}
+
+	return QR__EncodeLen[encMode](d,v);
+}
 
 /* QR__generateMessage - generates the message segment of the bitstream
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
@@ -141,35 +245,7 @@ function QR__generateMessage(data) {
 	
 	/* first encode all data segments, and append them to the message */
 	for (var i = 0; i < data.length; i++) {
-		switch (data[i].mode) {
-		case QR__Mode.alNum:
-			this.encAlNum(encoded, data[i].data);
-			break;
-		case QR__Mode.eightBit:
-			this.encEightBit(encoded, data[i].data);
-			break;
-		case QR__Mode.num:
-			this.encNum(encoded, data[i].data);
-			break;
-		case QR__Mode.ECI:
-			this.encECI(encoded, data[i].data);
-			break;
-		case QR__Mode.kanji:
-			throw new Error("Kanji mode not implemented");
-		case QR__Mode.FNC11:
-			this.encFNC11(encoded);
-			break;
-		case QR__Mode.FNC12:
-			this.encFNC12(encoded, data[i].data);
-			break;
-		case QR__Mode.smart:
-			this.encsmart(encoded, data[i].data);
-			break;
-		case QR__Mode.append:
-			throw new Error("Structured Append mode not implemented");
-		default:
-			throw new Error("Bad encoding type");
-		}
+		QR__Encode[data[i].mode](encoded, data[i].data, this);
 	}
 	
 	/* make sure we didn't end up with a message that's too long */

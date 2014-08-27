@@ -29,16 +29,21 @@ function startDemo() {
 	qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);
 	qr.setData([
 		{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
-		{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}
+		{data: document.getElementById("qrdata").value, mode: QR__Mode.smart}
 	]);
 	
 	// test sequence
-	/* qr.setVersion(3, QR__EC.M);
+	/*qr.setVersion(0, QR__EC.M);
 	qr.setData([
+		{data: '15010114', mode: QR__Mode.FNC11 },
 		{data: 3, mode: QR__Mode.ECI},
 		{data: '!@#$%^&*()', mode: QR__Mode.eightBit},
-		{data: 'HELLO WORLD', mode: QR__Mode.alNum},
-		{data: '1234567890', mode: QR__Mode.num }
+		{data: 'HELLO WORLDXXXXXXXXXXXXXXXXXXXXXX', mode: QR__Mode.alNum},
+		{data: '1234567890', mode: QR__Mode.num },
+		{data: 15, mode: QR__Mode.FNC12 },
+		{data: '010114', mode: QR__Mode.smart},
+		{data: 'END TEST ', mode: QR__Mode.smart},
+		{data: 'SEQUENCE**', mode: QR__Mode.smart}
 	]);*/
 	
 	// FNC1 test sequence
