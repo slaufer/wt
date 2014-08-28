@@ -125,7 +125,6 @@ function QR__pi2ba(output, val, size) {
 function QR__ba2i(arr, off, len) {
 	var output = 0;
 	
-	
 	for (var i = off; i < off+len; i++) {
 		output = output << 1;
 		if (arr[i]) {
@@ -140,11 +139,16 @@ function QR__ba2i(arr, off, len) {
  * draws a QR code to a canvas
  * @arg qr - qr code object that is ready to be drawn (i.e. has had drawSymbol
  * called)
- * @arg c - canvas object to draw to. this object will be resized based on scale.
- * @arg scale - drawing scale. each module will be scale x scale pixels in size.
+ * @arg canvas - canvas object to draw to. this object will be resized based on scale.
+ * @arg scale - OPTIONAL drawing scale. each module will be scale x scale pixels
+ * in size. (default: 1)
  */
 
-function drawQR(qr, c, scale) {
+function drawQRToCanvas(qr, canvas, scale) {
+	if (typeof scale === 'undefined') {
+		scale = 1;
+	}
+	
 	/* set canvas size, border */
 	var cSize = qr.dim * scale + 8 * scale 
 	c.style.width = c.style.height = cSize.toString() + 'px';

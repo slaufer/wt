@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>WT Documentation</title>
+		<style type="text/css">
+			.title {
+				text-align: center;
+			}
+			
+			.toclist {
+				list-style: none;
+			}
+			
+			.example {
+				white-space: pre;
+				padding: 10px;
+				margin-left: 20px;
+				margin-right: 20px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				background-color: #DDD;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 class="title">WT 0.1 Manual</h1>
+		<h2>Table of Contents</h2>
+		<div>
+			<ul class="toclist">
+				<li>1. <a href="#cont1">Overview</a></li>
+				<li>
+					2. <a href="#cont2">Installation</a>
+					<ul class="toclist">
+						<li>2.1 <a href="#cont2.1"> Downloading</a></li>
+						<li>2.2 <a href="#cont2.2"> Installing</a></li>
+					</ul>
+				</li>
+				<li>3. <a href="#cont3">Usage</a></li>
+				<li>
+					4. <a href="#cont4">User function documentation</a>
+					<ul class="toclist">
+						<li>4.1 <a href="#cont4.1">QRCode()</a></li>
+						<li>4.2 <a href="#cont4.2">QRCode.setVersion()</a></li>
+						<li>4.3 <a href="#cont4.3">QRCode.setData()</a></li>
+						<li>4.4 <a href="#cont4.4">QRCode.drawSymbol()</a></li>
+						<li>4.5 <a href="#cont4.5">drawQR()</a></li>
+					</ul>
+				</li>
+				<li>5. <a href="#cont5">Internal function documentation</a></li>
+				<li>6. <a href="#cont6">Acknowledgments</a></li>
+			</ul>
+		</div>
+		<a name="cont1"></a>
+		<h2>1. Overview</h2>
+		<p>
+			WT is a JavaScript QR Code encoding library. It differs from most
+			other libraries in that it provides low-level functionality, rather
+			than abstract data types -- users may select whichever versions,
+			encodings, and headers they feel suit their needs -- or rely on the
+			built-in selection algorithms to choose for them. WT was also
+			written from the ground up in JavaScript, rather than being ported
+			from another language. 
+		</p>
+		<p>
+			Most modes are supported, with the exceptions of Structured Append
+			and Kanji modes.
+		</p>
+		<a name="cont2"></a>
+		<h2>2. Installation</h2>
+		<a name="cont2.1"></a>
+		<h3>2.1. Downloading</h3>
+		<p>
+			The current version of WT can always be downloaded in minified form
+			from the <a href="http://endlessbeta.org/wt/">project website</a>. 
+			Also available from the website is the current git repository for 
+			the project. WT does not require any third-party libraries to
+			function.
+		</p>
+		<a name="cont2.2"></a>
+		<h3>2.2. Installing</h3>
+		<p>
+			Installing the WT library in your page is much like installing any
+			other library. Simply drop the minified <code>wt.js</code> somewhere
+			relative to your page, and insert a script tag into your page:
+<code class="example">&lt;script type="text/javascript" src="wt.js"&gt;&lt;/script&gt;</code>
+			Adjust the <code>src</code> attribute as necessary.
+		</p>
+		<a name="cont3"></a>
+		<h2>3. Usage</h2>
+		<p>
+			QR Code objects must be initialized in a certain order. For example:
+<code class="example">var qr = new QRCode();
+qr.setVersion(0, QR__EC.M);
+qr.setData([{ mode: QR__Mode.ECI, data: 26 }, { mode: QR__Mode.smart, data: 'Hello, world!'}]);
+qr.drawSymbol();
+drawQR(qr, document.getElementById("MyCanvas"), 8);</code>
+			This code will draw a QR Code representing the text "Hello, world!"
+			with UTF-8 encoding. After the object is created, the
+			<code>setVersion()</code> and <code>setData()</code> methods must
+			be called first in order to tell the object what kind of symbol it
+			is drawing. Then, the <code>drawSymbol()</code> method will generate
+			the symbol. Finally, the <code>drawQR</code> function will draw the
+			QR code to a given HTML5 canvas object.
+		</p>
+		<p>
+			Currently, the only provided drawing function is
+			<code>drawQR()</code>, which draws the code to an HTML5 canvas.
+			However, enterprising users will find that after
+			<code>drawSymbol()</code> is called, the integer variable
+			<code>qr.dim</code> contains the dimension (width/height, both of
+			which are the same) of the QR code, and the array variable
+			<code>qr.data</code> is a linear array of booleans representing the
+			finalized symbol, such that <code>qr.data[y * qr.dim + x]</code>
+			will yield the value at position <code>(x, y)</code> in the symbol,
+			with <code>true</code> representing a black module, and
+			<code>false</code> representing a white module.
+		</p>
+		<a name="cont4"></a>
+		<h2>4. User function documentation</h2>
+		<a name="cont4.1"</a>
+		<h3>4.1 QRCode()</h3>
+		<p>
+			This constructor function creates a QR code object. It takes no
+			arguments.
+			<code class="example">var qr = new QRCode();</code>
+		</p>
+		<a name="cont4.2"</a>
+		<h3>4.2 QRCode.setVersion(<code>ver, ec</code>)</h3>
+		<p>
+			This method of the QRCode class sets the version of a QR Code
+			object.
+		</p>
+		<p>
+			The <code>ver</code> argument sets the version of the QR
+			code. This may be set explicitly in the range <code>1</code> to
+			<code>40</code>. Alternatively, it may be set to <code>0</code>,
+			which will result in the lowest possible version being selected
+			automatically.
+		</p>
+		<p>
+			The <code>ec</code> argument sets the error correction level of the
+			QR Code. Valid values are:
+			<ul>
+				<li>QR__EC.L - Mode L, ~7% error correction capacity</li>
+				<li>QR__EC.M - Mode M, ~15% error correction capacity</li>
+				<li>QR__EC.Q - Mode Q, ~25% error correction capacity</li>
+				<li>QR__EC.H - Mode H, ~30% error correction capacity</li>
+			</ul>
+			<code class="example">qr.setVersion(0, QR__EC.M);</code>
+		</p>
+		<a name="cont4.3"</a>
+		<h3>4.3 QRCode.setData(<code>data</code>)</h3>
+		<p>
+			This method of the QRCode class sets the data represented by the
+			symbol.
+		</p>
+		<p>
+			The <code>data</code> argument is an array containing objects
+			representing data segments and their encodings:
+<code class="example">[
+			{ mode: QR__Mode.ECI, data: 26 },
+			{ mode: QR__Mode.eightBit, data: 'Hello, world!' },
+			{ mode: QR__Mode.num, data: '1234567890' },
+			...
+]</code>
+		</p>
+		<p>
+			Available data encodings are:
+			<ul>
+				<li>
+					<b>Numeric (<code>QR__Mode.num</code>):</b> 
+					Numeric mode encoding. Argument <code>data</code> is a
+					string containing only digits 0-9.
+				</li>
+				<li>
+					<b>Alphanumeric (<code>QR__Mode.alNum</code>):</b>
+					Alphanumeric mode encoding. Argument <code>data</code> is a
+					string containing only uppercase letters A-Z, digits 0-9,
+					space ( ), and symbols $%*+-./:.
+				</li>
+				<li>
+					<b>8-Bit (<code>QR__Mode.eightBit</code>):</b>
+					Eight bit encoding. Argument <code>data</code> may contain
+					any data. It is strongly recommended, although not required,
+					that an ECI encoding header be included when using this mode
+					(see below).
+				</lI>
+				<li>
+					<b>ECI Header (<code>QR__Mode.ECI</code>):</b>
+					Inserts an ECI header, which specifies an encoding type.
+					Argument <code>data</code> is an integer ECI code value. ECI
+					codes are available for many common character encodings:
+					<ul>
+						<li>3: ISO-8859-1</li>
+						<li>4: ISO-8859-2</li>
+						<li>5: ISO-8859-3</li>
+						<li>6: ISO-8859-4</li>
+						<li>7: ISO-8859-5</li>
+						<li>8: ISO-8859-6</li>
+						<li>9: ISO-8859-7</li>
+						<li>10: ISO-8859-8</li>
+						<li>11: ISO-8859-9</li>
+						<li>12: ISO-8859-10</li>
+						<li>13: ISO-8859-11</li>
+						<li>14: ISO-8859-12</li>
+						<li>15: ISO-8859-13</li>
+						<li>16: ISO-8859-14</li>
+						<li>17: ISO-8859-15</li>
+						<li>18: ISO-8859-16</li>
+						<li>19: Extra Crispy</li>
+						<li>20: Shift_JIS</li>
+						<li>21: Cp1250, windows-1250</li>
+						<li>22: Cp1251, windows-1251</li>
+						<li>23: Cp1252, windows-1252</li>
+						<li>24: Cp1256, windows-1256</li>
+						<li>25: UnicodeBigUnmarked, UTF-16BE, UnicodeBig</li>
+						<li>26: UTF-8</li>
+						<li>27: US-ASCII</li>
+						<li>28: Big5</li>
+						<li>29: GB18030, GB2312, EUC_CN, GBK</li>
+						<li>30: EUC-KR</li>
+					</ul>
+				</li>
+				<li>
+					<b>FNC1 in First Position (<code>QR__Mode.FNC11</code>):</b>
+					Inserts an FNC1 in first position header. The
+					<code>data</code> argument is <code>null</code>. Please see
+					the QR Code ISO standard for more information.
+				</li>
+				<li>
+					<b>FNC1 in Second Position (<code>QR__Mode.FNC12</code>):</b>
+					Inserts an FNC1 in second position header. The
+					<code>data</code> argument is an FNC1 application code.
+					Please see the QR Code ISO standard for more information.
+				</li>
+				<li>
+					<b>Smart encoding (<code>QR__Mode.smart</code>):</b>
+					Inserts a data segment for which the least costly encoding
+					has been selected. Argument <code>data</code> may contain
+					any data. Encoding is selected from Numeric, Alphanumeric or
+					8-bit. As with 8-bit encoding, it is strongly recommended,
+					although not required, that an ECI encoding header be
+					included when using this mode (see below).
+				</li>
+			</ul>
+		</p>
+<code class="example">qr.setData([
+	{ mode: QR__Mode.ECI, data: 26 },
+	{ mode: QR__Mode.smart, data: 'Hello, world!'}
+]);</code>
+		<a name="cont4.4"</a>
+		<h3>4.4 QRCode.drawSymbol()</h3>
+		<p>
+			This method of the QR code class constructs the symbol. It must only
+			be called after <a href="#cont4.2">QRCode.setVersion()</a> and
+			<a href="#cont4.3">QRCode.setData()</a> have been called. It takes
+			no arguments.
+		</p>
+		<p>
+			Please note that the method used by this function to select a mask
+			is not compliant with the ISO standard. A less complex,
+			computationally cheaper method is used. Support for strict masking
+			will be added in the future.
+		</p>
+		<code class="example">qr.drawSymbol();</code>
+		<a name="cont4.5"></a>
+		<h3>4.5 drawQR(<code>qr, canvas, scale</code>)</h3>
+		<p>
+			This function draws a QR code to an HTML5 canvas. 
+		</p>
+		</p>
+			The <code>qr</code> argument is a QRCode object. This object must
+			have had the <a href="#cont4.4">QRCode.drawSymbol()</a> method
+			previously called, so that the symbol has been constructed.
+		</p>
+		<p>
+			The <code>canvas</code> argument is an HTML5 canvas object. This
+			object must exist -- make sure the window has been fully loaded and
+			the object has been created before attempting to call this function.
+		</p>
+		<p>
+			The <code>scale</code> argument is the drawing scale. This value
+			decides how many pixels wide each module will be, per side.
+		</p>
+<code class="example">drawQR(qr, document.getElementById('MyCanvasID'), 8);</code>
+		<a name="cont5"></a>
+		<h3>5. Internal function documentation</h3>
+		<p>
+			This section will be written at a later date. For now, please see
+			the (fairly verbose) comments in the source code.
+		</p>
+		<a name="cont6"></a>
+		<h3>6. Acknowledgments</h3>
+		<p>
+			This library would not have been possible without the QR Code ISO
+			standard
+			(<a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=30789">ISO/IEC 18004:2000</a>),
+			or the excellent
+			<a href="http://www.thonky.com/qr-code-tutorial/">documentation</a>
+			provided by <a href="http://www.thonky.com/">Carolyn Eby</a>.
+		</p>
+		<p>
+			QR Code is registered trademark of
+			<a href="http://www.denso-wave.com/">DENSO WAVE INCORPORATED</a>.
+		</p>
+	</body>
+</html>
