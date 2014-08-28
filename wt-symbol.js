@@ -406,7 +406,6 @@ function QR__drawSymbol() {
 			
 			/* figure out the total encoding length at this version */
 			for (var j = 0; j < this.data.length; j++) {
-				console.log(this.data[j].mode);
 				len += QR__EncodeLen[this.data[j].mode](this.data[j].data,i);
 			}
 			
