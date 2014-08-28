@@ -135,3 +135,36 @@ function QR__ba2i(arr, off, len) {
 	
 	return output;
 }
+
+/* drawQR
+ * draws a QR code to a canvas
+ * @arg qr - qr code object that is ready to be drawn (i.e. has had drawSymbol
+ * called)
+ * @arg c - canvas object to draw to. this object will be resized based on scale.
+ * @arg scale - drawing scale. each module will be scale x scale pixels in size.
+ */
+
+function drawQR(qr, c, scale) {
+	/* set canvas size, border */
+	var cSize = qr.dim * scale + 8 * scale 
+	c.style.width = c.style.height = cSize.toString() + 'px';
+	c.setAttribute('width', cSize.toString() + 'px');
+	c.setAttribute('height', cSize.toString() + 'px');
+	c.style.border = 'solid black 1px';
+	
+	/* create canvas context, clear canvas */
+	var ctx = c.getContext("2d");
+	ctx.fillStyle = '#ffffff';
+	ctx.fillRect(0, 0, cSize, cSize);
+	ctx.fillStyle = '#000000';
+	
+	/* iterate over data and fill into canvas */
+	for (var y = 0; y < qr.dim; y++) {
+		for (var x = 0; x < qr.dim; x++) {
+			var k = qr.getBit(x,y);
+			if (k === true) {
+				ctx.fillRect((x + 4) * scale, (y + 4) * scale, scale, scale);
+			}
+		}
+	}
+}
