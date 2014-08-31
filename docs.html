@@ -45,7 +45,7 @@
 						<li>4.2 <a href="#cont4.2">QRCode.setVersion()</a></li>
 						<li>4.3 <a href="#cont4.3">QRCode.setData()</a></li>
 						<li>4.4 <a href="#cont4.4">QRCode.drawSymbol()</a></li>
-						<li>4.5 <a href="#cont4.5">drawQR()</a></li>
+						<li>4.5 <a href="#cont4.5">drawQRToCanvas()</a></li>
 					</ul>
 				</li>
 				<li>5. <a href="#cont5">Internal function documentation</a></li>
@@ -95,18 +95,18 @@
 qr.setVersion(0, QR__EC.M);
 qr.setData([{ mode: QR__Mode.ECI, data: 26 }, { mode: QR__Mode.smart, data: 'Hello, world!'}]);
 qr.drawSymbol();
-drawQR(qr, document.getElementById("MyCanvas"), 8);</code>
+drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 			This code will draw a QR Code representing the text "Hello, world!"
 			with UTF-8 encoding. After the object is created, the
 			<code>setVersion()</code> and <code>setData()</code> methods must
 			be called first in order to tell the object what kind of symbol it
 			is drawing. Then, the <code>drawSymbol()</code> method will generate
-			the symbol. Finally, the <code>drawQR</code> function will draw the
+			the symbol. Finally, the <code>drawQRToCanvas()</code> function will draw the
 			QR code to a given HTML5 canvas object.
 		</p>
 		<p>
 			Currently, the only provided drawing function is
-			<code>drawQR()</code>, which draws the code to an HTML5 canvas.
+			<code>drawQRToCanvas()</code>, which draws the code to an HTML5 canvas.
 			However, enterprising users will find that after
 			<code>drawSymbol()</code> is called, the integer variable
 			<code>qr.dim</code> contains the dimension (width/height, both of
@@ -266,7 +266,7 @@ drawQR(qr, document.getElementById("MyCanvas"), 8);</code>
 		</p>
 		<code class="example">qr.drawSymbol();</code>
 		<a name="cont4.5"></a>
-		<h3>4.5 drawQR(<code>qr, canvas, scale</code>)</h3>
+		<h3>4.5 drawQRToCanvas(<code>qr, canvas, scale</code>)</h3>
 		<p>
 			This function draws a QR code to an HTML5 canvas. 
 		</p>
@@ -284,7 +284,7 @@ drawQR(qr, document.getElementById("MyCanvas"), 8);</code>
 			The <code>scale</code> argument is the drawing scale. This value
 			decides how many pixels wide each module will be, per side.
 		</p>
-<code class="example">drawQR(qr, document.getElementById('MyCanvasID'), 8);</code>
+<code class="example">drawQRToCanvas(qr, document.getElementById('MyCanvasID'), 8);</code>
 		<a name="cont5"></a>
 		<h3>5. Internal function documentation</h3>
 		<p>

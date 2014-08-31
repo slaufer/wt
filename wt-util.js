@@ -150,16 +150,16 @@ function drawQRToCanvas(qr, canvas, scale) {
 	}
 	
 	/* set canvas size, border */
-	var cSize = qr.dim * scale + 8 * scale 
-	c.style.width = c.style.height = cSize.toString() + 'px';
-	c.setAttribute('width', cSize.toString() + 'px');
-	c.setAttribute('height', cSize.toString() + 'px');
-	c.style.border = 'solid black 1px';
+	var canvasSize = qr.dim * scale + 8 * scale 
+	canvas.style.width = canvas.style.height = canvasSize.toString() + 'px';
+	canvas.setAttribute('width', canvasSize.toString() + 'px');
+	canvas.setAttribute('height', canvasSize.toString() + 'px');
+	canvas.style.border = 'solid black 1px';
 	
 	/* create canvas context, clear canvas */
-	var ctx = c.getContext("2d");
+	var ctx = canvas.getContext("2d");
 	ctx.fillStyle = '#ffffff';
-	ctx.fillRect(0, 0, cSize, cSize);
+	ctx.fillRect(0, 0, canvasSize, canvasSize);
 	ctx.fillStyle = '#000000';
 	
 	/* iterate over data and fill into canvas */
