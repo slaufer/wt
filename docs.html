@@ -103,13 +103,22 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 			be called first in order to tell the object what kind of symbol it
 			is drawing. Then, the <code>drawSymbol()</code> method will generate
 			the symbol. Finally, the <code>drawQRToCanvas()</code> function will draw the
-			QR code to a given HTML5 canvas object.
+			QR code to a given HTML5 canvas object. It is also possible to draw to a div,
+			using the <code>drawQRToDiv()</code> function.
 		</p>
 		<p>
-			Currently, the only provided drawing function is
-			<code>drawQRToCanvas()</code>, which draws the code to an HTML5 canvas.
-			However, enterprising users will find that after
-			<code>drawSymbol()</code> is called, the integer variable
+			It is preferrable to use the HTML5 canvas element when it is
+			available. In order to determine if it is available, one can use the
+			following code:
+<code class="example">if (typeof document.getElementById("MyCanvas").getContext === 'undefined') {
+	drawQRToDiv(qr, document.getElementById("MyDiv"), 8);
+} else {
+	drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);
+}</code>
+		</p>
+		<p>
+			Enterprising users will find that after
+			<code>qr.drawSymbol()</code> is called, the integer variable
 			<code>qr.dim</code> contains the dimension (width/height, both of
 			which are the same) of the QR code, and the array variable
 			<code>qr.data</code> is a linear array of booleans representing the
@@ -186,7 +195,9 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 					Eight bit encoding. Argument <code>data</code> may contain
 					any data. It is strongly recommended, although not required,
 					that an ECI encoding header be included when using this mode
-					(see below).
+					(see below). Be advised that most JavaScript interpreters
+					view <i>all</i> string data as UTF-8, regardless of input
+					encoding.
 				</lI>
 				<li>
 					<b>ECI Header (<code>QR__Mode.ECI</code>):</b>
@@ -243,7 +254,7 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 					any data. Encoding is selected from Numeric, Alphanumeric or
 					8-bit. As with 8-bit encoding, it is strongly recommended,
 					although not required, that an ECI encoding header be
-					included when using this mode (see below).
+					included when using this mode.
 				</li>
 			</ul>
 		</p>
