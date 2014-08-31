@@ -134,7 +134,7 @@ for (my $i = 1; $i < @vers; $i++) {
 			          . "\t\t\t\t\t\tblocks: $vers[$i]{ec}{$eclevel}{groups}[$j]{blocks},\n"
 			          . "\t\t\t\t\t\tcodewords: $vers[$i]{ec}{$eclevel}{groups}[$j]{codewords},\n"
 			          #. "\t\t\t\t\t\tdatawords: $vers[$i]{ec}{$eclevel}{groups}[$j]{datawords},\n"
-			          . "\t\t\t\t\t\tecwords: $vers[$i]{ec}{$eclevel}{groups}[$j]{ecwords},\n"
+			          . "\t\t\t\t\t\tecwords: $vers[$i]{ec}{$eclevel}{groups}[$j]{ecwords}\n"
 			          #. "\t\t\t\t\t\teccap: $vers[$i]{ec}{$eclevel}{groups}[$j]{eccap}\n"
 			          . "\t\t\t\t\t}";
 			if ($j + 1 < @{$vers[$i]{ec}{$eclevel}{groups}}) {
@@ -155,7 +155,7 @@ for (my $i = 1; $i < @vers; $i++) {
 		. "\t\t\tnum: $vers[$i]{cci}{num},\n"
 		. "\t\t\talNum: $vers[$i]{cci}{alNum},\n"
 		. "\t\t\teightBit: $vers[$i]{cci}{eightBit},\n"
-		. "\t\t\tkanji: $vers[$i]{cci}{kanji},\n"
+		. "\t\t\tkanji: $vers[$i]{cci}{kanji}\n"
 		. "\t\t}\n"
 		. "\t}";
 		
