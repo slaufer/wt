@@ -227,6 +227,8 @@ function drawQRToDiv(qr, div, scale) {
 			mod.style.width = (4 * scale).toString() + 'px';
 			mod.style.height = scale.toString() + 'px';
 			mod.style.float = 'left';
+			mod.style.fontSize = '1px';
+			mod.style.lineHeight = '1px';
 			div.appendChild(mod);
 		}
 		
@@ -235,6 +237,8 @@ function drawQRToDiv(qr, div, scale) {
 		mod.style.backgroundColor = (qr.symbol[i] === true) ? '#000' : '#fff';
 		mod.style.width = mod.style.height = scale.toString() + 'px';
 		mod.style.float = 'left';
+		mod.style.fontSize = '1px';
+		mod.style.lineHeight = '1px';
 		div.appendChild(mod);
 		
 		/* end-of-line spacer */
