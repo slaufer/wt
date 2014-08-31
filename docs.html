@@ -46,6 +46,7 @@
 						<li>4.3 <a href="#cont4.3">QRCode.setData()</a></li>
 						<li>4.4 <a href="#cont4.4">QRCode.drawSymbol()</a></li>
 						<li>4.5 <a href="#cont4.5">drawQRToCanvas()</a></li>
+						<li>4.6 <a href="#cont4.6">drawQRToDiv()</a></li>
 					</ul>
 				</li>
 				<li>5. <a href="#cont5">Internal function documentation</a></li>
@@ -120,14 +121,14 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 		<a name="cont4"></a>
 		<h2>4. User function documentation</h2>
 		<a name="cont4.1"></a>
-		<h3>4.1 QRCode()</h3>
+		<h3>4.1. QRCode()</h3>
 		<p>
 			This constructor function creates a QR code object. It takes no
 			arguments.
 			<code class="example">var qr = new QRCode();</code>
 		</p>
 		<a name="cont4.2"></a>
-		<h3>4.2 QRCode.setVersion(<code>ver, ec</code>)</h3>
+		<h3>4.2. QRCode.setVersion(<code>ver, ec</code>)</h3>
 		<p>
 			This method of the QRCode class sets the version of a QR Code
 			object.
@@ -151,7 +152,7 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 			<code class="example">qr.setVersion(0, QR__EC.M);</code>
 		</p>
 		<a name="cont4.3"></a>
-		<h3>4.3 QRCode.setData(<code>data</code>)</h3>
+		<h3>4.3. QRCode.setData(<code>data</code>)</h3>
 		<p>
 			This method of the QRCode class sets the data represented by the
 			symbol.
@@ -251,7 +252,7 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 	{ mode: QR__Mode.smart, data: 'Hello, world!'}
 ]);</code>
 		<a name="cont4.4"</a>
-		<h3>4.4 QRCode.drawSymbol()</h3>
+		<h3>4.4. QRCode.drawSymbol()</h3>
 		<p>
 			This method of the QR code class constructs the symbol. It must only
 			be called after <a href="#cont4.2">QRCode.setVersion()</a> and
@@ -266,7 +267,7 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 		</p>
 		<code class="example">qr.drawSymbol();</code>
 		<a name="cont4.5"></a>
-		<h3>4.5 drawQRToCanvas(<code>qr, canvas, scale</code>)</h3>
+		<h3>4.5. drawQRToCanvas(<code>qr, canvas, scale</code>)</h3>
 		<p>
 			This function draws a QR code to an HTML5 canvas. 
 		</p>
@@ -284,7 +285,27 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 			The <code>scale</code> argument is the drawing scale. This value
 			decides how many pixels wide each module will be, per side.
 		</p>
-<code class="example">drawQRToCanvas(qr, document.getElementById('MyCanvasID'), 8);</code>
+		<code class="example">drawQRToCanvas(qr, document.getElementById('MyCanvasID'), 8);</code>
+		<a name="cont4.6">
+		<h3>4.6. drawQRToDiv(<code>qr, div, scale</code>)</h3>
+		<p>
+			This function draws a QR code to an HTML5 canvas. 
+		</p>
+		</p>
+			The <code>qr</code> argument is a QRCode object. This object must
+			have had the <a href="#cont4.4">QRCode.drawSymbol()</a> method
+			previously called, so that the symbol has been constructed.
+		</p>
+		<p>
+			The <code>div</code> argument is an HTML div object. This
+			object must exist -- make sure the window has been fully loaded and
+			the object has been created before attempting to call this function.
+		</p>
+		<p>
+			The <code>scale</code> argument is the drawing scale. This value
+			decides how many pixels wide each module will be, per side.
+		</p>
+		<code class="example">drawQRToDiv(qr, document.getElementById('MyDivID'), 8);</code>
 		<a name="cont5"></a>
 		<h3>5. Internal function documentation</h3>
 		<p>
