@@ -40,7 +40,7 @@ function QR__setReserveBit(x, y) {
 	}
 	
 	/* if the value is already reserved, we're fine */
-	if (this.reserved.indexOf(this.c2i(x,y)) != -1) {
+	if (QR__indexOf(this.reserved, this.c2i(x,y)) != -1) {
 		return true;
 	}
 	
@@ -58,7 +58,7 @@ function QR__setReserveBit(x, y) {
  */
 function QR__getReserveBit(x, y) {
 	if (!this.coordOK(x) || !this.coordOK(y)
-		|| this.reserved.indexOf(this.c2i(x,y)) == -1) {
+		|| QR__indexOf(this.reserved, this.c2i(x,y)) == -1) {
 		return false;	
 	}
 	

@@ -135,7 +135,27 @@ function QR__ba2i(arr, off, len) {
 	return output;
 }
 
-/* drawQR
+/* QR__indexOf
+ * Finds the index of the first occurence of an item in an array
+ * For browsers that don't support Array.indexOf INTERNET EXPLORER
+ * @arg arr - array to search
+ * @arg val - value to search for
+ */
+function QR__indexOf(arr, val) {
+	if (typeof arr.indexOf === 'undefined') {
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] === val) {
+				return i;	
+			}
+		}
+		
+		return -1;
+	}
+	
+	return arr.indexOf(val);
+}
+
+/* drawQRToCanvas
  * draws a QR code to a canvas
  * @arg qr - qr code object that is ready to be drawn (i.e. has had drawSymbol
  * called)

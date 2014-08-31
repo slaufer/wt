@@ -10,39 +10,17 @@
 		<script type="text/javascript" src="wt-encode.js"></script>
 		<script type="text/javascript" src="wt-main.js"></script>
 		<script type="text/javascript">
+			var qr = new QRCode();
+		
 			function startDemo() {
-				var qr = new QRCode();
-			
 				qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);
 				qr.setData([
 					{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
 					{data: document.getElementById("qrdata").value, mode: QR__Mode.smart}
 				]);
 				
-				// test sequence
-				/*qr.setVersion(0, QR__EC.M);
-				qr.setData([
-					{data: '15010114', mode: QR__Mode.FNC11 },
-					{data: 3, mode: QR__Mode.ECI},
-					{data: '!@#$%^&*()', mode: QR__Mode.eightBit},
-					{data: 'HELLO WORLDXXXXXXXXXXXXXXXXXXXXXX', mode: QR__Mode.alNum},
-					{data: '1234567890', mode: QR__Mode.num },
-					{data: 15, mode: QR__Mode.FNC12 },
-					{data: '010114', mode: QR__Mode.smart},
-					{data: 'END TEST ', mode: QR__Mode.smart},
-					{data: 'SEQUENCE**', mode: QR__Mode.smart}
-				]);*/
-				
-				// FNC1 test sequence
-				/*qr.setVersion(1, QR__EC.M);
-				qr.setData([
-						{ data: 1, mode: QR__Mode.FNC12 },
-						{ data: "04912345123459", mode: QR__Mode.num }
-				]);*/
-				
 				qr.drawSymbol();
 				drawQRToCanvas(qr, document.getElementById('qrcanvas'), 8);
-				
 			}
 			
 			window.onload = function() {

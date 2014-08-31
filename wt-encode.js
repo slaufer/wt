@@ -62,8 +62,8 @@ QR__Encode[QR__Mode.alNum] = function(output, data, sym) {
 		var chunk = data.slice(i, i+2);
 		var size = chunk.length * 5 + 1;
 		
-		var c1 = QR__EncAlNumVals.indexOf(chunk.charAt(0));
-		var c2 = QR__EncAlNumVals.indexOf(chunk.charAt(1));
+		var c1 = QR__indexOf(QR__EncAlNumVals, chunk.charAt(0));
+		var c2 = QR__indexOf(QR__EncAlNumVals, chunk.charAt(1));
 		
 		if (c1 == -1 || (chunk.length == 2 && c2 == -1)) {
 			throw new Error("Bad data for alphanumeric encoding");
@@ -204,7 +204,7 @@ QR__Encode[QR__Mode.smart] = function(output, data, sym) {
 	
 	/* scan for alphanumeric mode */
 	while (i < data.length) {
-		if (QR__EncAlNumVals.indexOf(data.charAt(i)) == -1) {
+		if (QR__indexOf(QR__EncAlNumVals, data.charAt(i)) == -1) {
 			encMode = QR__Mode.eightBit;
 			break;
 		}
@@ -227,7 +227,7 @@ QR__EncodeLen[QR__Mode.smart] = function(d,v) {
 	}
 	
 	while (i < d.length) {
-		if (QR__EncAlNumVals.indexOf(d.charAt(i)) == -1) {
+		if (QR__indexOf(QR__EncAlNumVals, d.charAt(i)) == -1) {
 			encMode = QR__Mode.eightBit;
 			break;
 		}
@@ -307,7 +307,7 @@ function QR__generateECC(data, offset, len, output, count) {
 	for (var i = msgPoly.length-1; i >= count;) {
 		/* now perform the XOR multiplication -- the offset makes this behave
 		   as though genPoly and msgPoly have the same degree. */
-		var leadCoeffAlpha = QR__GF256.indexOf(msgPoly[msgPoly.length-1]);
+		var leadCoeffAlpha = QR__indexOf(QR__GF256, msgPoly[msgPoly.length-1]);
 		var offset = msgPoly.length - QR__GenPoly[count].length;
 		for (var j = QR__GenPoly[count].length-1; j > -1; j--) {
 			var genPolyCoeff = QR__GenPoly[count][j] + leadCoeffAlpha;
