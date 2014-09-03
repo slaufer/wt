@@ -20,7 +20,10 @@
 				]);
 				
 				qr.drawSymbol();
-				drawQRToCanvas(qr, document.getElementById('qrcanvas'), 8);
+				if (typeof document.getElementById('qrcanvas').getContext !== 'undefined') {
+					drawQRToCanvas(qr, document.getElementById('qrcanvas'), 8);
+				}
+				
 				drawQRToDiv(qr, document.getElementById('qrdiv'), 8);
 			}
 			
@@ -84,10 +87,14 @@
 			</select>
 			<br>
 			<textarea id="qrdata" placeholder="Enter test data" onkeyup="startDemo()" style="width: 232px; height: 232px;">TEST</textarea><br>
-			<h2>Canvas:</h2>
-			<canvas id="qrcanvas"></canvas>
-			<h2>Div:</h2>
-			<div id="qrdiv"></div>
+			<div style="float: left; text-align: center;">
+				<h2>drawQRToCanvas()</h2>
+				<canvas id="qrcanvas"></canvas>
+			</div>
+			<div style="float: left; text-align: center;">
+				<h2>drawQRToDiv()</h2>
+				<div id="qrdiv"></div>
+			</div>
 		</p>
 	</body>
 </html>

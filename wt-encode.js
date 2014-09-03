@@ -174,7 +174,7 @@ QR__EncodeLen[QR__Mode.FNC11] = function(d,v) {
  */
 QR__Encode[QR__Mode.FNC12] = function(output, data, sym) {
 	QR__apush(output, [ true, false, false, true ]);
-	QR__pi2ba(data, 8);
+	QR__pi2ba(output, data, 8);
 }
 
 QR__EncodeLen[QR__Mode.FNC12] = function(d,v) {

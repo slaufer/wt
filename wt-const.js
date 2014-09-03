@@ -51,6 +51,12 @@ var QR__EncAlNumVals = [
 	' ', '$', '%', '*', '+', '-', '.', '/', ':' 	
 ];
 
+QR__EncAlNumKeys = {};
+
+for (var i = 0; i < QR__EncAlNumVals.length; i++) {
+	QR__EncAlNumKeys[QR__EncAlNumVals[i]] = i;	
+}
+
 /* Table of Galois Field 256. */
 var QR__GF256 = [
 	  1,   2,   4,   8,  16,  32,  64, 128,  29,  58, 116, 232, 205, 135,  19,
