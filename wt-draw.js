@@ -31,15 +31,17 @@ function drawQRToCanvas(qr, canvas, scale) {
 	ctx.fillRect(0, 0, canvasSize, canvasSize);
 	ctx.fillStyle = '#000000';
 	
+	ctx.beginPath();
 	/* iterate over data and fill into canvas */
 	for (var y = 0; y < qr.dim; y++) {
 		for (var x = 0; x < qr.dim; x++) {
 			var k = qr.getBit(x,y);
 			if (k === true) {
-				ctx.fillRect((x + 4) * scale, (y + 4) * scale, scale, scale);
+				ctx.rect((x + 4) * scale, (y + 4) * scale, scale, scale);
 			}
 		}
 	}
+	ctx.fill();
 }
 
 /* drawQRToDiv
