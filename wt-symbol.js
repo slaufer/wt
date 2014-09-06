@@ -232,15 +232,20 @@ function QR__drawPatterns() {
 }
 
 /* QR__reserveFormat
- * Adds locations of format and version blocks to the reserve module list.
+ * Adds locations of format and version blocks to the reserve module list, and
+ * temporarily sets them to false.
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  */
 function QR__reserveFormat() {
 	for (var i = 0; i < 8; i++) {
 		this.setReserveBit(8, i);
+		this.setBit(8, i, false);
 		this.setReserveBit(i, 8);
-		this.setReserveBit(8, this.dim - i - 1);
-		this.setReserveBit(this.dim - i - 1, 8);
+		this.setBit(i, 8, false);
+		this.setReserveBit(8, this.dim-i-1);
+		this.setBit(8, this.dim-i-1, false);
+		this.setReserveBit(this.dim-i-1, 8);
+		this.setBit(8, this.dim-i-1, false);
 	}
 	
 	this.setReserveBit(8, 8);
@@ -250,7 +255,9 @@ function QR__reserveFormat() {
 		for (var i = 0; i < 6; i++) {
 			for (var j = 0; j < 3; j++) {
 				this.setReserveBit(i, this.dim - 9 - j);
-				this.setReserveBit(this.dim - 9 - j, i);	
+				this.setBit(i, this.dim - 9 -j, false);
+				this.setReserveBit(this.dim - 9 - j, i);
+				this.setBit(this.dim - 9 - j, i, false);
 			}
 		}
 	}
@@ -272,14 +279,6 @@ function QR__drawBitstream() {
 	for (var i = 0; 1; i++) {
 		/* put the next bit into the symbol */
 		this.setBit(x - offset, y, bitstream[i]);
-		
-		/* keep track of which mask has the closest balance of 1 and 0 bits. 
-		   this is part of the mask selection algorithm. it doesn't comply with
-		   the standard, but it is a _LOT_ cheaper. */
-		for (var j = 0; j < QR__MaskPattern.length; j++) {
-			this.maskBalance[j] +=
-				(QR__MaskPattern[j](y, x) ? !bitstream[i] : bitstream[i]) ? 1 : -1;
-		}
 		
 		if (i == bitstream.length) {
 			break;
@@ -303,34 +302,200 @@ function QR__drawBitstream() {
 	}
 }
 
-/* QR__drawMask
- * Selects and applies a mask pattern to the symbol.
- * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
+/* QR__MaskPattern[]
+ * QR Code masking patterns
+ *
+ * @arg i - column
+ * @arg j - row
+ * @return - true if this bit should be flipped, false otherwise
  */
-function QR__drawMask() {
-	/* let me begin by saying that i'm really, really sorry about this. the
-	   algorithm to select a mask per the ISO standard is very slow and very
-	   difficult to write, so I'm selecting a mask based on which one has the 
-	   closest balance of 1 and 0 bits. */
-	var minBalance = Math.abs(this.maskBalance[0]);
-	this.mask = 0;
-	for (var i = 1; i < QR__MaskPattern.length; i++) {
-		if (Math.abs(this.maskBalance[i]) < minBalance) {
-			this.mask = i;
-			minBalance = Math.abs(this.maskBalance[i]);
-		}
-	}
+var QR__MaskPattern = [
+	function(i,j) { return (i + j) % 2 == 0; },
+	function(i,j) { return i % 2 == 0; },
+	function(i,j) { return j % 3 == 0; },
+	function(i,j) { return (i + j) % 3 == 0; },
+	function(i,j) { return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0; },
+	function(i,j) { return (i * j) % 2 + (i * j) % 3 == 0; },
+	function(i,j) { return ((i * j) % 2 + (i * j) % 3) % 2 == 0; },
+	function(i,j) { return ((i + j) % 2 + (i * j) % 3) % 2 == 0; } 
+];
+
+/* QR__MaskEngine[]
+ * Implementations of mask selection algorithms -- see QR__MaskMethod in
+ * wt-const.js.
+ * @arg qr - QR Code object to be masked
+ */
+QR__MaskEngine = [];
+QR__MaskEngine[QR__MaskMethod.Random] = function(qr) {
+	 /* select a mask pattern by throwing a dart */
+	qr.mask = QR__randomInt(0, QR__MaskPattern.length - 1);
 	
 	/* once the mask pattern is selected, apply it to the symbol */
-	for (var x = 0; x < this.dim; x++) {
-		for (var y = 0; y < this.dim; y++) {
-			if (!this.getReserveBit(x, y) && QR__MaskPattern[this.mask](y,x)) {
-				this.setBit(x, y, !this.getBit(x, y));
+	for (var x = 0; x < qr.dim; x++) {
+		for (var y = 0; y < qr.dim; y++) {
+			if (!qr.getReserveBit(x, y) && QR__MaskPattern[qr.mask](y,x)) {
+				qr.setBit(x, y, !qr.getBit(x, y));
 			}
 			
 		}
 	}
+}
+
+QR__MaskEngine[QR__MaskMethod.BWBalance] = function(qr) {
+	var maskBalance = [];
+	for (var i = 0; i < QR__MaskPattern.length; i++) {
+		maskBalance[i] = 0;
+	}
 	
+	/* figure out the balance of black/white maskable bits in the symbol for
+	   each pattern */
+	for (var x = 0; x < qr.dim; x++) {
+		for (var y = 0; y < qr.dim; y++) {
+			for (var i = 0; i < QR__MaskPattern.length; i++) {
+				if (qr.getReserveBit(x,y)) {
+					continue;
+				}
+				
+				maskBalance[i] += (qr.getBit(x,y) ? 1 : -1)
+					* (QR__MaskPattern[i](y,x) ? -1 : 1); 
+			}
+		}
+	}
+	
+	/* figure out which one had the best balance */
+	var min = Math.abs(maskBalance[0]);
+	qr.mask = 0;
+	for (var i = 1; i < maskBalance.length; i++) {
+		maskBalance[i] = Math.abs(maskBalance[i]);
+		if (maskBalance[i] < min) {
+			qr.mask = i;
+			min = maskBalance[i];
+		}
+	}
+	
+	/* once the mask pattern is selected, apply it to the symbol */
+	for (var x = 0; x < qr.dim; x++) {
+		for (var y = 0; y < qr.dim; y++) {
+			if (!qr.getReserveBit(x, y) && QR__MaskPattern[qr.mask](y,x)) {
+				qr.setBit(x, y, !qr.getBit(x, y));
+			}
+		}
+	}
+}
+
+/* the canonical engine is very slow */
+QR__MaskEngine[QR__MaskMethod.Canonical] = function(qr) {
+	var masks = [];
+	var score = [];
+	
+	/* make a copy of the symbol for each mask pattern, and test condition #4
+	   (light/dark balance) while we're at it */
+	for (var i = 0; i < QR__MaskPattern.length; i++) {
+		masks[i] = [];
+		score[i] = qr.dim * qr.dim / 2;
+		for (var y = 0; y < qr.dim; y++) {
+			for (var x = 0; x < qr.dim; x++) {
+				if (!qr.getReserveBit(x,y)) {
+					masks[i][qr.c2i(x,y)] = QR__MaskPattern[i](y,x) ? !qr.getBit(x,y) : qr.getBit(x,y);
+				} else {
+					masks[i][qr.c2i(x,y)] = qr.getBit(x,y);
+				}
+				
+				/* start counting black/white ratio */
+				if (masks[i][qr.c2i(x,y)]) {
+					score[i]--;
+				}
+			}
+		}
+
+		/* this was derived with algebra magic */
+		score[i] = Math.floor(Math.abs(score[i]) * 40 / (qr.dim * qr.dim)) * 10;
+	}
+	
+	/* condition #1 (contiguous lines)  */
+	for (var i = 0; i < QR__MaskPattern.length; i++) {
+		/* horizontal lines */
+		for (var y = 0; y < qr.dim; y++) {
+			for (var x = 0; x < qr.dim;) {
+				var v = masks[i][qr.c2i(x,y)];
+				var j;
+				
+				for (j = 1; j < qr.dim && masks[i][qr.c2i(x+j,y)] == v; j++);
+
+				if (j >= 5) {
+					score[i] += j - 2;
+				}
+				
+				x += j;
+			}
+		}
+		
+		/* vertical lines */
+		for (var x = 0; x < qr.dim; x++) {
+			for (var y = 0; y < qr.dim;) {
+				var v = masks[i][qr.c2i(x,y)];
+				var j;
+				
+				for (j = 1; j < qr.dim && masks[i][qr.c2i(x,y+j)] == v; j++);
+				
+				if (j >= 5) {
+					score[i] += j - 2;
+				}
+				
+				y += j;
+			}
+		}
+	}
+	
+	/* condition #2 (contiguous blocks) */
+	for (var i = 0; i < QR__MaskPattern.length; i++) {
+		for (var y = 0; y < qr.dim - 1; y++) {
+			for (var x = 0; x < qr.dim - 1; x++) {
+				var v = masks[i][qr.c2i(x,y)];
+				if (masks[i][qr.c2i(x+1,y)] == v && masks[i][qr.c2i(x,y+1)] == v && masks[i][qr.c2i(x+1,y+1)] == v) {
+					score[i] += 3;
+				}
+			}
+		}
+	}
+	
+	/* condition #3 (false finder patterns) */
+	
+	for (var i = 0; i < QR__MaskPattern.length; i++) {
+		for (var y = 0; y < qr.dim; y++) {
+			for (var x = 0; x < qr.dim; x++) {
+				if (!qr.getBit(x,y)) {
+					continue;	
+				}
+				
+				if (!qr.getBit(x+1,y) && qr.getBit(x+2,y) && qr.getBit(x+3,y) && qr.getBit(x+4,y) && !qr.getBit(x+5,y) && qr.getBit(x+6,y)) {
+					console.log('x-finder', i, x, y);
+					score[i] += 40;
+				}
+				
+				if (!qr.getBit(x,y+1) && qr.getBit(x,y+2) && qr.getBit(x,y+3) && qr.getBit(x,y+4) && !qr.getBit(x,y+5) && qr.getBit(x,y+6)) {
+					console.log('y-finder', i, x, y);
+					score[i] += 40;
+				}
+			}
+		}
+	}
+	
+	/* choose whichever pattern has the lowest score */
+	console.log(score);
+	var min = score[0];
+	qr.mask = 0;
+	for (var i = 1; i < score.length; i++) {
+		if (score[i] < min) {
+			min = score[i];
+			qr.mask = i;
+		}
+	}
+	
+	console.log(qr.mask);
+	
+	/* update symbol ref to point to the new symbol */
+	qr.symbol = masks[qr.mask];
 }
 
 /* QR__drawFormat
@@ -339,7 +504,6 @@ function QR__drawMask() {
  */
 function QR__drawFormat() {
 	/* draw the upper left format blocks */
-	
 	for (var i = 0; i < 6; i++) {
 		this.setBit(8, i, QR__FormatString[this.ec][this.mask][14-i]);
 		this.setBit(i, 8, QR__FormatString[this.ec][this.mask][i]);
@@ -426,7 +590,7 @@ function QR__drawSymbol() {
 	this.drawPatterns();
 	this.reserveFormat();
 	this.drawBitstream();
-	this.drawMask();
+	QR__MaskEngine[this.maskMethod](this);
 	this.drawFormat();
 }
 

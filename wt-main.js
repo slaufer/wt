@@ -18,7 +18,6 @@ var QRCode = function() {
 	this.drawPatterns = QR__drawPatterns;
 	this.drawBitstream = QR__drawBitstream;
 	this.drawSymbol = QR__drawSymbol;
-	this.drawMask = QR__drawMask;
 	this.drawFormat = QR__drawFormat;
 	this.reserveFormat = QR__reserveFormat;
 	this.setVersion = QR__setVersion;
@@ -39,6 +38,6 @@ var QRCode = function() {
 	this.reserved = null;
 	this.mask = null;
 	this.symbol = null;
-	this.maskBalance = null;
+	this.maskMethod = QR__MaskMethod.Canonical;
 };
 

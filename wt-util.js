@@ -249,3 +249,15 @@ function drawQRToDiv(qr, div, scale) {
 		}
 	}
 }
+
+/* QR__randomInt
+ * returns a pseudo-random integer in a given range. note that this works
+ * because Math.random() can never return 1
+ *
+ * @arg min - minimum value
+ * @arg max - maximum value
+ * @return - an integer value between min and max, inclusive
+ */
+function QR__randomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}

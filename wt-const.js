@@ -27,19 +27,6 @@ var QR__EC = {
 	H: 'H'
 };
 
-/* mask functions */
-
-var QR__MaskPattern = [
-	function(i,j) { return (i + j) % 2 == 0; },
-	function(i,j) { return i % 2 == 0; },
-	function(i,j) { return j % 3 == 0; },
-	function(i,j) { return (i + j) % 3 == 0; },
-	function(i,j) { return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0; },
-	function(i,j) { return (i * j) % 2 + (i * j) % 3 == 0; },
-	function(i,j) { return ((i * j) % 2 + (i * j) % 3) % 2 == 0; },
-	function(i,j) { return ((i + j) % 2 + (i * j) % 3) % 2 == 0; } 
-];
-
 /* Table of alphanumeric encoding values. */
 var QR__EncAlNumVals = [
 	/* Chars 0-9, Vals 0-9 */
@@ -202,3 +189,10 @@ var QR__PadCodewords = [
 	QR__b2ba("11101100"),
 	QR__b2ba("00010001")
 ];
+
+/* mask selection methods -- goes with QR__MaskEngine in wt-symbol.js */
+var QR__MaskMethod = {
+	Random: 0,
+	BWBalance: 1,
+	Canonical: 2
+}
