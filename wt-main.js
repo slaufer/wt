@@ -38,6 +38,6 @@ var QRCode = function() {
 	this.reserved = null;
 	this.mask = null;
 	this.symbol = null;
-	this.maskMethod = QR__MaskMethod.Canonical;
+	this.maskMethod = QR__MaskMethod.Random;
 };
 

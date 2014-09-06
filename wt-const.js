@@ -189,10 +189,3 @@ var QR__PadCodewords = [
 	QR__b2ba("11101100"),
 	QR__b2ba("00010001")
 ];
-
-/* mask selection methods -- goes with QR__MaskEngine in wt-symbol.js */
-var QR__MaskMethod = {
-	Random: 0,
-	BWBalance: 1,
-	Canonical: 2
-}
