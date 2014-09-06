@@ -16,6 +16,13 @@ var QR__MaskPattern = [
 	function(i,j) { return ((i + j) % 2 + (i * j) % 3) % 2 == 0; } 
 ];
 
+/* mask selection methods -- goes with QR__MaskEngine in wt-symbol.js */
+var QR__MaskMethod = {
+	Random: 0,
+	BWBalance: 1,
+	Canonical: 2
+}
+
 /* QR__MaskEngine[]
  * Implementations of mask selection algorithms -- see QR__MaskMethod in
  * wt-const.js.
