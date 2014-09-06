@@ -6,46 +6,58 @@
  * draws a QR code to a canvas
  * @arg qr - qr code object that is ready to be drawn (i.e. has had drawSymbol
  * called)
- * @arg canvas - canvas object to draw to. this object will be resized based on scale.
+ * @arg cvs - canvas object to draw to. this object will be resized based on scale.
  * @arg scale - OPTIONAL drawing scale. each module will be scale x scale pixels
  * in size. (default: 1)
  */
-function drawQRToCanvas(qr, canvas, scale) {
-	if (typeof canvas.getContext === 'undefined') {
-		return;
+var QR__TempCanvas;
+var QR__TempCanvasContext;
+ 
+function drawQRToCanvas(qr, cvs, scale) {
+	/* initialize the temporary canvas, if necessary */
+	if (typeof QR__TempCanvas === 'undefined') {
+		QR__TempCanvas = document.createElement('canvas');
+		QR__TempCanvasContext = QR__TempCanvas.getContext('2d');
 	}
 	
 	if (typeof scale === 'undefined') {
 		scale = 1;
 	}
 	
+	var tcvs = QR__TempCanvas;
+	var tctx = QR__TempCanvasContext;
+	
 	/* set canvas size, border */
-	var canvasSize = qr.dim * scale + 8 * scale 
-	canvas.style.width = canvas.style.height = canvasSize.toString() + 'px';
-	canvas.setAttribute('width', canvasSize.toString() + 'px');
-	canvas.setAttribute('height', canvasSize.toString() + 'px');
+	var cvsSize = qr.dim * scale + 8 * scale;
+	tcvs.setAttribute('width', cvsSize.toString() + 'px');
+	tcvs.setAttribute('height', cvsSize.toString() + 'px');
 	
 	/* create canvas context, clear canvas */
-	var ctx = canvas.getContext("2d");
-	ctx.fillStyle = '#ffffff';
-	ctx.fillRect(0, 0, canvasSize, canvasSize);
-	ctx.fillStyle = '#000000';
+	tctx.fillStyle = '#ffffff';
+	tctx.fillRect(0, 0, cvsSize, cvsSize);
+	tctx.fillStyle = '#000000';
 	
-	ctx.beginPath();
+	tctx.beginPath();
 	/* iterate over data and fill into canvas */
 	for (var y = 0; y < qr.dim; y++) {
 		for (var x = 0; x < qr.dim; x++) {
 			var k = qr.getBit(x,y);
 			if (k === true) {
-				ctx.rect((x + 4) * scale, (y + 4) * scale, scale, scale);
+				tctx.rect((x + 4) * scale, (y + 4) * scale, scale, scale);
 			}
 		}
 	}
-	ctx.fill();
+	tctx.fill();
+	
+	cvs.setAttribute('width', cvsSize.toString() + 'px');
+	cvs.setAttribute('height', cvsSize.toString() + 'px');
+	var ctx = cvs.getContext("2d");
+	ctx.drawImage(tcvs, 0, 0);
 }
 
 /* drawQRToDiv
- * draws a QR code to a  div
+ * draws a QR code to a  div. this will always perform poorly, do not use it
+ * unless you absolutely cannot use drawQRToCanvas.
  * @arg qr - qr code object that is ready to be drawn (i.e. has had drawSymbol
  * called)
  * @arg div - div object to draw to. this object may have its container
