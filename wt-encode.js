@@ -3,6 +3,8 @@
  *  Encoding functions are held in an array rather than members of the QRCode
  *  class to avoid the need for enormous switch statements when selecting an
  *  encoding mode.
+ *
+ *  TODO: clean up exception objects
  */
 
 /* encoding length functions, used for ver=auto */
