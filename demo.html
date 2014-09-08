@@ -20,6 +20,7 @@
 					{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
 					{data: document.getElementById("qrdata").value, mode: QR__Mode.smart}
 				]);
+				qr.maskMethod = QR__MaskMethod.Canonical;
 				
 				qr.drawSymbol();
 				if (typeof document.getElementById('qrcanvas').getContext !== 'undefined') {

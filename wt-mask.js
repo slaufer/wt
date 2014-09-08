@@ -86,7 +86,11 @@ QR__MaskEngine[QR__MaskMethod.BWBalance] = function(qr) {
 	}
 }
 
-/* the canonical engine is very slow */
+/* the canonical engine is very slow
+   it also performs a lot of unnecessary math operations through both direct and
+   indirect calls to QR__c2i() -- this is intentional, as the alternative makes
+   the code into a huge mess. */
+ 
 QR__MaskEngine[QR__MaskMethod.Canonical] = function(qr) {
 	var masks = [];
 	var score = [];
@@ -95,24 +99,29 @@ QR__MaskEngine[QR__MaskMethod.Canonical] = function(qr) {
 	   (light/dark balance) while we're at it */
 	for (var i = 0; i < QR__MaskPattern.length; i++) {
 		masks[i] = [];
-		score[i] = qr.dim * qr.dim / 2;
+		score[i] = 0;
+		
+		var dark = 0;
 		for (var y = 0; y < qr.dim; y++) {
 			for (var x = 0; x < qr.dim; x++) {
+				/* copy bit at x,y, applying mask if unreserved */
 				if (!qr.getReserveBit(x,y)) {
-					masks[i][qr.c2i(x,y)] = QR__MaskPattern[i](y,x) ? !qr.getBit(x,y) : qr.getBit(x,y);
+					masks[i][qr.c2i(x,y)] = QR__MaskPattern[i](y,x) ? 
+						!qr.getBit(x,y) : qr.getBit(x,y);
 				} else {
 					masks[i][qr.c2i(x,y)] = qr.getBit(x,y);
 				}
 				
-				/* start counting black/white ratio */
+				/* count dark modules */
 				if (masks[i][qr.c2i(x,y)]) {
-					score[i]--;
+					dark++;
 				}
 			}
 		}
 
-		/* this was derived with algebra magic */
-		score[i] = Math.floor(Math.abs(score[i]) * 40 / (qr.dim * qr.dim)) * 10;
+		/* figure out score from condition #4 */ 
+		score[i] = Math.floor(Math.abs(dark - Math.pow(qr.dim,2) / 2)
+			/ Math.pow(qr.dim,2) * 20) * 10;
 	}
 	
 	/* condition #1 (contiguous lines)  */
