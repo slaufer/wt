@@ -40,11 +40,11 @@ function QR__setReserveBit(x, y) {
 	}
 	
 	/* if the value is already reserved, we're fine */
-	if (QR__indexOf(this.reserved, this.c2i(x,y)) != -1) {
+	if (this.reserved[this.c2i(x,y)]) {
 		return true;
 	}
 	
-	this.reserved[this.reserved.length] = this.c2i(x,y);
+	this.reserved[this.c2i(x,y)] = true;
 	return true;
 }
 
@@ -57,12 +57,11 @@ function QR__setReserveBit(x, y) {
  * @arg return - true if value is reserved, false otherwise
  */
 function QR__getReserveBit(x, y) {
-	if (!this.coordOK(x) || !this.coordOK(y)
-		|| QR__indexOf(this.reserved, this.c2i(x,y)) == -1) {
+	if (!this.coordOK(x) || !this.coordOK(y)) {
 		return false;	
 	}
 	
-	return true;
+	return this.reserved[this.c2i(x,y)];
 }
 
 /* QR__getBit
@@ -352,19 +351,6 @@ function QR__drawSymbol() {
 		throw new Error("Data not set");
 	}
 	
-	/* (re)initialize the symbol */
-	this.reserved = [];
-	this.symbol = [];
-	this.maskBalance = [];
-	
-	for (var i = 0; i < QR__MaskPattern.length; i++) {
-		this.maskBalance[i] = null;
-	}
-	
-	for (var i = 0; i < this.dim * this.dim; i++) {
-		this.symbol[i] = null;
-	}
-	
 	/* figure out the optimal version */
 	if (this.autover) {
 		this.ver = null;
@@ -388,6 +374,15 @@ function QR__drawSymbol() {
 		if (this.ver == null) {
 			throw new Error("Data too large");
 		}
+	}
+	
+	/* (re)initialize the symbol */
+	this.reserved = [];
+	this.symbol = [];
+	
+	for (var i = 0; i < this.dim * this.dim; i++) {
+		this.symbol[i] = null;
+		this.reserved[i] = false;
 	}
 	
 	/* draw the symbol */
