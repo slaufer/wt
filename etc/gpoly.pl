@@ -27,7 +27,7 @@ sub ifind {
 
 # begin by generating the GF(256) table
 my @GF256 = ( 1 );
-for (my $v = 1, my $i=1; $i < 256; $i++) {
+for (my $i=1; $i < 256; $i++) {
 	$GF256[$i] = $GF256[$i-1] * 2;
 	if ($GF256[$i] > 255) {
 		$GF256[$i] ^= 285;
