@@ -309,7 +309,8 @@ function QR__generateECC(data, offset, len, output, count) {
 	for (var i = msgPoly.length-1; i >= count;) {
 		/* now perform the XOR multiplication -- the offset makes this behave
 		   as though genPoly and msgPoly have the same degree. */
-		var leadCoeffAlpha = QR__indexOf(QR__GF256, msgPoly[msgPoly.length-1]);
+		//var leadCoeffAlpha = QR__indexOf(QR__GF256, msgPoly[msgPoly.length-1]);
+		var leadCoeffAlpha = QR__GF256R[msgPoly[msgPoly.length-1]];
 		var offset = msgPoly.length - QR__GenPoly[count].length;
 		for (var j = QR__GenPoly[count].length-1; j > -1; j--) {
 			var genPolyCoeff = QR__GenPoly[count][j] + leadCoeffAlpha;

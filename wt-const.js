@@ -66,6 +66,13 @@ var QR__GF256 = [
 	  1
 ];
 
+/* Generate reverse lookup table. */
+var QR__GF256R = [ null ];
+for (var i = 0; i < QR__GF256.length; i++) {
+	QR__GF256R[QR__GF256[i]] = i;
+}
+QR__GF256R[1] = 0;
+
 /* Table of generator polynomials in alpha notation. See etc/gpoly.pl for more
    information on how these are generated. */
 var QR__GenPoly = [
