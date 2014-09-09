@@ -111,9 +111,9 @@ print "/*\n"
 for (my $i = 1; $i < @vers; $i++) {
 	print "\t{\n"
 		#. "\t\tver: $vers[$i]{ver},\n"
-		. "\t\tdim: $vers[$i]{dim},\n"
-		. "\t\tcodewords: $vers[$i]{codewords},\n"
-		. "\t\trem: $vers[$i]{rem},\n"
+		#. "\t\tdim: $vers[$i]{dim},\n"
+		#. "\t\tcodewords: $vers[$i]{codewords},\n"
+		#. "\t\trem: $vers[$i]{rem},\n"
 		. "\t\talign: [".(join ',', @{$vers[$i]{align}})."],\n";
 		
 	if ($i >= 7) {
@@ -150,13 +150,13 @@ for (my $i = 1; $i < @vers; $i++) {
 	print (join ",\n", @strings2);
 	print "\n";
 		
-	print "\t\t},\n"
-		. "\t\tcci: {\n"
-		. "\t\t\tnum: $vers[$i]{cci}{num},\n"
-		. "\t\t\talNum: $vers[$i]{cci}{alNum},\n"
-		. "\t\t\teightBit: $vers[$i]{cci}{eightBit},\n"
-		. "\t\t\tkanji: $vers[$i]{cci}{kanji}\n"
-		. "\t\t}\n"
+	print "\t\t}\n"
+		#. "\t\tcci: {\n"
+		#. "\t\t\tnum: $vers[$i]{cci}{num},\n"
+		#. "\t\t\talNum: $vers[$i]{cci}{alNum},\n"
+		#. "\t\t\teightBit: $vers[$i]{cci}{eightBit},\n"
+		#. "\t\t\tkanji: $vers[$i]{cci}{kanji}\n"
+		#. "\t\t}\n"
 		. "\t}";
 		
 	if ($i + 1 < @vers) {

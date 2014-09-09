@@ -5,9 +5,6 @@
 var QR__Ver = [
 	false,
 	{
-		dim: 21,
-		codewords: 26,
-		rem: 0,
 		align: [],
 		ec: {
 			H: {
@@ -50,18 +47,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 25,
-		codewords: 44,
-		rem: 7,
 		align: [6,18],
 		ec: {
 			H: {
@@ -104,18 +92,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 29,
-		codewords: 70,
-		rem: 7,
 		align: [6,22],
 		ec: {
 			H: {
@@ -158,18 +137,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 33,
-		codewords: 100,
-		rem: 7,
 		align: [6,26],
 		ec: {
 			H: {
@@ -212,18 +182,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 37,
-		codewords: 134,
-		rem: 7,
 		align: [6,30],
 		ec: {
 			H: {
@@ -276,18 +237,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 41,
-		codewords: 172,
-		rem: 7,
 		align: [6,34],
 		ec: {
 			H: {
@@ -330,18 +282,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 45,
-		codewords: 196,
-		rem: 0,
 		align: [6,22,38],
 		vi: QR__b2ba("000111110010010100"),
 		ec: {
@@ -395,18 +338,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 49,
-		codewords: 242,
-		rem: 0,
 		align: [6,24,42],
 		vi: QR__b2ba("001000010110111100"),
 		ec: {
@@ -465,18 +399,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 53,
-		codewords: 292,
-		rem: 0,
 		align: [6,26,46],
 		vi: QR__b2ba("001001101010011001"),
 		ec: {
@@ -535,18 +460,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 10,
-			alNum: 9,
-			eightBit: 8,
-			kanji: 8
 		}
 	},
 	{
-		dim: 57,
-		codewords: 346,
-		rem: 0,
 		align: [6,28,50],
 		vi: QR__b2ba("001010010011010011"),
 		ec: {
@@ -610,18 +526,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 61,
-		codewords: 404,
-		rem: 0,
 		align: [6,30,54],
 		vi: QR__b2ba("001011101111110110"),
 		ec: {
@@ -680,18 +587,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 65,
-		codewords: 466,
-		rem: 0,
 		align: [6,32,58],
 		vi: QR__b2ba("001100011101100010"),
 		ec: {
@@ -755,18 +653,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 69,
-		codewords: 532,
-		rem: 0,
 		align: [6,34,62],
 		vi: QR__b2ba("001101100001000111"),
 		ec: {
@@ -825,18 +714,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 73,
-		codewords: 581,
-		rem: 3,
 		align: [6,26,46,66],
 		vi: QR__b2ba("001110011000001101"),
 		ec: {
@@ -900,18 +780,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 77,
-		codewords: 655,
-		rem: 3,
 		align: [6,26,48,70],
 		vi: QR__b2ba("001111100100101000"),
 		ec: {
@@ -975,18 +846,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 81,
-		codewords: 733,
-		rem: 3,
 		align: [6,26,50,74],
 		vi: QR__b2ba("010000101101111000"),
 		ec: {
@@ -1050,18 +912,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 85,
-		codewords: 815,
-		rem: 3,
 		align: [6,30,54,78],
 		vi: QR__b2ba("010001010001011101"),
 		ec: {
@@ -1125,18 +978,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 89,
-		codewords: 901,
-		rem: 3,
 		align: [6,30,56,82],
 		vi: QR__b2ba("010010101000010111"),
 		ec: {
@@ -1200,18 +1044,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 93,
-		codewords: 991,
-		rem: 3,
 		align: [6,30,58,86],
 		vi: QR__b2ba("010011010100110010"),
 		ec: {
@@ -1275,18 +1110,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 97,
-		codewords: 1085,
-		rem: 3,
 		align: [6,34,62,90],
 		vi: QR__b2ba("010100100110100110"),
 		ec: {
@@ -1350,18 +1176,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 101,
-		codewords: 1156,
-		rem: 4,
 		align: [6,28,50,72,94],
 		vi: QR__b2ba("010101011010000011"),
 		ec: {
@@ -1420,18 +1237,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 105,
-		codewords: 1258,
-		rem: 4,
 		align: [6,26,50,74,98],
 		vi: QR__b2ba("010110100011001001"),
 		ec: {
@@ -1485,18 +1293,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 109,
-		codewords: 1364,
-		rem: 4,
 		align: [6,30,54,78,102],
 		vi: QR__b2ba("010111011111101100"),
 		ec: {
@@ -1560,18 +1359,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 113,
-		codewords: 1474,
-		rem: 4,
 		align: [6,28,54,80,106],
 		vi: QR__b2ba("011000111011000100"),
 		ec: {
@@ -1635,18 +1425,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 117,
-		codewords: 1588,
-		rem: 4,
 		align: [6,32,58,84,110],
 		vi: QR__b2ba("011001000111100001"),
 		ec: {
@@ -1710,18 +1491,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 121,
-		codewords: 1706,
-		rem: 4,
 		align: [6,30,58,86,114],
 		vi: QR__b2ba("011010111110101011"),
 		ec: {
@@ -1785,18 +1557,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 12,
-			alNum: 11,
-			eightBit: 16,
-			kanji: 10
 		}
 	},
 	{
-		dim: 125,
-		codewords: 1828,
-		rem: 4,
 		align: [6,34,62,90,118],
 		vi: QR__b2ba("011011000010001110"),
 		ec: {
@@ -1860,18 +1623,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 129,
-		codewords: 1921,
-		rem: 1921,
 		align: [6,26,50,74,98,122],
 		vi: QR__b2ba("011100110000011010"),
 		ec: {
@@ -1935,18 +1689,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 133,
-		codewords: 2051,
-		rem: 2051,
 		align: [6,30,54,78,102,126],
 		vi: QR__b2ba("011101001100111111"),
 		ec: {
@@ -2010,18 +1755,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 137,
-		codewords: 2185,
-		rem: 2185,
 		align: [6,26,52,78,104,130],
 		vi: QR__b2ba("011110110101110101"),
 		ec: {
@@ -2085,18 +1821,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 141,
-		codewords: 2323,
-		rem: 2323,
 		align: [6,30,56,82,108,134],
 		vi: QR__b2ba("011111001001010000"),
 		ec: {
@@ -2160,18 +1887,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 145,
-		codewords: 2465,
-		rem: 2465,
 		align: [6,34,60,86,112,138],
 		vi: QR__b2ba("100000100111010101"),
 		ec: {
@@ -2230,18 +1948,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 149,
-		codewords: 2611,
-		rem: 2611,
 		align: [6,30,58,86,114,142],
 		vi: QR__b2ba("100001011011110000"),
 		ec: {
@@ -2305,18 +2014,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 153,
-		codewords: 2761,
-		rem: 2761,
 		align: [6,34,62,90,118,146],
 		vi: QR__b2ba("100010100010111010"),
 		ec: {
@@ -2380,18 +2080,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 157,
-		codewords: 2876,
-		rem: 2876,
 		align: [6,30,54,78,102,126,150],
 		vi: QR__b2ba("100011011110011111"),
 		ec: {
@@ -2455,18 +2146,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 161,
-		codewords: 3034,
-		rem: 3034,
 		align: [6,24,50,76,102,128,154],
 		vi: QR__b2ba("100100101100001011"),
 		ec: {
@@ -2530,18 +2212,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 165,
-		codewords: 3196,
-		rem: 3196,
 		align: [6,28,54,80,106,132,158],
 		vi: QR__b2ba("100101010000101110"),
 		ec: {
@@ -2605,18 +2278,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 169,
-		codewords: 3362,
-		rem: 3362,
 		align: [6,32,58,84,110,136,162],
 		vi: QR__b2ba("100110101001100100"),
 		ec: {
@@ -2680,18 +2344,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 173,
-		codewords: 3532,
-		rem: 3532,
 		align: [6,26,54,82,110,138,166],
 		vi: QR__b2ba("100111010101000001"),
 		ec: {
@@ -2755,18 +2410,9 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	},
 	{
-		dim: 177,
-		codewords: 3706,
-		rem: 3706,
 		align: [6,30,58,86,114,142,170],
 		vi: QR__b2ba("101000110001101001"),
 		ec: {
@@ -2830,12 +2476,41 @@ var QR__Ver = [
 					}
 				]
 			}
-		},
-		cci: {
-			num: 14,
-			alNum: 13,
-			eightBit: 16,
-			kanji: 12
 		}
 	}
 ];
+
+var QR__cci0 = { num: 10, alNum: 9, eightBit: 8, kanji: 8 };
+var QR__cci1 = { num: 12, alNum: 11, eightBit: 16, kanji: 10 };
+var QR__cci2 = { num: 14, alNum: 13, eightBit: 16, kanji: 12 };
+
+for (var i = 1; i <= 40; i++) {
+	var dim = i * 4 + 17;
+	
+	/* figure out data module count */
+	var modules = dim * dim // number of non-data modules
+		- 223 // finder patterns, format info, dark module
+		- 2 * (dim - 16); // timing patterns
+		
+	if (QR__Ver[i].align.length > 0) {
+		modules -= (Math.pow(QR__Ver[i].align.length,2)-3) * 25 // align patterns
+			- 5 * ((QR__Ver[i].align.length - 2) * 2); // timing/align overlap
+	}
+		
+	if (i >= 7) {
+		modules -= 36; // version info
+	}
+
+	/* cci counts */
+	if (i <= 9) {
+		QR__Ver[i].cci = QR__cci0;
+	} else if (i <= 26) {
+		QR__Ver[i].cci = QR__cci1;
+	} else {
+		QR__Ver[i].cci = QR__cci2;	
+	}
+
+	QR__Ver[i].dim = dim;
+	QR__Ver[i].codewords = Math.floor(modules/8);
+	QR__Ver[i].rem = modules % 8;
+}
