@@ -8,12 +8,14 @@
  * called)
  * @arg cvs - canvas object to draw to. this object will be resized based on scale.
  * @arg scale - OPTIONAL drawing scale. each module will be scale x scale pixels
+ * @arg bgcolor - OPTIONAL background color
+ * @arg fgcolor - OPTIONAL foreground color
  * in size. (default: 1)
  */
 var QR__TempCanvas;
 var QR__TempCanvasContext;
  
-function drawQRToCanvas(qr, cvs, scale) {
+function drawQRToCanvas(qr, cvs, scale, bgcolor, fgcolor) {
 	/* initialize the temporary canvas, if necessary */
 	if (typeof QR__TempCanvas === 'undefined') {
 		QR__TempCanvas = document.createElement('canvas');
@@ -22,6 +24,14 @@ function drawQRToCanvas(qr, cvs, scale) {
 	
 	if (typeof scale === 'undefined') {
 		scale = 1;
+	}
+	
+	if (typeof bgcolor === 'undefined') {
+		bgcolor = '#fff';
+	}
+	
+	if (typeof fgcolor === 'undefined') {
+		fgcolor = '#000';	
 	}
 	
 	var tcvs = QR__TempCanvas;
@@ -33,9 +43,9 @@ function drawQRToCanvas(qr, cvs, scale) {
 	tcvs.setAttribute('height', cvsSize.toString() + 'px');
 	
 	/* create canvas context, clear canvas */
-	tctx.fillStyle = '#ffffff';
+	tctx.fillStyle = bgcolor;
 	tctx.fillRect(0, 0, cvsSize, cvsSize);
-	tctx.fillStyle = '#000000';
+	tctx.fillStyle = fgcolor;
 	
 	tctx.beginPath();
 	/* iterate over data and fill into canvas */
