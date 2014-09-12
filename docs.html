@@ -332,7 +332,7 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 		</p>
 		<code class="example">drawQRToCanvas(qr, document.getElementById('MyCanvasID'), 8);</code>
 		<a name="cont4.3">
-		<h3>4.3. drawQRToDiv(<code>qr, div, scale</code>)</h3>
+		<h3>4.3. drawQRToDiv(<code>qr, div, scale, bgcolor, fgcolor</code>)</h3>
 		<p>
 			This function draws a QR code to an HTML5 canvas. 
 		</p>
@@ -347,8 +347,12 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 			the object has been created before attempting to call this function.
 		</p>
 		<p>
-			The <code>scale</code> argument is the drawing scale. This value
+			The optional <code>scale</code> argument is the drawing scale. This value
 			decides how many pixels wide each module will be, per side.
+		</p>
+		<p>
+			The optional <code>bgcolor</code> and <code>fgcolor</code> arguments 
+			define the background and foreground colors of the QR Code.
 		</p>
 		<code class="example">drawQRToDiv(qr, document.getElementById('MyDivID'), 8);</code>
 		<a name="cont5"></a>

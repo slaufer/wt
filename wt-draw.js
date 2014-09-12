@@ -75,16 +75,24 @@ function drawQRToCanvas(qr, cvs, scale, bgcolor, fgcolor) {
  * @arg scale - OPTIONAL drawing scale. each module will be scale x scale pixels
  * in size. (default: 1)
  */
-function drawQRToDiv(qr, div, scale) {
+function drawQRToDiv(qr, div, scale, bgcolor, fgcolor) {
 	/* remove all child objects */
 	while (div.firstChild) {
 		div.removeChild(div.firstChild);	
 	}
 	
+	if (typeof bgcolor === 'undefined') {
+		bgcolor = '#fff';
+	}
+	
+	if (typeof fgcolor === 'undefined') {
+		fgcolor = '#000';
+	}
+	
 	/* set up container */
 	div.style.padding = '0px';
 	div.style.width = div.style.height = ((qr.dim + 8) * scale).toString() + 'px';
-	div.style.backgroundColor = '#fff';
+	div.style.backgroundColor = bgcolor;
 	
 	/* top spacer */
 	var mod = document.createElement('div');
@@ -105,7 +113,7 @@ function drawQRToDiv(qr, div, scale) {
 		
 		/* this module */
 		var mod = document.createElement('div');
-		mod.style.backgroundColor = (qr.symbol[i] === true) ? '#000' : '#fff';
+		mod.style.backgroundColor = (qr.symbol[i] === true) ? fgcolor : bgcolor;
 		mod.style.width = mod.style.height = scale.toString() + 'px';
 		mod.style.float = 'left';
 		mod.style.fontSize = '1px';
