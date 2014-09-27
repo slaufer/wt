@@ -17,8 +17,8 @@
 			function startDemo() {
 				qr.setVersion(parseInt(document.getElementById("qrver").value), QR__EC[document.getElementById("qrec").value]);
 				qr.setData([
-					{data: 3, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
-					{data: document.getElementById("qrdata").value, mode: QR__Mode.smart}
+					//{data: 26, mode: QR__Mode.ECI}, // just to be safe - default incoding is ShiftJIS
+					{data: document.getElementById("qrdata").value, mode: QR__Mode.eightBit}
 				]);
 				qr.maskMethod = QR__MaskMethod.Canonical;
 				

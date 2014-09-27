@@ -135,3 +135,6 @@ var QR__PadCodewords = [
 	QR__b2ba("11101100"),
 	QR__b2ba("00010001")
 ];
+
+/* UTF-8 breakpoints */
+var QR__UTF8_Breakpoints = [ 0x80, 0x800, 0x10000, 0x200000, 0x4000000 ];

@@ -82,26 +82,71 @@ QR__EncodeLen[QR__Mode.alNum] = function(d,v) {
 };
 
 /* QR__encEightBit
- * Encodes a string in 8-bit mode.
+ * Encodes a string in 8-bit mode. ENCODES ALL STRINGS AS UTF-8 WHERE APPLICABLE
  * ONLY TO BE CALLED AS A MEMBER OF THE QRCODE CLASS
  *
  * @arg output - array to append to
  * @arg data - 8-bit string to encode
  * @arg sym - QR code object
  */
+ 
+/* TODO: Optimize this function (again) */
 QR__Encode[QR__Mode.eightBit] = function(output, data, sym) {
 	/* start with mode identifier and char count indicator */
 	QR__pi2ba(output, QR__Mode.eightBit, 4);
-	QR__pi2ba(output, data.length, QR__Ver[sym.ver].cci.eightBit);
+	QR__pi2ba(output, QR__EncodeLen[QR__Mode.eightBit](data, sym.ver) / 8, QR__Ver[sym.ver].cci.eightBit);
 	
 	/* encode and append data */
 	for (var i = 0; i < data.length; i++) {
-		QR__pi2ba(output, data.charCodeAt(i), 8);
+		var code = data.charCodeAt(i);
+		var bp;
+		for (bp = 0; bp < QR__UTF8_Breakpoints.length && code > QR__UTF8_Breakpoints[bp]; bp++);
+
+		if (bp) { /* UTF-8 characters */
+			var codelen = codelen = 5 * bp + 6; // length of UTF-8 code as binary
+			var bcode = QR__i2ba(code, codelen); // UTF-8 code as binary
+			var enc = []; // encoded string
+			var j;
+			
+			/* add byte count initializer for multibyte UTF-8 character */
+			for (j = 0; j < bp+1; j++) {
+				enc[enc.length] = true;
+			}
+			enc[enc.length] = false;
+			
+			/* fill out first byte with data */
+			QR__apushr(enc, bcode, 0, 6-bp);
+			j = (6 - bp);
+			
+			/* fill out remaining bytes with data */
+			for (var k = 0; k < bp; k++) {
+				enc[enc.length] = true;
+				enc[enc.length] = false;
+				QR__apushr(enc, bcode, j, 6);
+				j += 6;
+			}
+			
+		} else { /* Lower 127 (ASCII) characters */
+			enc = QR__i2ba(code, 8);
+		}
+		
+		//QR__pi2ba(output, data.charCodeAt(i), 8);
+		QR__apush(output, enc);
 	}
 }
 
 QR__EncodeLen[QR__Mode.eightBit] = function(d,v) {
-	return 4 + QR__Ver[v].cci.eightBit + 8 * d.length;
+	var len = 0;
+	
+	for (var i = 0; i < d.length; i++) {
+		var code = d.charCodeAt(i);
+		var bp;
+		for (bp = 0; bp < QR__UTF8_Breakpoints.length && code > QR__UTF8_Breakpoints[bp]; bp++); 
+		len += 8 * bp + 8;
+	}
+	return len;
+	
+	//return 4 + QR__Ver[v].cci.eightBit + 8 * d.length;
 };
 
 /* QR__encECI
