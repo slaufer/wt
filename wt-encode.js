@@ -136,7 +136,7 @@ QR__Encode[QR__Mode.eightBit] = function(output, data, sym) {
 }
 
 QR__EncodeLen[QR__Mode.eightBit] = function(d,v) {
-	var len = 0;
+	var len = QR__Ver[v].cci.eightBit + 4;
 	
 	for (var i = 0; i < d.length; i++) {
 		var code = d.charCodeAt(i);
@@ -145,8 +145,6 @@ QR__EncodeLen[QR__Mode.eightBit] = function(d,v) {
 		len += 8 * bp + 8;
 	}
 	return len;
-	
-	//return 4 + QR__Ver[v].cci.eightBit + 8 * d.length;
 };
 
 /* QR__encECI
