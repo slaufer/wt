@@ -212,38 +212,15 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 				<li>
 					<b>ECI Header (<code>QR__Mode.ECI</code>):</b>
 					Inserts an ECI header, which specifies an encoding type.
-					Argument <code>data</code> is an integer ECI code value. ECI
-					codes are available for many common character encodings:
+					Argument <code>data</code> is an integer ECI code value. It is
+					recommended that you use one of the following character encodings:
 					<ul>
 						<li>3: ISO-8859-1</li>
-						<li>4: ISO-8859-2</li>
-						<li>5: ISO-8859-3</li>
-						<li>6: ISO-8859-4</li>
-						<li>7: ISO-8859-5</li>
-						<li>8: ISO-8859-6</li>
-						<li>9: ISO-8859-7</li>
-						<li>10: ISO-8859-8</li>
-						<li>11: ISO-8859-9</li>
-						<li>12: ISO-8859-10</li>
-						<li>13: ISO-8859-11</li>
-						<li>14: ISO-8859-12</li>
-						<li>15: ISO-8859-13</li>
-						<li>16: ISO-8859-14</li>
-						<li>17: ISO-8859-15</li>
-						<li>18: ISO-8859-16</li>
-						<li>19: Extra Crispy</li>
-						<li>20: Shift_JIS</li>
-						<li>21: Cp1250, windows-1250</li>
-						<li>22: Cp1251, windows-1251</li>
-						<li>23: Cp1252, windows-1252</li>
-						<li>24: Cp1256, windows-1256</li>
-						<li>25: UnicodeBigUnmarked, UTF-16BE, UnicodeBig</li>
 						<li>26: UTF-8</li>
-						<li>27: US-ASCII</li>
-						<li>28: Big5</li>
-						<li>29: GB18030, GB2312, EUC_CN, GBK</li>
-						<li>30: EUC-KR</li>
 					</ul>
+					The reason for this is that JavaScript converts ALL strings to UTF-8.
+					Using ISO-8859-1 is acceptable if you're sure you're only using the
+					lower 127 (ASCII) character set. If you're not sure, use UTF-8.
 				</li>
 				<li>
 					<b>FNC1 in First Position (<code>QR__Mode.FNC11</code>):</b>
