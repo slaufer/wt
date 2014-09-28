@@ -206,9 +206,8 @@ drawQRToCanvas(qr, document.getElementById("MyCanvas"), 8);</code>
 					Eight bit encoding. Argument <code>data</code> may contain
 					any data. It is strongly recommended, although not required,
 					that an ECI encoding header be included when using this mode
-					(see below). Be advised that most JavaScript interpreters
-					view <i>all</i> string data as UTF-8, regardless of input
-					encoding.
+					(see below). Be advised that most JavaScript implementations
+					will convert <b>ALL</b> strings to UTF-8, regardless of input encoding.
 				</lI>
 				<li>
 					<b>ECI Header (<code>QR__Mode.ECI</code>):</b>

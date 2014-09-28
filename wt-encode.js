@@ -92,20 +92,19 @@ QR__EncodeLen[QR__Mode.alNum] = function(d,v) {
  
 /* TODO: Optimize this function (again) */
 QR__Encode[QR__Mode.eightBit] = function(output, data, sym) {
-	/* start with mode identifier and char count indicator */
-	QR__pi2ba(output, QR__Mode.eightBit, 4);
-	QR__pi2ba(output, QR__EncodeLen[QR__Mode.eightBit](data, sym.ver) / 8, QR__Ver[sym.ver].cci.eightBit);
+	var enc = []; // encoded string
+	var len = 0; // byte count
 	
 	/* encode and append data */
 	for (var i = 0; i < data.length; i++) {
 		var code = data.charCodeAt(i);
 		var bp;
 		for (bp = 0; bp < QR__UTF8_Breakpoints.length && code > QR__UTF8_Breakpoints[bp]; bp++);
+		len += bp + 1;
 
 		if (bp) { /* UTF-8 characters */
 			var codelen = codelen = 5 * bp + 6; // length of UTF-8 code as binary
 			var bcode = QR__i2ba(code, codelen); // UTF-8 code as binary
-			var enc = []; // encoded string
 			var j;
 			
 			/* add byte count initializer for multibyte UTF-8 character */
@@ -127,12 +126,16 @@ QR__Encode[QR__Mode.eightBit] = function(output, data, sym) {
 			}
 			
 		} else { /* Lower 127 (ASCII) characters */
-			enc = QR__i2ba(code, 8);
+			QR__pi2ba(enc, code, 8);
 		}
 		
 		//QR__pi2ba(output, data.charCodeAt(i), 8);
-		QR__apush(output, enc);
 	}
+	
+	/* start with mode identifier and char count indicator */
+	QR__pi2ba(output, QR__Mode.eightBit, 4);
+	QR__pi2ba(output, len, QR__Ver[sym.ver].cci.eightBit);
+	QR__apush(output, enc);
 }
 
 QR__EncodeLen[QR__Mode.eightBit] = function(d,v) {
@@ -144,6 +147,7 @@ QR__EncodeLen[QR__Mode.eightBit] = function(d,v) {
 		for (bp = 0; bp < QR__UTF8_Breakpoints.length && code > QR__UTF8_Breakpoints[bp]; bp++); 
 		len += 8 * bp + 8;
 	}
+	
 	return len;
 };
 
